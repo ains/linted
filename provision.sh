@@ -1,6 +1,5 @@
 export VE_DIR=/home/vagrant/.envs/linted
 export CODE_DIR=/vagrant
-export WEB_APP_CODE_DIR=/vagrant/app
 
 #install dependencies
 apt-get update
@@ -33,9 +32,9 @@ chgrp -R vagrant $VE_DIR
 #Run syncdb to create south specific databases
 if [ ! -e /home/vagrant/.provisioned ]
 then
-    (cd $WEB_APP_CODE_DIR && $VE_DIR/bin/python manage.py syncdb --noinput)
+    (cd $CODE_DIR && $VE_DIR/bin/python manage.py syncdb --noinput)
     touch /home/vagrant/.provisioned
 fi
 
 #Perform migrations for application
-(cd $WEB_APP_CODE_DIR && $VE_DIR/bin/python manage.py migrate linted)
+(cd $CODE_DIR && $VE_DIR/bin/python manage.py migrate linted)
