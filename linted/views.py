@@ -1,6 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import DetailView
 from django.core.urlresolvers import reverse
 
 from linted.tasks import add, scan_repository
@@ -15,13 +14,13 @@ def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
 
 
-class ViewRepository(DetailView):
-    model = Repository
-    template_name = 'view_repository.html'
+def view_repoository(request, uuid):
+    repository = get_object_or_404(Repository, uuid=uuid)
+    return render(request, 'view_repository.html', {'repository': repository})
 
 
-def run_scan(request, pk):
-    repository = get_object_or_404(Repository, pk=pk)
+def run_scan(request, uuid):
+    repository = get_object_or_404(Repository, uuid=uuid)
 
     scan_repository.delay(repository.id)
 
@@ -43,6 +42,7 @@ def create_repository(request):
             repository = Repository()
             repository.name = repo_name
             repository.clone_url = repo_clone_url
+            repository.owner = request.user
             repository.save()
 
             repository_key = RepositoryKey()
@@ -51,7 +51,7 @@ def create_repository(request):
             repository_key.public_key = public_key
             repository_key.save()
 
-            return HttpResponseRedirect(reverse('view_repository', args=(repository.id,)))
+            return HttpResponseRedirect(reverse('view_repository', args=(repository.uuid,)))
     else:
         form = RepositoryForm()
 

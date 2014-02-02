@@ -3,6 +3,7 @@ South==0.8.4
 celery[redis,msgpack]
 psycopg2==2.5.2
 django-guardian==1.1.1
+django-shortuuidfield
 pycrypto
 -e git://github.com/AaronO/dulwich/#egg=dulwich
 -e git://github.com/FriendCode/mimer.git#egg=mimer

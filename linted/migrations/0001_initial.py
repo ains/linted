@@ -12,7 +12,9 @@ class Migration(SchemaMigration):
         db.create_table(u'linted_repository', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=64)),
-            ('clone_url', self.gf('django.db.models.fields.CharField')(max_length=256)),
+            ('uuid', self.gf('django.db.models.fields.CharField')(default='', unique=True, max_length=40)),
+            ('owner', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+            ('clone_url', self.gf('django.db.models.fields.CharField')(unique=True, max_length=256)),
             ('created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
         db.send_create_signal(u'linted', ['Repository'])
@@ -133,10 +135,12 @@ class Migration(SchemaMigration):
         },
         u'linted.repository': {
             'Meta': {'object_name': 'Repository'},
-            'clone_url': ('django.db.models.fields.CharField', [], {'max_length': '256'}),
+            'clone_url': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '256'}),
             'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '64'})
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '64'}),
+            'owner': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"}),
+            'uuid': ('django.db.models.fields.CharField', [], {'default': "'9b2e3bcd-43da-4dcf-b40a-4d85d9d5fc2f'", 'unique': 'True', 'max_length': '40'})
         },
         u'linted.repositorykey': {
             'Meta': {'object_name': 'RepositoryKey'},
