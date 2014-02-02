@@ -2,3 +2,5 @@ django==1.6.1
 South==0.8.4
 celery[redis,msgpack]
 psycopg2==2.5.2
+django-guardian==1.1.1
+pycrypto==2.6.1
