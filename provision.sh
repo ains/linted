@@ -33,6 +33,8 @@ chgrp -R vagrant $VE_DIR
 if [ ! -e /home/vagrant/.provisioned ]
 then
     (cd $CODE_DIR && $VE_DIR/bin/python manage.py syncdb --noinput)
+    (cd $CODE_DIR && $VE_DIR/bin/python manage.py update_admin_user --username=admin --password=development)
+
     touch /home/vagrant/.provisioned
 fi
 
