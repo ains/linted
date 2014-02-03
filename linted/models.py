@@ -39,4 +39,33 @@ class Linter(models.Model):
 class RepositoryLinter(models.Model):
     repository = models.ForeignKey(Repository)
     linter = models.ForeignKey(Linter)
-    settings = models.TextField() #Linter settings are encoded as JSON
+
+    #Linter settings are encoded as JSON
+    settings = models.TextField()
+
+
+class RepositoryScan(models.Model):
+    repository = models.ForeignKey(Repository)
+
+    created_at = models.DateTimeField()
+    completed_at = models.DateTimeField()
+
+
+class ErrorGroup(models.Model):
+    parent = models.ForeignKey("ErrorGroup")
+    
+    name = models.TextField(max_length=512)
+    #Formatted as Markdown documents
+    description = models.TextField()
+
+
+class ScanError(models.Model):
+    scan = models.ForeignKey(RepositoryScan)
+    linter = models.ForeignKey(Linter)
+    previous_error = models.ForeignKey("ScanError")
+    error_group = models.ForeignKey(ErrorGroup)
+
+    file = models.TextField(max_length=256)
+    start_line = models.IntegerField()
+    end_line = models.IntegerField()
+    snippet = models.TextField()
