@@ -52,11 +52,14 @@ class RepositoryScan(models.Model):
 
 
 class ErrorGroup(models.Model):
-    parent = models.ForeignKey("ErrorGroup")
+    parent = models.ForeignKey("ErrorGroup", null=True)
     
     name = models.TextField(max_length=512)
     #Formatted as Markdown documents
     description = models.TextField()
+
+    def __unicode__(self):
+        return self.name
 
 
 class ScanError(models.Model):
