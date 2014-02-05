@@ -31,8 +31,8 @@ class Language(models.Model):
 
 
 class Linter(models.Model):
-    name = models.CharField(max_length=256)
-    short_name = models.CharField(max_length=8)
+    name = models.CharField(max_length=256, unique=True)
+    short_name = models.CharField(max_length=8, unique=True)
     language = models.ForeignKey(Language)
 
 
@@ -62,10 +62,10 @@ class ErrorGroup(models.Model):
         return self.name
 
 
-class ScanError(models.Model):
+class ScanViolation(models.Model):
     scan = models.ForeignKey(RepositoryScan)
     linter = models.ForeignKey(Linter)
-    previous_error = models.ForeignKey("ScanError")
+    previous_error = models.ForeignKey("ScanViolation", null=True)
     error_group = models.ForeignKey(ErrorGroup)
 
     file = models.TextField(max_length=256)
