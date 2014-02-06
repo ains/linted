@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+
+{% for repository in repository_list %}
+    {% if forloop.counter0|divisibleby:4 %}
+        <div class="row placeholders">
+    {% endif %}
+
+        <div class="col-xs-6 col-sm-3 placeholder">
+            <img data-src="holder.js/200x200/vine/text: " alt="...">
+            <h4><a href="{% url 'view_repository' repository.uuid %}">{{ repository.name }}</a></h4>
+            <span class="text-muted">{{ repository.clone_url }}</span>
+        </div>
+
+    {% if forloop.counter|divisibleby:4 or forloop.last %}
+        </div>
+    {% endif %}
+{% endfor %}
+
+<div class="row">
+    <a href="{% url 'create_repository' %}">
+        <button type="submit" class="btn btn-primary">
+            Add new repository
+        </button>
+    </a>
+</div>
+
+{% endblock %}

@@ -1,4 +1,13 @@
-<form action="{% url 'create_repository' %}" method="post">{% csrf_token %}
-{{ form.as_p }}
-<input type="submit" value="Submit" />
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+<form action="{% url 'create_repository' %}" method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary">
+        Submit
+    </button>
+    {% endbuttons %}
 </form>
+{% endblock %}

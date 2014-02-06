@@ -14,9 +14,21 @@ def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
 
 
+def repository_list(request):
+    repositories = Repository.objects.all()
+    return render(request, 'repository_list.html', {'repository_list': repositories})
+
+
 def view_repoository(request, uuid):
     repository = get_object_or_404(Repository, uuid=uuid)
-    return render(request, 'view_repository.html', {'repository': repository})
+    scan_url = request.build_absolute_uri(reverse('scan_repository', args=(repository.uuid,)))
+
+    render_data = {
+        'repository': repository,
+        'scan_url': scan_url
+    }
+
+    return render(request, 'view_repository.html', render_data)
 
 
 def run_scan(request, uuid):

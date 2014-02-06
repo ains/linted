@@ -1,28 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-    <style type="text/css">
-        pre {
- white-space: pre-wrap;       /* css-3 */
- white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
- white-space: -pre-wrap;      /* Opera 4-6 */
- white-space: -o-pre-wrap;    /* Opera 7 */
- word-wrap: break-word;       /* Internet Explorer 5.5+ */
-}
-    </style>
-</head>
-<body>
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <h2>{{ repository.name }}</h2>
+        <h4>{{ repository.clone_url }}</h4>
+    </div>
+    <div class="col-md-6">
+        <h2>Repository Set Up</h2>
+        <p>
+           Add one of the public keys below as a deploy key on your repository.
+        </p>
+        {% for key in repository.repositorykey_set.all %}
+        <div class="well wrap">
+            {{ key.public_key.strip }}
+        </div>
+        <p>
+            Add the following url as a deploy hook on your project to trigger a scan.
+        </p>
+        <div class="well wrap">
+            {{ scan_url }}
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
-<h1>{{ repository.name }} -- {{ repository.uuid }}</h1>
-<h4>{{ repository.clone_url }}</h4>
-
-<h2>Public Key</h2>
-{% for key in repository.repositorykey_set.all %}
-    <pre style="width: 600px;">
-    {{ key.public_key }}
-    </pre>
-{% endfor %}
-
-</body>
-</html>
+{% endblock %}
