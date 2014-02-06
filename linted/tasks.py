@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 from cStringIO import StringIO
 from celery import shared_task
-from linted.models import Repository
+from linted.models import Repository, RepositoryScan
 from gittle import Gittle, GittleAuth
 from scanner.phpmd import Phpmd
 
@@ -9,6 +9,7 @@ import os
 import tempfile
 import shutil
 import paramiko
+import datetime
 
 
 @shared_task
@@ -26,14 +27,25 @@ def scan_repository(self, repository_id):
         for key_pair in repository_keys:
             try:
                 working_dir = os.path.join(tempfile.gettempdir(), self.request.id)
+
                 private_key_file = StringIO(key_pair.private_key)
                 auth = GittleAuth(pkey=private_key_file)
                 Gittle.clone(repository.clone_url, working_dir, auth=auth)
+                auth_success = True
 
-                phpmd_scanner = Phpmd(working_dir)
+                #Start repository scan
+                repository_scan = RepositoryScan(repository=repository)
+                repository_scan.created_at = datetime.datetime.now()
+                repository_scan.save()
+
+                phpmd_scanner = Phpmd(repository_scan, working_dir)
                 phpmd_scanner.run()
 
                 shutil.rmtree(working_dir)
-                auth_success = True
+
+                repository_scan.completed_at = datetime.datetime.now()
+                repository_scan.save()
             except paramiko.AuthenticationException:
                 pass
+
+        return auth_success

@@ -29,18 +29,24 @@ class Language(models.Model):
     name = models.CharField(max_length=256)
     short_name = models.CharField(max_length=8)
 
+    def __unicode__(self):
+        return self.name
 
-class Linter(models.Model):
+
+class Scanner(models.Model):
     name = models.CharField(max_length=256, unique=True)
     short_name = models.CharField(max_length=8, unique=True)
     language = models.ForeignKey(Language)
 
+    def __unicode__(self):
+        return self.name
 
-class RepositoryLinter(models.Model):
+
+class RepositoryScanner(models.Model):
     repository = models.ForeignKey(Repository)
-    linter = models.ForeignKey(Linter)
+    scanner = models.ForeignKey(Scanner)
 
-    #Linter settings are encoded as JSON
+    #Scanner settings are encoded as JSON
     settings = models.TextField()
 
 
@@ -48,7 +54,7 @@ class RepositoryScan(models.Model):
     repository = models.ForeignKey(Repository)
 
     created_at = models.DateTimeField()
-    completed_at = models.DateTimeField()
+    completed_at = models.DateTimeField(null=True)
 
 
 class ErrorGroup(models.Model):
@@ -64,7 +70,7 @@ class ErrorGroup(models.Model):
 
 class ScanViolation(models.Model):
     scan = models.ForeignKey(RepositoryScan)
-    linter = models.ForeignKey(Linter)
+    scanner = models.ForeignKey(Scanner)
     previous_error = models.ForeignKey("ScanViolation", null=True)
     error_group = models.ForeignKey(ErrorGroup)
 

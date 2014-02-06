@@ -1,38 +1,40 @@
-from scanner import Scanner
-from linted.models import ErrorGroup
+from scanner.abstract_scanner import AbstractScanner
+from linted.models import Scanner, ErrorGroup
 
 import subprocess
 import xml.etree.ElementTree as ElementTree
 
 
-class Phpmd(Scanner):
-    def __init__(self, repository_scan, linter, path, excluded_files='', settings={}):
-        Scanner.__init__(self, repository_scan, linter, path)
+class Phpmd(AbstractScanner):
+    def __init__(self, repository_scan, path, excluded_files='', settings={}):
+        scanner = Scanner.objects.get(short_name='phpmd')
+        super(Phpmd, self).__init__(repository_scan, scanner, path)
 
         self.excluded_files = excluded_files
         self.settings = settings
 
-    def get_error_group(self, error_name):
-        prefix = 'phpmd'
-        error_group = ErrorGroup.objects.get(name='{}.{}'.format(prefix, error_name))
-        return error_group
+    @staticmethod
+    def get_error_group(error_name):
+        error_group_name = 'phpmd.{}'.format(error_name)
+        return ErrorGroup.objects.get(name=error_group_name)
 
     def process_results(self, scan_result):
-        tree = ElementTree.fromstring(scan_result)
-        root = tree.getroot()
+        root = ElementTree.fromstring(scan_result)
 
-        for file in root.findall('file'):
-            file_path = file.get('name')
+        for file_node in root.findall('file'):
+            file_path = file_node.get('name')
             rel_file_path = self.get_relative_path(file_path)
 
-            for violation in file.findall('violation'):
-                start_line = violation.get('beginline')
-                end_line = violation.get('endline')
+            for violation_node in file_node.findall('violation'):
+                start_line = violation_node.get('beginline')
+                end_line = violation_node.get('endline')
 
-                rule = violation.get('rule')
+                rule = violation_node.get('rule')
                 error_group = self.get_error_group(rule)
 
-                self.save_violation(error_group, rel_file_path, start_line, end_line)
+                #If we recognise this error group
+                if error_group is not None:
+                    self.save_violation(error_group, rel_file_path, start_line, end_line)
 
     def run(self):
         try:

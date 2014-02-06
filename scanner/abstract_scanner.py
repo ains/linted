@@ -3,11 +3,10 @@ from linted.models import ScanViolation
 import os
 
 
-
-class Scanner:
-    def __init__(self, repository_scan, linter, path):
+class AbstractScanner(object):
+    def __init__(self, repository_scan, scanner, path):
         self.repository_scan = repository_scan
-        self.linter = linter
+        self.scanner = scanner
         self.path = path
 
     def get_relative_path(self, abs_path):
@@ -16,7 +15,7 @@ class Scanner:
     def save_violation(self, error_group, file_path, start_line, end_line):
         scan_violation = ScanViolation()
 
-        scan_violation.linter = self.linter
+        scan_violation.scanner = self.scanner
         scan_violation.scan = self.repository_scan
         scan_violation.snippet = ""
 

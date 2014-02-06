@@ -12,7 +12,7 @@ class Migration(SchemaMigration):
         db.create_table(u'linted_repository', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=64)),
-            ('uuid', self.gf('django.db.models.fields.CharField')(default='', unique=True, max_length=40)),
+            ('uuid', self.gf('django.db.models.fields.CharField')(default='5c29113b-faef-4026-b8f6-c7880516e9ef', unique=True, max_length=40)),
             ('owner', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
             ('clone_url', self.gf('django.db.models.fields.CharField')(unique=True, max_length=256)),
             ('created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
@@ -44,23 +44,55 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal(u'linted', ['Language'])
 
-        # Adding model 'Linter'
-        db.create_table(u'linted_linter', (
+        # Adding model 'Scanner'
+        db.create_table(u'linted_scanner', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=256)),
-            ('short_name', self.gf('django.db.models.fields.CharField')(max_length=8)),
+            ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=256)),
+            ('short_name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=8)),
             ('language', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['linted.Language'])),
         ))
-        db.send_create_signal(u'linted', ['Linter'])
+        db.send_create_signal(u'linted', ['Scanner'])
 
-        # Adding model 'RepositoryLinter'
-        db.create_table(u'linted_repositorylinter', (
+        # Adding model 'RepositoryScanner'
+        db.create_table(u'linted_repositoryscanner', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('repository', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['linted.Repository'])),
-            ('linter', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['linted.Linter'])),
+            ('scanner', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['linted.Scanner'])),
             ('settings', self.gf('django.db.models.fields.TextField')()),
         ))
-        db.send_create_signal(u'linted', ['RepositoryLinter'])
+        db.send_create_signal(u'linted', ['RepositoryScanner'])
+
+        # Adding model 'RepositoryScan'
+        db.create_table(u'linted_repositoryscan', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('repository', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['linted.Repository'])),
+            ('created_at', self.gf('django.db.models.fields.DateTimeField')()),
+            ('completed_at', self.gf('django.db.models.fields.DateTimeField')()),
+        ))
+        db.send_create_signal(u'linted', ['RepositoryScan'])
+
+        # Adding model 'ErrorGroup'
+        db.create_table(u'linted_errorgroup', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('parent', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['linted.ErrorGroup'], null=True)),
+            ('name', self.gf('django.db.models.fields.TextField')(max_length=512)),
+            ('description', self.gf('django.db.models.fields.TextField')()),
+        ))
+        db.send_create_signal(u'linted', ['ErrorGroup'])
+
+        # Adding model 'ScanViolation'
+        db.create_table(u'linted_scanviolation', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('scan', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['linted.RepositoryScan'])),
+            ('scanner', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['linted.Scanner'])),
+            ('previous_error', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['linted.ScanViolation'], null=True)),
+            ('error_group', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['linted.ErrorGroup'])),
+            ('file', self.gf('django.db.models.fields.TextField')(max_length=256)),
+            ('start_line', self.gf('django.db.models.fields.IntegerField')()),
+            ('end_line', self.gf('django.db.models.fields.IntegerField')()),
+            ('snippet', self.gf('django.db.models.fields.TextField')()),
+        ))
+        db.send_create_signal(u'linted', ['ScanViolation'])
 
 
     def backwards(self, orm):
@@ -76,11 +108,20 @@ class Migration(SchemaMigration):
         # Deleting model 'Language'
         db.delete_table(u'linted_language')
 
-        # Deleting model 'Linter'
-        db.delete_table(u'linted_linter')
+        # Deleting model 'Scanner'
+        db.delete_table(u'linted_scanner')
 
-        # Deleting model 'RepositoryLinter'
-        db.delete_table(u'linted_repositorylinter')
+        # Deleting model 'RepositoryScanner'
+        db.delete_table(u'linted_repositoryscanner')
+
+        # Deleting model 'RepositoryScan'
+        db.delete_table(u'linted_repositoryscan')
+
+        # Deleting model 'ErrorGroup'
+        db.delete_table(u'linted_errorgroup')
+
+        # Deleting model 'ScanViolation'
+        db.delete_table(u'linted_scanviolation')
 
 
     models = {
@@ -120,16 +161,16 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
+        u'linted.errorgroup': {
+            'Meta': {'object_name': 'ErrorGroup'},
+            'description': ('django.db.models.fields.TextField', [], {}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.TextField', [], {'max_length': '512'}),
+            'parent': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.ErrorGroup']", 'null': 'True'})
+        },
         u'linted.language': {
             'Meta': {'object_name': 'Language'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '256'}),
-            'short_name': ('django.db.models.fields.CharField', [], {'max_length': '8'})
-        },
-        u'linted.linter': {
-            'Meta': {'object_name': 'Linter'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'language': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.Language']"}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '256'}),
             'short_name': ('django.db.models.fields.CharField', [], {'max_length': '8'})
         },
@@ -140,7 +181,7 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '64'}),
             'owner': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"}),
-            'uuid': ('django.db.models.fields.CharField', [], {'default': "'9b2e3bcd-43da-4dcf-b40a-4d85d9d5fc2f'", 'unique': 'True', 'max_length': '40'})
+            'uuid': ('django.db.models.fields.CharField', [], {'default': "'c6c1920f-899f-4605-87d8-213688b117f9'", 'unique': 'True', 'max_length': '40'})
         },
         u'linted.repositorykey': {
             'Meta': {'object_name': 'RepositoryKey'},
@@ -149,11 +190,18 @@ class Migration(SchemaMigration):
             'public_key': ('django.db.models.fields.TextField', [], {}),
             'repository': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.Repository']"})
         },
-        u'linted.repositorylinter': {
-            'Meta': {'object_name': 'RepositoryLinter'},
+        u'linted.repositoryscan': {
+            'Meta': {'object_name': 'RepositoryScan'},
+            'completed_at': ('django.db.models.fields.DateTimeField', [], {}),
+            'created_at': ('django.db.models.fields.DateTimeField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'linter': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.Linter']"}),
+            'repository': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.Repository']"})
+        },
+        u'linted.repositoryscanner': {
+            'Meta': {'object_name': 'RepositoryScanner'},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'repository': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.Repository']"}),
+            'scanner': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.Scanner']"}),
             'settings': ('django.db.models.fields.TextField', [], {})
         },
         u'linted.repositoryuser': {
@@ -161,6 +209,25 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'repository': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.Repository']"}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"})
+        },
+        u'linted.scanner': {
+            'Meta': {'object_name': 'Scanner'},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'language': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.Language']"}),
+            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '256'}),
+            'short_name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '8'})
+        },
+        u'linted.scanviolation': {
+            'Meta': {'object_name': 'ScanViolation'},
+            'end_line': ('django.db.models.fields.IntegerField', [], {}),
+            'error_group': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.ErrorGroup']"}),
+            'file': ('django.db.models.fields.TextField', [], {'max_length': '256'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'previous_error': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.ScanViolation']", 'null': 'True'}),
+            'scan': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.RepositoryScan']"}),
+            'scanner': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.Scanner']"}),
+            'snippet': ('django.db.models.fields.TextField', [], {}),
+            'start_line': ('django.db.models.fields.IntegerField', [], {})
         }
     }
 
