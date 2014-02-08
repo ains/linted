@@ -5,6 +5,7 @@ import sys
 import os
 import re
 
+
 #Convert an error message to it's equivalent Regex pattern
 def message_to_pattern(message):
     escaped_message = re.escape(message)
@@ -16,6 +17,7 @@ error_literal_regex = r"phpcsFile->addError\('(.*?)',"
 
 warning_variable_regex = r"warning\s+=\s+['\"](.*)['\"];"
 warning_literal_regex = r"phpcsFile->addWarning\('(.*?)',"
+
 
 def process_ruleset_file(file_name):
     ruleset_violations = []

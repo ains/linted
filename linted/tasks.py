@@ -3,7 +3,7 @@ from cStringIO import StringIO
 from celery import shared_task
 from linted.models import Repository, RepositoryScan
 from gittle import Gittle, GittleAuth
-from scanner.phpmd import Phpmd
+from scanner.phpmd.phpmd import Phpmd
 
 import os
 import tempfile
