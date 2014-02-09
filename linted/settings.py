@@ -73,6 +73,8 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'templates'),
 )
 
+SCANNER_DIR = os.path.join(PROJECT_ROOT, 'scanner')
+
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 

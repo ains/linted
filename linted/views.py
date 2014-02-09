@@ -1,6 +1,10 @@
+import json
+import os
+
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
+from django.conf import settings
 
 from linted.tasks import add, scan_repository
 from linted.models import Repository, RepositoryKey
@@ -70,3 +74,13 @@ def create_repository(request):
     return render(request, 'create_repository.html', {
         'form': form,
     })
+
+def scanner_settings(request, uuid):
+    ruleset_file = os.path.join(settings.SCANNER_DIR, 'phpmd', 'ruleset.json')
+
+    with open(ruleset_file) as f:
+        scanner_rules = json.loads(f.read())
+
+        return render(request, 'scanner_settings.html', {
+            "rules": scanner_rules
+        })
