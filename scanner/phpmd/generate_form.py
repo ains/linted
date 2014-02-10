@@ -38,13 +38,21 @@ if __name__ == '__main__':
 
                 property_default = property_node.get('value')
                 if property_default == "true" or property_default == "false":
-                    property_default_value = property_default == "true"
+                    property_default_value = (property_default == "true")
+                    property_type = "bool"
                 else:
                     property_default_value = property_default
+                    try:
+                        int(property_default_value)
+                        property_type = "int"
+                    except ValueError:
+                        property_type = "string"
+
 
                 rule_properties[property_name] = {
                     'description': property_description,
-                    'default': property_default_value
+                    'default': property_default_value,
+                    'type': property_type
                 }
 
             ruleset_rules[rule_name] = {

@@ -76,11 +76,18 @@ def create_repository(request):
     })
 
 def scanner_settings(request, uuid):
-    ruleset_file = os.path.join(settings.SCANNER_DIR, 'phpmd', 'ruleset.json')
+    if request.method == 'POST':
+        print(request.POST)
 
-    with open(ruleset_file) as f:
-        scanner_rules = json.loads(f.read())
+        return HttpResponse("ok")
+    else:
+        repository = Repository.objects.get(uuid=uuid)
+        ruleset_file = os.path.join(settings.SCANNER_DIR, 'phpmd', 'ruleset.json')
 
-        return render(request, 'scanner_settings.html', {
-            "rules": scanner_rules
-        })
+        with open(ruleset_file) as f:
+            scanner_rules = json.loads(f.read())
+
+            return render(request, 'scanner_settings.html', {
+                "repository": repository,
+                "rules": scanner_rules
+            })
