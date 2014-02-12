@@ -48,7 +48,6 @@ if __name__ == '__main__':
                     except ValueError:
                         property_type = "string"
 
-
                 rule_properties[property_name] = {
                     'description': property_description,
                     'default': property_default_value,

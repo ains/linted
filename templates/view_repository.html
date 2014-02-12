@@ -8,8 +8,9 @@
     </div>
     <div class="col-md-6">
         <h2>Repository Set Up</h2>
+
         <p>
-           Add one of the public keys below as a deploy key on your repository.
+            Add one of the public keys below as a deploy key on your repository.
         </p>
         {% for key in repository.repositorykey_set.all %}
         <div class="well wrap">
@@ -18,6 +19,7 @@
         <p>
             Add the following url as a deploy hook on your project to trigger a scan.
         </p>
+
         <div class="well wrap">
             {{ scan_url }}
         </div>

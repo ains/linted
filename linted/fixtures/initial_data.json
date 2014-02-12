@@ -1,1 +1,1097 @@
-[{"pk": 1, "model": "south.migrationhistory", "fields": {"applied": "2014-02-06T10:24:09.429Z", "app_name": "linted", "migration": "0001_initial"}}, {"pk": 2, "model": "south.migrationhistory", "fields": {"applied": "2014-02-06T10:42:35.132Z", "app_name": "guardian", "migration": "0001_initial"}}, {"pk": 3, "model": "south.migrationhistory", "fields": {"applied": "2014-02-06T10:42:35.177Z", "app_name": "guardian", "migration": "0002_auto__add_field_groupobjectpermission_object_pk__add_field_userobjectp"}}, {"pk": 4, "model": "south.migrationhistory", "fields": {"applied": "2014-02-06T10:42:35.192Z", "app_name": "guardian", "migration": "0003_update_objectpermission_object_pk"}}, {"pk": 5, "model": "south.migrationhistory", "fields": {"applied": "2014-02-06T10:42:35.296Z", "app_name": "guardian", "migration": "0004_auto__del_field_groupobjectpermission_object_id__del_unique_groupobjec"}}, {"pk": 6, "model": "south.migrationhistory", "fields": {"applied": "2014-02-06T10:42:35.312Z", "app_name": "guardian", "migration": "0005_auto__chg_field_groupobjectpermission_object_pk__chg_field_userobjectp"}}, {"pk": 1, "model": "contenttypes.contenttype", "fields": {"model": "migrationhistory", "name": "migration history", "app_label": "south"}}, {"pk": 2, "model": "contenttypes.contenttype", "fields": {"model": "logentry", "name": "log entry", "app_label": "admin"}}, {"pk": 3, "model": "contenttypes.contenttype", "fields": {"model": "permission", "name": "permission", "app_label": "auth"}}, {"pk": 4, "model": "contenttypes.contenttype", "fields": {"model": "group", "name": "group", "app_label": "auth"}}, {"pk": 5, "model": "contenttypes.contenttype", "fields": {"model": "user", "name": "user", "app_label": "auth"}}, {"pk": 6, "model": "contenttypes.contenttype", "fields": {"model": "contenttype", "name": "content type", "app_label": "contenttypes"}}, {"pk": 7, "model": "contenttypes.contenttype", "fields": {"model": "session", "name": "session", "app_label": "sessions"}}, {"pk": 8, "model": "contenttypes.contenttype", "fields": {"model": "repository", "name": "repository", "app_label": "linted"}}, {"pk": 9, "model": "contenttypes.contenttype", "fields": {"model": "repositoryuser", "name": "repository user", "app_label": "linted"}}, {"pk": 10, "model": "contenttypes.contenttype", "fields": {"model": "repositorykey", "name": "repository key", "app_label": "linted"}}, {"pk": 11, "model": "contenttypes.contenttype", "fields": {"model": "language", "name": "language", "app_label": "linted"}}, {"pk": 12, "model": "contenttypes.contenttype", "fields": {"model": "scanner", "name": "scanner", "app_label": "linted"}}, {"pk": 13, "model": "contenttypes.contenttype", "fields": {"model": "repositoryscanner", "name": "repository scanner", "app_label": "linted"}}, {"pk": 14, "model": "contenttypes.contenttype", "fields": {"model": "repositoryscan", "name": "repository scan", "app_label": "linted"}}, {"pk": 15, "model": "contenttypes.contenttype", "fields": {"model": "errorgroup", "name": "error group", "app_label": "linted"}}, {"pk": 16, "model": "contenttypes.contenttype", "fields": {"model": "scanviolation", "name": "scan violation", "app_label": "linted"}}, {"pk": 17, "model": "contenttypes.contenttype", "fields": {"model": "userobjectpermission", "name": "user object permission", "app_label": "guardian"}}, {"pk": 18, "model": "contenttypes.contenttype", "fields": {"model": "groupobjectpermission", "name": "group object permission", "app_label": "guardian"}}, {"pk": "oyprg2lv5jel8jqgs02xg7db7s0448ki", "model": "sessions.session", "fields": {"expire_date": "2014-02-20T10:35:00.473Z", "session_data": "NjQ5OGM3YmQwNDkxNGU5ZWVkMDE2MzBiYjBlN2QyN2VkOTQwZjQ1ZTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0="}}, {"pk": 1, "model": "linted.language", "fields": {"name": "PHP: Hypertext Preprocessor", "short_name": "php"}}, {"pk": 1, "model": "linted.scanner", "fields": {"language": 1, "name": "PHP Mess Detector", "short_name": "phpmd"}}, {"pk": 1, "model": "linted.errorgroup", "fields": {"name": "phpmd.Superglobals", "parent": null, "description": "Accessing a super-global variable directly is considered a bad practice.\nThese variables should be encapsulated in objects that are provided by a framework, for instance."}}, {"pk": 2, "model": "linted.errorgroup", "fields": {"name": "phpmd.CamelCaseClassName", "parent": null, "description": "It is considered best practice to use the CamelCase notation to name classes."}}, {"pk": 3, "model": "linted.errorgroup", "fields": {"name": "phpmd.CamelCasePropertyName", "parent": null, "description": "It is considered best practice to use the camelCase notation to name attributes."}}, {"pk": 4, "model": "linted.errorgroup", "fields": {"name": "phpmd.CamelCaseMethodName", "parent": null, "description": "It is considered best practice to use the CamelCase notation to name methods."}}, {"pk": 5, "model": "linted.errorgroup", "fields": {"name": "phpmd.CamelCaseParameterName", "parent": null, "description": "It is considered best practice to use the camelCase notation to name parameters."}}, {"pk": 6, "model": "linted.errorgroup", "fields": {"name": "phpmd.CamelCaseVariableName", "parent": null, "description": "It is considered best practice to use the camelCase notation to name variables."}}, {"pk": 7, "model": "linted.errorgroup", "fields": {"name": "phpmd.CyclomaticComplexity", "parent": null, "description": "Complexity is determined by the number of decision points in a method plus one for the\nmethod entry.  The decision points are 'if', 'while', 'for', and 'case labels'.  Generally,\n1-4 is low complexity, 5-7 indicates moderate complexity, 8-10 is high complexity,\n and 11+ is very high complexity."}}, {"pk": 8, "model": "linted.errorgroup", "fields": {"name": "phpmd.NPathComplexity", "parent": null, "description": "The NPath complexity of a method is the number of acyclic execution paths through that method.\nA threshold of 200 is generally considered the point where measures should be taken to reduce complexity."}}, {"pk": 9, "model": "linted.errorgroup", "fields": {"name": "phpmd.ExcessiveMethodLength", "parent": null, "description": "Violations of this rule usually indicate that the method is doing\ntoo much.  Try to reduce the method size by creating helper methods and removing any copy/pasted code."}}, {"pk": 10, "model": "linted.errorgroup", "fields": {"name": "phpmd.ExcessiveClassLength", "parent": null, "description": "Long Class files are indications that the class may be trying to\ndo too much.  Try to break it down, and reduce the size to something\nmanageable."}}, {"pk": 11, "model": "linted.errorgroup", "fields": {"name": "phpmd.ExcessiveParameterList", "parent": null, "description": "Long parameter lists can indicate that a new object should be created to\nwrap the numerous parameters.  Basically, try to group the parameters together."}}, {"pk": 12, "model": "linted.errorgroup", "fields": {"name": "phpmd.ExcessivePublicCount", "parent": null, "description": "A large number of public methods and attributes declared in a class can indicate\nthe class may need to be broken up as increased effort will be required to\nthoroughly test it."}}, {"pk": 13, "model": "linted.errorgroup", "fields": {"name": "phpmd.TooManyFields", "parent": null, "description": "Classes that have too many fields could be redesigned to have fewer fields,\npossibly through some nested object grouping of some of the information. For\nexample, a class with city/state/zip fields could instead have one Address\nfield."}}, {"pk": 14, "model": "linted.errorgroup", "fields": {"name": "phpmd.TooManyMethods", "parent": null, "description": "A class with too many methods is probably a good suspect for refactoring, in\norder to reduce its complexity and find a way to have more fine grained objects."}}, {"pk": 15, "model": "linted.errorgroup", "fields": {"name": "phpmd.ExcessiveClassComplexity", "parent": null, "description": "The WMC of a class is a good indicator of how much time and effort is required\nto modify and maintain this class. A large number of methods also means that\nthis class has a greater potential impact on derived classes."}}, {"pk": 16, "model": "linted.errorgroup", "fields": {"name": "phpmd.ShortVariable", "parent": null, "description": "Detects when a field, local, or parameter has a very short name."}}, {"pk": 17, "model": "linted.errorgroup", "fields": {"name": "phpmd.LongVariable", "parent": null, "description": "Detects when a field, formal or local variable is declared with a long name."}}, {"pk": 18, "model": "linted.errorgroup", "fields": {"name": "phpmd.ShortMethodName", "parent": null, "description": "Detects when very short method names are used."}}, {"pk": 19, "model": "linted.errorgroup", "fields": {"name": "phpmd.ConstructorWithNameAsEnclosingClass", "parent": null, "description": "A constructor method should not have the same name as the enclosing class, consider\nto use the PHP 5 __construct method."}}, {"pk": 20, "model": "linted.errorgroup", "fields": {"name": "phpmd.ConstantNamingConventions", "parent": null, "description": "Class/Interface constant nanmes should always be defined in uppercase."}}, {"pk": 21, "model": "linted.errorgroup", "fields": {"name": "phpmd.BooleanGetMethodName", "parent": null, "description": "Looks for methods named 'getX()' with 'boolean' as the return type. The convention\nis to name these methods 'isX()' or 'hasX()'."}}, {"pk": 22, "model": "linted.errorgroup", "fields": {"name": "phpmd.UnusedPrivateField", "parent": null, "description": "Detects when a private field is declared and/or assigned a value, but not used."}}, {"pk": 23, "model": "linted.errorgroup", "fields": {"name": "phpmd.UnusedLocalVariable", "parent": null, "description": "Detects when a local variable is declared and/or assigned, but not used."}}, {"pk": 24, "model": "linted.errorgroup", "fields": {"name": "phpmd.UnusedPrivateMethod", "parent": null, "description": "Unused Private Method detects when a private method is declared but is unused."}}, {"pk": 25, "model": "linted.errorgroup", "fields": {"name": "phpmd.UnusedFormalParameter", "parent": null, "description": "Avoid passing parameters to methods or constructors and then not using those parameters."}}, {"pk": 26, "model": "linted.errorgroup", "fields": {"name": "phpmd.ExitExpression", "parent": null, "description": "An exit-expression within regular code is untestable and therefore it should\nbe avoided. Consider to move the exit-expression into some kind of startup\nscript where an error/exception code is returned to the calling environment."}}, {"pk": 27, "model": "linted.errorgroup", "fields": {"name": "phpmd.EvalExpression", "parent": null, "description": "An eval-expression is untestable, a security risk and bad practice. Therefore\nit should be avoided. Consider to replace the eval-expression with regular\ncode."}}, {"pk": 28, "model": "linted.errorgroup", "fields": {"name": "phpmd.GotoStatement", "parent": null, "description": "Goto makes code harder to read and it is nearly impossible to understand the\ncontrol flow of an application that uses this language construct. Therefore it\nshould be avoided. Consider to replace Goto with regular control structures and\nseparate methods/function, which are easier to read."}}, {"pk": 29, "model": "linted.errorgroup", "fields": {"name": "phpmd.NumberOfChildren", "parent": null, "description": "A class with an excessive number of children is an indicator for an unbalanced\nclass hierarchy. You should consider to refactor this class hierarchy."}}, {"pk": 30, "model": "linted.errorgroup", "fields": {"name": "phpmd.DepthOfInheritance", "parent": null, "description": "A class with many parents is an indicator for an unbalanced and wrong class\nhierarchy. You should consider to refactor this class hierarchy."}}, {"pk": 31, "model": "linted.errorgroup", "fields": {"name": "phpmd.CouplingBetweenObjects", "parent": null, "description": "A class with to many dependencies has negative impacts on several quality\naspects of a class. This includes quality criterias like stability,\nmaintainability and understandability"}}, {"pk": 32, "model": "linted.errorgroup", "fields": {"name": "phpmd.BooleanArgumentFlag", "parent": null, "description": "A boolean flag argument is a reliable indicator for a violation of\nthe Single Responsibility Principle (SRP). You can fix this problem\nby extracting the logic in the boolean flag into its own class\nor method."}}, {"pk": 33, "model": "linted.errorgroup", "fields": {"name": "phpmd.ElseExpression", "parent": null, "description": "An if expression with an else branch is never necessary. You can rewrite the\nconditions in a way that the else is not necessary and the code becomes simpler\nto read.  To achieve this use early return statements. To achieve this you may\nneed to split the code it several smaller methods. For very simple assignments\nyou could also use the ternary operations."}}, {"pk": 34, "model": "linted.errorgroup", "fields": {"name": "phpmd.StaticAccess", "parent": null, "description": "Static acccess causes inexchangable dependencies to other classes and leads to hard to test code. Avoid\nusing static access at all costs and instead inject dependencies through the constructor. The only\ncase when static access is acceptable is when used for factory methods."}}, {"pk": 1, "model": "auth.permission", "fields": {"codename": "add_migrationhistory", "name": "Can add migration history", "content_type": ["south", "migrationhistory"]}}, {"pk": 2, "model": "auth.permission", "fields": {"codename": "change_migrationhistory", "name": "Can change migration history", "content_type": ["south", "migrationhistory"]}}, {"pk": 3, "model": "auth.permission", "fields": {"codename": "delete_migrationhistory", "name": "Can delete migration history", "content_type": ["south", "migrationhistory"]}}, {"pk": 4, "model": "auth.permission", "fields": {"codename": "add_logentry", "name": "Can add log entry", "content_type": ["admin", "logentry"]}}, {"pk": 5, "model": "auth.permission", "fields": {"codename": "change_logentry", "name": "Can change log entry", "content_type": ["admin", "logentry"]}}, {"pk": 6, "model": "auth.permission", "fields": {"codename": "delete_logentry", "name": "Can delete log entry", "content_type": ["admin", "logentry"]}}, {"pk": 7, "model": "auth.permission", "fields": {"codename": "add_permission", "name": "Can add permission", "content_type": ["auth", "permission"]}}, {"pk": 8, "model": "auth.permission", "fields": {"codename": "change_permission", "name": "Can change permission", "content_type": ["auth", "permission"]}}, {"pk": 9, "model": "auth.permission", "fields": {"codename": "delete_permission", "name": "Can delete permission", "content_type": ["auth", "permission"]}}, {"pk": 10, "model": "auth.permission", "fields": {"codename": "add_group", "name": "Can add group", "content_type": ["auth", "group"]}}, {"pk": 11, "model": "auth.permission", "fields": {"codename": "change_group", "name": "Can change group", "content_type": ["auth", "group"]}}, {"pk": 12, "model": "auth.permission", "fields": {"codename": "delete_group", "name": "Can delete group", "content_type": ["auth", "group"]}}, {"pk": 13, "model": "auth.permission", "fields": {"codename": "add_user", "name": "Can add user", "content_type": ["auth", "user"]}}, {"pk": 14, "model": "auth.permission", "fields": {"codename": "change_user", "name": "Can change user", "content_type": ["auth", "user"]}}, {"pk": 15, "model": "auth.permission", "fields": {"codename": "delete_user", "name": "Can delete user", "content_type": ["auth", "user"]}}, {"pk": 16, "model": "auth.permission", "fields": {"codename": "add_contenttype", "name": "Can add content type", "content_type": ["contenttypes", "contenttype"]}}, {"pk": 17, "model": "auth.permission", "fields": {"codename": "change_contenttype", "name": "Can change content type", "content_type": ["contenttypes", "contenttype"]}}, {"pk": 18, "model": "auth.permission", "fields": {"codename": "delete_contenttype", "name": "Can delete content type", "content_type": ["contenttypes", "contenttype"]}}, {"pk": 19, "model": "auth.permission", "fields": {"codename": "add_session", "name": "Can add session", "content_type": ["sessions", "session"]}}, {"pk": 20, "model": "auth.permission", "fields": {"codename": "change_session", "name": "Can change session", "content_type": ["sessions", "session"]}}, {"pk": 21, "model": "auth.permission", "fields": {"codename": "delete_session", "name": "Can delete session", "content_type": ["sessions", "session"]}}, {"pk": 22, "model": "auth.permission", "fields": {"codename": "add_repository", "name": "Can add repository", "content_type": ["linted", "repository"]}}, {"pk": 23, "model": "auth.permission", "fields": {"codename": "change_repository", "name": "Can change repository", "content_type": ["linted", "repository"]}}, {"pk": 24, "model": "auth.permission", "fields": {"codename": "delete_repository", "name": "Can delete repository", "content_type": ["linted", "repository"]}}, {"pk": 25, "model": "auth.permission", "fields": {"codename": "add_repositoryuser", "name": "Can add repository user", "content_type": ["linted", "repositoryuser"]}}, {"pk": 26, "model": "auth.permission", "fields": {"codename": "change_repositoryuser", "name": "Can change repository user", "content_type": ["linted", "repositoryuser"]}}, {"pk": 27, "model": "auth.permission", "fields": {"codename": "delete_repositoryuser", "name": "Can delete repository user", "content_type": ["linted", "repositoryuser"]}}, {"pk": 28, "model": "auth.permission", "fields": {"codename": "add_repositorykey", "name": "Can add repository key", "content_type": ["linted", "repositorykey"]}}, {"pk": 29, "model": "auth.permission", "fields": {"codename": "change_repositorykey", "name": "Can change repository key", "content_type": ["linted", "repositorykey"]}}, {"pk": 30, "model": "auth.permission", "fields": {"codename": "delete_repositorykey", "name": "Can delete repository key", "content_type": ["linted", "repositorykey"]}}, {"pk": 31, "model": "auth.permission", "fields": {"codename": "add_language", "name": "Can add language", "content_type": ["linted", "language"]}}, {"pk": 32, "model": "auth.permission", "fields": {"codename": "change_language", "name": "Can change language", "content_type": ["linted", "language"]}}, {"pk": 33, "model": "auth.permission", "fields": {"codename": "delete_language", "name": "Can delete language", "content_type": ["linted", "language"]}}, {"pk": 34, "model": "auth.permission", "fields": {"codename": "add_scanner", "name": "Can add scanner", "content_type": ["linted", "scanner"]}}, {"pk": 35, "model": "auth.permission", "fields": {"codename": "change_scanner", "name": "Can change scanner", "content_type": ["linted", "scanner"]}}, {"pk": 36, "model": "auth.permission", "fields": {"codename": "delete_scanner", "name": "Can delete scanner", "content_type": ["linted", "scanner"]}}, {"pk": 37, "model": "auth.permission", "fields": {"codename": "add_repositoryscanner", "name": "Can add repository scanner", "content_type": ["linted", "repositoryscanner"]}}, {"pk": 38, "model": "auth.permission", "fields": {"codename": "change_repositoryscanner", "name": "Can change repository scanner", "content_type": ["linted", "repositoryscanner"]}}, {"pk": 39, "model": "auth.permission", "fields": {"codename": "delete_repositoryscanner", "name": "Can delete repository scanner", "content_type": ["linted", "repositoryscanner"]}}, {"pk": 40, "model": "auth.permission", "fields": {"codename": "add_repositoryscan", "name": "Can add repository scan", "content_type": ["linted", "repositoryscan"]}}, {"pk": 41, "model": "auth.permission", "fields": {"codename": "change_repositoryscan", "name": "Can change repository scan", "content_type": ["linted", "repositoryscan"]}}, {"pk": 42, "model": "auth.permission", "fields": {"codename": "delete_repositoryscan", "name": "Can delete repository scan", "content_type": ["linted", "repositoryscan"]}}, {"pk": 43, "model": "auth.permission", "fields": {"codename": "add_errorgroup", "name": "Can add error group", "content_type": ["linted", "errorgroup"]}}, {"pk": 44, "model": "auth.permission", "fields": {"codename": "change_errorgroup", "name": "Can change error group", "content_type": ["linted", "errorgroup"]}}, {"pk": 45, "model": "auth.permission", "fields": {"codename": "delete_errorgroup", "name": "Can delete error group", "content_type": ["linted", "errorgroup"]}}, {"pk": 46, "model": "auth.permission", "fields": {"codename": "add_scanviolation", "name": "Can add scan violation", "content_type": ["linted", "scanviolation"]}}, {"pk": 47, "model": "auth.permission", "fields": {"codename": "change_scanviolation", "name": "Can change scan violation", "content_type": ["linted", "scanviolation"]}}, {"pk": 48, "model": "auth.permission", "fields": {"codename": "delete_scanviolation", "name": "Can delete scan violation", "content_type": ["linted", "scanviolation"]}}, {"pk": 49, "model": "auth.permission", "fields": {"codename": "add_userobjectpermission", "name": "Can add user object permission", "content_type": ["guardian", "userobjectpermission"]}}, {"pk": 50, "model": "auth.permission", "fields": {"codename": "change_userobjectpermission", "name": "Can change user object permission", "content_type": ["guardian", "userobjectpermission"]}}, {"pk": 51, "model": "auth.permission", "fields": {"codename": "delete_userobjectpermission", "name": "Can delete user object permission", "content_type": ["guardian", "userobjectpermission"]}}, {"pk": 52, "model": "auth.permission", "fields": {"codename": "add_groupobjectpermission", "name": "Can add group object permission", "content_type": ["guardian", "groupobjectpermission"]}}, {"pk": 53, "model": "auth.permission", "fields": {"codename": "change_groupobjectpermission", "name": "Can change group object permission", "content_type": ["guardian", "groupobjectpermission"]}}, {"pk": 54, "model": "auth.permission", "fields": {"codename": "delete_groupobjectpermission", "name": "Can delete group object permission", "content_type": ["guardian", "groupobjectpermission"]}}, {"pk": -1, "model": "auth.user", "fields": {"username": "AnonymousUser", "first_name": "", "last_name": "", "is_active": true, "is_superuser": false, "is_staff": false, "last_login": "2014-02-06T10:42:35.315Z", "groups": [], "user_permissions": [], "password": "", "email": "", "date_joined": "2014-02-06T10:42:35.315Z"}}, {"pk": 1, "model": "auth.user", "fields": {"username": "admin", "first_name": "", "last_name": "", "is_active": true, "is_superuser": true, "is_staff": true, "last_login": "2014-02-06T10:35:00.470Z", "groups": [], "user_permissions": [], "password": "pbkdf2_sha256$12000$oFhLzDBMk8zq$J5j1iq7K8wCQ8KAr0RmvBa6wETI5U7QX+NDOWPlSLeI=", "email": "", "date_joined": "2014-02-06T10:24:08.819Z"}}, {"pk": 1, "model": "admin.logentry", "fields": {"action_flag": 1, "action_time": "2014-02-06T10:37:17.728Z", "object_repr": "Language object", "object_id": "1", "change_message": "", "user": ["admin"], "content_type": ["linted", "language"]}}, {"pk": 2, "model": "admin.logentry", "fields": {"action_flag": 1, "action_time": "2014-02-06T10:37:26.798Z", "object_repr": "Scanner object", "object_id": "1", "change_message": "", "user": ["admin"], "content_type": ["linted", "scanner"]}}]
+[
+    {
+        "pk": 1,
+        "model": "south.migrationhistory",
+        "fields": {
+            "applied": "2014-02-06T10:24:09.429Z",
+            "app_name": "linted",
+            "migration": "0001_initial"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "south.migrationhistory",
+        "fields": {
+            "applied": "2014-02-06T10:42:35.132Z",
+            "app_name": "guardian",
+            "migration": "0001_initial"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "south.migrationhistory",
+        "fields": {
+            "applied": "2014-02-06T10:42:35.177Z",
+            "app_name": "guardian",
+            "migration": "0002_auto__add_field_groupobjectpermission_object_pk__add_field_userobjectp"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "south.migrationhistory",
+        "fields": {
+            "applied": "2014-02-06T10:42:35.192Z",
+            "app_name": "guardian",
+            "migration": "0003_update_objectpermission_object_pk"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "south.migrationhistory",
+        "fields": {
+            "applied": "2014-02-06T10:42:35.296Z",
+            "app_name": "guardian",
+            "migration": "0004_auto__del_field_groupobjectpermission_object_id__del_unique_groupobjec"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "south.migrationhistory",
+        "fields": {
+            "applied": "2014-02-06T10:42:35.312Z",
+            "app_name": "guardian",
+            "migration": "0005_auto__chg_field_groupobjectpermission_object_pk__chg_field_userobjectp"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "model": "migrationhistory",
+            "name": "migration history",
+            "app_label": "south"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "model": "logentry",
+            "name": "log entry",
+            "app_label": "admin"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "model": "permission",
+            "name": "permission",
+            "app_label": "auth"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "model": "group",
+            "name": "group",
+            "app_label": "auth"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "model": "user",
+            "name": "user",
+            "app_label": "auth"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "model": "contenttype",
+            "name": "content type",
+            "app_label": "contenttypes"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "model": "session",
+            "name": "session",
+            "app_label": "sessions"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "model": "repository",
+            "name": "repository",
+            "app_label": "linted"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "model": "repositoryuser",
+            "name": "repository user",
+            "app_label": "linted"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "model": "repositorykey",
+            "name": "repository key",
+            "app_label": "linted"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "model": "language",
+            "name": "language",
+            "app_label": "linted"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "model": "scanner",
+            "name": "scanner",
+            "app_label": "linted"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "model": "repositoryscanner",
+            "name": "repository scanner",
+            "app_label": "linted"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "model": "repositoryscan",
+            "name": "repository scan",
+            "app_label": "linted"
+        }
+    },
+    {
+        "pk": 15,
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "model": "errorgroup",
+            "name": "error group",
+            "app_label": "linted"
+        }
+    },
+    {
+        "pk": 16,
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "model": "scanviolation",
+            "name": "scan violation",
+            "app_label": "linted"
+        }
+    },
+    {
+        "pk": 17,
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "model": "userobjectpermission",
+            "name": "user object permission",
+            "app_label": "guardian"
+        }
+    },
+    {
+        "pk": 18,
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "model": "groupobjectpermission",
+            "name": "group object permission",
+            "app_label": "guardian"
+        }
+    },
+    {
+        "pk": "oyprg2lv5jel8jqgs02xg7db7s0448ki",
+        "model": "sessions.session",
+        "fields": {
+            "expire_date": "2014-02-20T10:35:00.473Z",
+            "session_data": "NjQ5OGM3YmQwNDkxNGU5ZWVkMDE2MzBiYjBlN2QyN2VkOTQwZjQ1ZTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0="
+        }
+    },
+    {
+        "pk": 1,
+        "model": "linted.language",
+        "fields": {
+            "name": "PHP: Hypertext Preprocessor",
+            "short_name": "php"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "linted.scanner",
+        "fields": {
+            "language": 1,
+            "name": "PHP Mess Detector",
+            "short_name": "phpmd"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.Superglobals",
+            "parent": null,
+            "description": "Accessing a super-global variable directly is considered a bad practice.\nThese variables should be encapsulated in objects that are provided by a framework, for instance."
+        }
+    },
+    {
+        "pk": 2,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.CamelCaseClassName",
+            "parent": null,
+            "description": "It is considered best practice to use the CamelCase notation to name classes."
+        }
+    },
+    {
+        "pk": 3,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.CamelCasePropertyName",
+            "parent": null,
+            "description": "It is considered best practice to use the camelCase notation to name attributes."
+        }
+    },
+    {
+        "pk": 4,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.CamelCaseMethodName",
+            "parent": null,
+            "description": "It is considered best practice to use the CamelCase notation to name methods."
+        }
+    },
+    {
+        "pk": 5,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.CamelCaseParameterName",
+            "parent": null,
+            "description": "It is considered best practice to use the camelCase notation to name parameters."
+        }
+    },
+    {
+        "pk": 6,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.CamelCaseVariableName",
+            "parent": null,
+            "description": "It is considered best practice to use the camelCase notation to name variables."
+        }
+    },
+    {
+        "pk": 7,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.CyclomaticComplexity",
+            "parent": null,
+            "description": "Complexity is determined by the number of decision points in a method plus one for the\nmethod entry.  The decision points are 'if', 'while', 'for', and 'case labels'.  Generally,\n1-4 is low complexity, 5-7 indicates moderate complexity, 8-10 is high complexity,\n and 11+ is very high complexity."
+        }
+    },
+    {
+        "pk": 8,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.NPathComplexity",
+            "parent": null,
+            "description": "The NPath complexity of a method is the number of acyclic execution paths through that method.\nA threshold of 200 is generally considered the point where measures should be taken to reduce complexity."
+        }
+    },
+    {
+        "pk": 9,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.ExcessiveMethodLength",
+            "parent": null,
+            "description": "Violations of this rule usually indicate that the method is doing\ntoo much.  Try to reduce the method size by creating helper methods and removing any copy/pasted code."
+        }
+    },
+    {
+        "pk": 10,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.ExcessiveClassLength",
+            "parent": null,
+            "description": "Long Class files are indications that the class may be trying to\ndo too much.  Try to break it down, and reduce the size to something\nmanageable."
+        }
+    },
+    {
+        "pk": 11,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.ExcessiveParameterList",
+            "parent": null,
+            "description": "Long parameter lists can indicate that a new object should be created to\nwrap the numerous parameters.  Basically, try to group the parameters together."
+        }
+    },
+    {
+        "pk": 12,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.ExcessivePublicCount",
+            "parent": null,
+            "description": "A large number of public methods and attributes declared in a class can indicate\nthe class may need to be broken up as increased effort will be required to\nthoroughly test it."
+        }
+    },
+    {
+        "pk": 13,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.TooManyFields",
+            "parent": null,
+            "description": "Classes that have too many fields could be redesigned to have fewer fields,\npossibly through some nested object grouping of some of the information. For\nexample, a class with city/state/zip fields could instead have one Address\nfield."
+        }
+    },
+    {
+        "pk": 14,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.TooManyMethods",
+            "parent": null,
+            "description": "A class with too many methods is probably a good suspect for refactoring, in\norder to reduce its complexity and find a way to have more fine grained objects."
+        }
+    },
+    {
+        "pk": 15,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.ExcessiveClassComplexity",
+            "parent": null,
+            "description": "The WMC of a class is a good indicator of how much time and effort is required\nto modify and maintain this class. A large number of methods also means that\nthis class has a greater potential impact on derived classes."
+        }
+    },
+    {
+        "pk": 16,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.ShortVariable",
+            "parent": null,
+            "description": "Detects when a field, local, or parameter has a very short name."
+        }
+    },
+    {
+        "pk": 17,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.LongVariable",
+            "parent": null,
+            "description": "Detects when a field, formal or local variable is declared with a long name."
+        }
+    },
+    {
+        "pk": 18,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.ShortMethodName",
+            "parent": null,
+            "description": "Detects when very short method names are used."
+        }
+    },
+    {
+        "pk": 19,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.ConstructorWithNameAsEnclosingClass",
+            "parent": null,
+            "description": "A constructor method should not have the same name as the enclosing class, consider\nto use the PHP 5 __construct method."
+        }
+    },
+    {
+        "pk": 20,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.ConstantNamingConventions",
+            "parent": null,
+            "description": "Class/Interface constant nanmes should always be defined in uppercase."
+        }
+    },
+    {
+        "pk": 21,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.BooleanGetMethodName",
+            "parent": null,
+            "description": "Looks for methods named 'getX()' with 'boolean' as the return type. The convention\nis to name these methods 'isX()' or 'hasX()'."
+        }
+    },
+    {
+        "pk": 22,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.UnusedPrivateField",
+            "parent": null,
+            "description": "Detects when a private field is declared and/or assigned a value, but not used."
+        }
+    },
+    {
+        "pk": 23,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.UnusedLocalVariable",
+            "parent": null,
+            "description": "Detects when a local variable is declared and/or assigned, but not used."
+        }
+    },
+    {
+        "pk": 24,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.UnusedPrivateMethod",
+            "parent": null,
+            "description": "Unused Private Method detects when a private method is declared but is unused."
+        }
+    },
+    {
+        "pk": 25,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.UnusedFormalParameter",
+            "parent": null,
+            "description": "Avoid passing parameters to methods or constructors and then not using those parameters."
+        }
+    },
+    {
+        "pk": 26,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.ExitExpression",
+            "parent": null,
+            "description": "An exit-expression within regular code is untestable and therefore it should\nbe avoided. Consider to move the exit-expression into some kind of startup\nscript where an error/exception code is returned to the calling environment."
+        }
+    },
+    {
+        "pk": 27,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.EvalExpression",
+            "parent": null,
+            "description": "An eval-expression is untestable, a security risk and bad practice. Therefore\nit should be avoided. Consider to replace the eval-expression with regular\ncode."
+        }
+    },
+    {
+        "pk": 28,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.GotoStatement",
+            "parent": null,
+            "description": "Goto makes code harder to read and it is nearly impossible to understand the\ncontrol flow of an application that uses this language construct. Therefore it\nshould be avoided. Consider to replace Goto with regular control structures and\nseparate methods/function, which are easier to read."
+        }
+    },
+    {
+        "pk": 29,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.NumberOfChildren",
+            "parent": null,
+            "description": "A class with an excessive number of children is an indicator for an unbalanced\nclass hierarchy. You should consider to refactor this class hierarchy."
+        }
+    },
+    {
+        "pk": 30,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.DepthOfInheritance",
+            "parent": null,
+            "description": "A class with many parents is an indicator for an unbalanced and wrong class\nhierarchy. You should consider to refactor this class hierarchy."
+        }
+    },
+    {
+        "pk": 31,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.CouplingBetweenObjects",
+            "parent": null,
+            "description": "A class with to many dependencies has negative impacts on several quality\naspects of a class. This includes quality criterias like stability,\nmaintainability and understandability"
+        }
+    },
+    {
+        "pk": 32,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.BooleanArgumentFlag",
+            "parent": null,
+            "description": "A boolean flag argument is a reliable indicator for a violation of\nthe Single Responsibility Principle (SRP). You can fix this problem\nby extracting the logic in the boolean flag into its own class\nor method."
+        }
+    },
+    {
+        "pk": 33,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.ElseExpression",
+            "parent": null,
+            "description": "An if expression with an else branch is never necessary. You can rewrite the\nconditions in a way that the else is not necessary and the code becomes simpler\nto read.  To achieve this use early return statements. To achieve this you may\nneed to split the code it several smaller methods. For very simple assignments\nyou could also use the ternary operations."
+        }
+    },
+    {
+        "pk": 34,
+        "model": "linted.errorgroup",
+        "fields": {
+            "name": "phpmd.StaticAccess",
+            "parent": null,
+            "description": "Static acccess causes inexchangable dependencies to other classes and leads to hard to test code. Avoid\nusing static access at all costs and instead inject dependencies through the constructor. The only\ncase when static access is acceptable is when used for factory methods."
+        }
+    },
+    {
+        "pk": 1,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "add_migrationhistory",
+            "name": "Can add migration history",
+            "content_type": ["south", "migrationhistory"]
+        }
+    },
+    {
+        "pk": 2,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "change_migrationhistory",
+            "name": "Can change migration history",
+            "content_type": ["south", "migrationhistory"]
+        }
+    },
+    {
+        "pk": 3,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "delete_migrationhistory",
+            "name": "Can delete migration history",
+            "content_type": ["south", "migrationhistory"]
+        }
+    },
+    {
+        "pk": 4,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "add_logentry",
+            "name": "Can add log entry",
+            "content_type": ["admin", "logentry"]
+        }
+    },
+    {
+        "pk": 5,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "change_logentry",
+            "name": "Can change log entry",
+            "content_type": ["admin", "logentry"]
+        }
+    },
+    {
+        "pk": 6,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "delete_logentry",
+            "name": "Can delete log entry",
+            "content_type": ["admin", "logentry"]
+        }
+    },
+    {
+        "pk": 7,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "add_permission",
+            "name": "Can add permission",
+            "content_type": ["auth", "permission"]
+        }
+    },
+    {
+        "pk": 8,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "change_permission",
+            "name": "Can change permission",
+            "content_type": ["auth", "permission"]
+        }
+    },
+    {
+        "pk": 9,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "delete_permission",
+            "name": "Can delete permission",
+            "content_type": ["auth", "permission"]
+        }
+    },
+    {
+        "pk": 10,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "add_group",
+            "name": "Can add group",
+            "content_type": ["auth", "group"]
+        }
+    },
+    {
+        "pk": 11,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "change_group",
+            "name": "Can change group",
+            "content_type": ["auth", "group"]
+        }
+    },
+    {
+        "pk": 12,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "delete_group",
+            "name": "Can delete group",
+            "content_type": ["auth", "group"]
+        }
+    },
+    {
+        "pk": 13,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "add_user",
+            "name": "Can add user",
+            "content_type": ["auth", "user"]
+        }
+    },
+    {
+        "pk": 14,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "change_user",
+            "name": "Can change user",
+            "content_type": ["auth", "user"]
+        }
+    },
+    {
+        "pk": 15,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "delete_user",
+            "name": "Can delete user",
+            "content_type": ["auth", "user"]
+        }
+    },
+    {
+        "pk": 16,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "add_contenttype",
+            "name": "Can add content type",
+            "content_type": ["contenttypes", "contenttype"]
+        }
+    },
+    {
+        "pk": 17,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "change_contenttype",
+            "name": "Can change content type",
+            "content_type": ["contenttypes", "contenttype"]
+        }
+    },
+    {
+        "pk": 18,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "delete_contenttype",
+            "name": "Can delete content type",
+            "content_type": ["contenttypes", "contenttype"]
+        }
+    },
+    {
+        "pk": 19,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "add_session",
+            "name": "Can add session",
+            "content_type": ["sessions", "session"]
+        }
+    },
+    {
+        "pk": 20,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "change_session",
+            "name": "Can change session",
+            "content_type": ["sessions", "session"]
+        }
+    },
+    {
+        "pk": 21,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "delete_session",
+            "name": "Can delete session",
+            "content_type": ["sessions", "session"]
+        }
+    },
+    {
+        "pk": 22,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "add_repository",
+            "name": "Can add repository",
+            "content_type": ["linted", "repository"]
+        }
+    },
+    {
+        "pk": 23,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "change_repository",
+            "name": "Can change repository",
+            "content_type": ["linted", "repository"]
+        }
+    },
+    {
+        "pk": 24,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "delete_repository",
+            "name": "Can delete repository",
+            "content_type": ["linted", "repository"]
+        }
+    },
+    {
+        "pk": 25,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "add_repositoryuser",
+            "name": "Can add repository user",
+            "content_type": ["linted", "repositoryuser"]
+        }
+    },
+    {
+        "pk": 26,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "change_repositoryuser",
+            "name": "Can change repository user",
+            "content_type": ["linted", "repositoryuser"]
+        }
+    },
+    {
+        "pk": 27,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "delete_repositoryuser",
+            "name": "Can delete repository user",
+            "content_type": ["linted", "repositoryuser"]
+        }
+    },
+    {
+        "pk": 28,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "add_repositorykey",
+            "name": "Can add repository key",
+            "content_type": ["linted", "repositorykey"]
+        }
+    },
+    {
+        "pk": 29,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "change_repositorykey",
+            "name": "Can change repository key",
+            "content_type": ["linted", "repositorykey"]
+        }
+    },
+    {
+        "pk": 30,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "delete_repositorykey",
+            "name": "Can delete repository key",
+            "content_type": ["linted", "repositorykey"]
+        }
+    },
+    {
+        "pk": 31,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "add_language",
+            "name": "Can add language",
+            "content_type": ["linted", "language"]
+        }
+    },
+    {
+        "pk": 32,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "change_language",
+            "name": "Can change language",
+            "content_type": ["linted", "language"]
+        }
+    },
+    {
+        "pk": 33,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "delete_language",
+            "name": "Can delete language",
+            "content_type": ["linted", "language"]
+        }
+    },
+    {
+        "pk": 34,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "add_scanner",
+            "name": "Can add scanner",
+            "content_type": ["linted", "scanner"]
+        }
+    },
+    {
+        "pk": 35,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "change_scanner",
+            "name": "Can change scanner",
+            "content_type": ["linted", "scanner"]
+        }
+    },
+    {
+        "pk": 36,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "delete_scanner",
+            "name": "Can delete scanner",
+            "content_type": ["linted", "scanner"]
+        }
+    },
+    {
+        "pk": 37,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "add_repositoryscanner",
+            "name": "Can add repository scanner",
+            "content_type": ["linted", "repositoryscanner"]
+        }
+    },
+    {
+        "pk": 38,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "change_repositoryscanner",
+            "name": "Can change repository scanner",
+            "content_type": ["linted", "repositoryscanner"]
+        }
+    },
+    {
+        "pk": 39,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "delete_repositoryscanner",
+            "name": "Can delete repository scanner",
+            "content_type": ["linted", "repositoryscanner"]
+        }
+    },
+    {
+        "pk": 40,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "add_repositoryscan",
+            "name": "Can add repository scan",
+            "content_type": ["linted", "repositoryscan"]
+        }
+    },
+    {
+        "pk": 41,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "change_repositoryscan",
+            "name": "Can change repository scan",
+            "content_type": ["linted", "repositoryscan"]
+        }
+    },
+    {
+        "pk": 42,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "delete_repositoryscan",
+            "name": "Can delete repository scan",
+            "content_type": ["linted", "repositoryscan"]
+        }
+    },
+    {
+        "pk": 43,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "add_errorgroup",
+            "name": "Can add error group",
+            "content_type": ["linted", "errorgroup"]
+        }
+    },
+    {
+        "pk": 44,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "change_errorgroup",
+            "name": "Can change error group",
+            "content_type": ["linted", "errorgroup"]
+        }
+    },
+    {
+        "pk": 45,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "delete_errorgroup",
+            "name": "Can delete error group",
+            "content_type": ["linted", "errorgroup"]
+        }
+    },
+    {
+        "pk": 46,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "add_scanviolation",
+            "name": "Can add scan violation",
+            "content_type": ["linted", "scanviolation"]
+        }
+    },
+    {
+        "pk": 47,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "change_scanviolation",
+            "name": "Can change scan violation",
+            "content_type": ["linted", "scanviolation"]
+        }
+    },
+    {
+        "pk": 48,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "delete_scanviolation",
+            "name": "Can delete scan violation",
+            "content_type": ["linted", "scanviolation"]
+        }
+    },
+    {
+        "pk": 49,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "add_userobjectpermission",
+            "name": "Can add user object permission",
+            "content_type": ["guardian", "userobjectpermission"]
+        }
+    },
+    {
+        "pk": 50,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "change_userobjectpermission",
+            "name": "Can change user object permission",
+            "content_type": ["guardian", "userobjectpermission"]
+        }
+    },
+    {
+        "pk": 51,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "delete_userobjectpermission",
+            "name": "Can delete user object permission",
+            "content_type": ["guardian", "userobjectpermission"]
+        }
+    },
+    {
+        "pk": 52,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "add_groupobjectpermission",
+            "name": "Can add group object permission",
+            "content_type": ["guardian", "groupobjectpermission"]
+        }
+    },
+    {
+        "pk": 53,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "change_groupobjectpermission",
+            "name": "Can change group object permission",
+            "content_type": ["guardian", "groupobjectpermission"]
+        }
+    },
+    {
+        "pk": 54,
+        "model": "auth.permission",
+        "fields": {
+            "codename": "delete_groupobjectpermission",
+            "name": "Can delete group object permission",
+            "content_type": ["guardian", "groupobjectpermission"]
+        }
+    },
+    {
+        "pk": -1,
+        "model": "auth.user",
+        "fields": {
+            "username": "AnonymousUser",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": false,
+            "last_login": "2014-02-06T10:42:35.315Z",
+            "groups": [],
+            "user_permissions": [],
+            "password": "",
+            "email": "",
+            "date_joined": "2014-02-06T10:42:35.315Z"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "auth.user",
+        "fields": {
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2014-02-06T10:35:00.470Z",
+            "groups": [],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$12000$oFhLzDBMk8zq$J5j1iq7K8wCQ8KAr0RmvBa6wETI5U7QX+NDOWPlSLeI=",
+            "email": "",
+            "date_joined": "2014-02-06T10:24:08.819Z"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "admin.logentry",
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2014-02-06T10:37:17.728Z",
+            "object_repr": "Language object",
+            "object_id": "1",
+            "change_message": "",
+            "user": ["admin"],
+            "content_type": ["linted", "language"]
+        }
+    },
+    {
+        "pk": 2,
+        "model": "admin.logentry",
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2014-02-06T10:37:26.798Z",
+            "object_repr": "Scanner object",
+            "object_id": "1",
+            "change_message": "",
+            "user": ["admin"],
+            "content_type": ["linted", "scanner"]
+        }
+    }
+]
