@@ -51,6 +51,7 @@ class RepositoryScanner(models.Model):
 
 
 class RepositoryScan(models.Model):
+    uuid = models.CharField(max_length=40, unique=True, default=lambda: str(uuid.uuid4()))
     repository = models.ForeignKey(Repository)
 
     created_at = models.DateTimeField()

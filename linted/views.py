@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 
 from linted.tasks import add, scan_repository
-from linted.models import Repository, RepositoryKey
+from linted.models import Repository, RepositoryKey, RepositoryScan
 from linted.forms import RepositoryForm
 
 from Crypto.PublicKey import RSA
@@ -34,6 +34,10 @@ def view_repoository(request, uuid):
 
     return render(request, 'view_repository.html', render_data)
 
+def view_scan(request, uuid):
+    scan = get_object_or_404(RepositoryScan, uuid=uuid)
+
+    return render(request, 'view_scan.html', {'scan': scan})
 
 def run_scan(request, uuid):
     repository = get_object_or_404(Repository, uuid=uuid)

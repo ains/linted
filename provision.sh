@@ -25,9 +25,10 @@ sudo -u postgres psql -c "CREATE DATABASE linted WITH OWNER linted"
 
 #Create virtualenv
 virtualenv --no-site-packages $VE_DIR
-$VE_DIR/bin/pip install -r $CODE_DIR/requirements.txt
-chown -R vagrant $VE_DIR
-chgrp -R vagrant $VE_DIR
+chown -R vagrant $VE_DIR/../
+chgrp -R vagrant $VE_DIR/../
+
+sudo -u vagrant $VE_DIR/bin/pip install -r $CODE_DIR/requirements.txt
 
 #Run syncdb to create south specific databases
 if [ ! -e /home/vagrant/.provisioned ]

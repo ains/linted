@@ -6,14 +6,13 @@ from django.db import models
 
 
 class Migration(SchemaMigration):
+
     def forwards(self, orm):
         # Adding model 'Repository'
         db.create_table(u'linted_repository', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=64)),
-            ('uuid',
-             self.gf('django.db.models.fields.CharField')(default='5c29113b-faef-4026-b8f6-c7880516e9ef', unique=True,
-                                                          max_length=40)),
+            ('uuid', self.gf('django.db.models.fields.CharField')(default='fa7179b3-2c37-46ca-85a0-cb22181ca9d0', unique=True, max_length=40)),
             ('owner', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
             ('clone_url', self.gf('django.db.models.fields.CharField')(unique=True, max_length=256)),
             ('created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
@@ -66,9 +65,10 @@ class Migration(SchemaMigration):
         # Adding model 'RepositoryScan'
         db.create_table(u'linted_repositoryscan', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('uuid', self.gf('django.db.models.fields.CharField')(default='b16c7e5e-0b39-4411-92fe-a73ff1381324', unique=True, max_length=40)),
             ('repository', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['linted.Repository'])),
             ('created_at', self.gf('django.db.models.fields.DateTimeField')()),
-            ('completed_at', self.gf('django.db.models.fields.DateTimeField')()),
+            ('completed_at', self.gf('django.db.models.fields.DateTimeField')(null=True)),
         ))
         db.send_create_signal(u'linted', ['RepositoryScan'])
 
@@ -86,8 +86,7 @@ class Migration(SchemaMigration):
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('scan', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['linted.RepositoryScan'])),
             ('scanner', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['linted.Scanner'])),
-            ('previous_error',
-             self.gf('django.db.models.fields.related.ForeignKey')(to=orm['linted.ScanViolation'], null=True)),
+            ('previous_error', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['linted.ScanViolation'], null=True)),
             ('error_group', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['linted.ErrorGroup'])),
             ('file', self.gf('django.db.models.fields.TextField')(max_length=256)),
             ('start_line', self.gf('django.db.models.fields.IntegerField')()),
@@ -131,15 +130,12 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Group'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '80'}),
-            'permissions': ('django.db.models.fields.related.ManyToManyField', [],
-                            {'to': u"orm['auth.Permission']", 'symmetrical': 'False', 'blank': 'True'})
+            'permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['auth.Permission']", 'symmetrical': 'False', 'blank': 'True'})
         },
         u'auth.permission': {
-            'Meta': {'ordering': "(u'content_type__app_label', u'content_type__model', u'codename')",
-                     'unique_together': "((u'content_type', u'codename'),)", 'object_name': 'Permission'},
+            'Meta': {'ordering': "(u'content_type__app_label', u'content_type__model', u'codename')", 'unique_together': "((u'content_type', u'codename'),)", 'object_name': 'Permission'},
             'codename': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'content_type': (
-            'django.db.models.fields.related.ForeignKey', [], {'to': u"orm['contenttypes.ContentType']"}),
+            'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['contenttypes.ContentType']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
         },
@@ -148,9 +144,7 @@ class Migration(SchemaMigration):
             'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
             'first_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
-            'groups': ('django.db.models.fields.related.ManyToManyField', [],
-                       {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True',
-                        'to': u"orm['auth.Group']"}),
+            'groups': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True', 'to': u"orm['auth.Group']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'is_staff': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
@@ -158,14 +152,11 @@ class Migration(SchemaMigration):
             'last_login': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'last_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
             'password': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'user_permissions': ('django.db.models.fields.related.ManyToManyField', [],
-                                 {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True',
-                                  'to': u"orm['auth.Permission']"}),
+            'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True', 'to': u"orm['auth.Permission']"}),
             'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'})
         },
         u'contenttypes.contenttype': {
-            'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)",
-                     'object_name': 'ContentType', 'db_table': "'django_content_type'"},
+            'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
             'app_label': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
@@ -176,8 +167,7 @@ class Migration(SchemaMigration):
             'description': ('django.db.models.fields.TextField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.TextField', [], {'max_length': '512'}),
-            'parent': (
-            'django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.ErrorGroup']", 'null': 'True'})
+            'parent': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.ErrorGroup']", 'null': 'True'})
         },
         u'linted.language': {
             'Meta': {'object_name': 'Language'},
@@ -192,8 +182,7 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '64'}),
             'owner': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"}),
-            'uuid': ('django.db.models.fields.CharField', [],
-                     {'default': "'c6c1920f-899f-4605-87d8-213688b117f9'", 'unique': 'True', 'max_length': '40'})
+            'uuid': ('django.db.models.fields.CharField', [], {'default': "'67225804-3b9c-4226-a0a9-0ca639959fbb'", 'unique': 'True', 'max_length': '40'})
         },
         u'linted.repositorykey': {
             'Meta': {'object_name': 'RepositoryKey'},
@@ -204,10 +193,11 @@ class Migration(SchemaMigration):
         },
         u'linted.repositoryscan': {
             'Meta': {'object_name': 'RepositoryScan'},
-            'completed_at': ('django.db.models.fields.DateTimeField', [], {}),
+            'completed_at': ('django.db.models.fields.DateTimeField', [], {'null': 'True'}),
             'created_at': ('django.db.models.fields.DateTimeField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'repository': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.Repository']"})
+            'repository': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.Repository']"}),
+            'uuid': ('django.db.models.fields.CharField', [], {'default': "'9e4f6bf3-e173-417a-9398-4b42c413c14f'", 'unique': 'True', 'max_length': '40'})
         },
         u'linted.repositoryscanner': {
             'Meta': {'object_name': 'RepositoryScanner'},
@@ -235,8 +225,7 @@ class Migration(SchemaMigration):
             'error_group': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.ErrorGroup']"}),
             'file': ('django.db.models.fields.TextField', [], {'max_length': '256'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'previous_error': (
-            'django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.ScanViolation']", 'null': 'True'}),
+            'previous_error': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.ScanViolation']", 'null': 'True'}),
             'scan': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.RepositoryScan']"}),
             'scanner': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['linted.Scanner']"}),
             'snippet': ('django.db.models.fields.TextField', [], {}),

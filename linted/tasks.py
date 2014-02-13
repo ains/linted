@@ -2,19 +2,33 @@ from __future__ import absolute_import
 from cStringIO import StringIO
 from celery import shared_task
 from linted.models import Repository, RepositoryScan
-from gittle import Gittle, GittleAuth
 from scanner.phpmd.phpmd import Phpmd
 
 import os
 import tempfile
 import shutil
 import paramiko
+import dulwich.client
+import dulwich.repo
 import datetime
 
 
 @shared_task
 def add(x, y):
     return x + y
+
+
+def clone_repository(clone_url, path, private_key_file):
+    dulwich.client.get_ssh_vendor = dulwich.client.ParamikoSSHVendor
+    client, host_path = dulwich.client.get_transport_and_path(clone_url)
+    client.ssh_kwargs = {
+        "pkey": private_key_file
+    }
+
+    r = dulwich.repo.Repo.init(path, mkdir=True)
+    remote_refs = client.fetch(host_path, r, determine_wants=r.object_store.determine_wants_all)
+    r["HEAD"] = remote_refs["HEAD"]
+    r._build_tree()
 
 
 @shared_task(bind=True)
@@ -29,8 +43,7 @@ def scan_repository(self, repository_id):
                 working_dir = os.path.join(tempfile.gettempdir(), self.request.id)
 
                 private_key_file = StringIO(key_pair.private_key)
-                auth = GittleAuth(pkey=private_key_file)
-                Gittle.clone(repository.clone_url, working_dir, auth=auth)
+                clone_repository(repository.clone_url, working_dir, private_key_file)
                 auth_success = True
 
                 #Start repository scan
