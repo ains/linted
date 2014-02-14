@@ -2,13 +2,13 @@ import json
 import os
 
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.urlresolvers import reverse
 from django.conf import settings
 
 from linted.tasks import add, scan_repository
-from linted.models import Repository, RepositoryKey, RepositoryScan
-from linted.forms import RepositoryForm
+from linted.models import Repository, RepositoryKey, RepositoryScan, Tree, Scanner
+from linted.forms import RepositoryForm, RepositoryScannerForm
 
 from Crypto.PublicKey import RSA
 
@@ -20,7 +20,11 @@ def index(request):
 
 def repository_list(request):
     repositories = Repository.objects.all()
-    return render(request, 'repository_list.html', {'repository_list': repositories})
+    render_data = {
+        'repo_colours': ['#90BD3C', '#F7E277', '#FD7D00'],
+        'repository_list': repositories
+    }
+    return render(request, 'repository_list.html', render_data)
 
 
 def view_repoository(request, uuid):
@@ -34,10 +38,12 @@ def view_repoository(request, uuid):
 
     return render(request, 'view_repository.html', render_data)
 
+
 def view_scan(request, uuid):
     scan = get_object_or_404(RepositoryScan, uuid=uuid)
 
     return render(request, 'view_scan.html', {'scan': scan})
+
 
 def run_scan(request, uuid):
     repository = get_object_or_404(Repository, uuid=uuid)
@@ -49,21 +55,16 @@ def run_scan(request, uuid):
 
 def create_repository(request):
     if request.method == 'POST':
-        form = RepositoryForm(request.POST)
-        if form.is_valid():
-            repo_name = form.cleaned_data['name']
-            repo_clone_url = form.cleaned_data['clone_url']
+        repository_form = RepositoryForm(request.POST)
+        if repository_form.is_valid():
+            repository = repository_form.save(commit=False)
+            repository.owner = request.user
+            repository.save()
 
             #Generate keypair for repo
             keypair = RSA.generate(2048)
             private_key = keypair.exportKey('PEM')
             public_key = keypair.publickey().exportKey('OpenSSH')
-
-            repository = Repository()
-            repository.name = repo_name
-            repository.clone_url = repo_clone_url
-            repository.owner = request.user
-            repository.save()
 
             repository_key = RepositoryKey()
             repository_key.repository = repository
@@ -71,12 +72,31 @@ def create_repository(request):
             repository_key.public_key = public_key
             repository_key.save()
 
-            return HttpResponseRedirect(reverse('view_repository', args=(repository.uuid,)))
+            return redirect(reverse('view_repository', args=(repository.uuid,)))
     else:
-        form = RepositoryForm()
+        repository_form = RepositoryForm()
 
     return render(request, 'create_repository.html', {
+        'form': repository_form,
+    })
+
+
+def add_scanner(request, repo_uuid):
+    repository = Repository.objects.get(uuid=repo_uuid)
+    if request.method == 'POST':
+        form = RepositoryScannerForm(request.POST)
+        repo_scanner = form.save(commit=False)
+        if form.is_valid():
+            repo_scanner.repository = repository
+            repo_scanner.save()
+
+        return redirect(reverse('view_repository', args=(repository.uuid,)))
+    else:
+        form = RepositoryScannerForm()
+
+    return render(request, 'add_scanner.html', {
         'form': form,
+        'repository': repository
     })
 
 
@@ -86,17 +106,28 @@ def scanner_settings(request, uuid):
 
     with open(ruleset_file) as f:
         scanner_rules = json.loads(f.read())
-
         if request.method == 'POST':
+            custom_rules = Tree()
             for field_name, value in request.POST.items():
                 if '/' in field_name:
                     ruleset, rule, property = field_name.split('/')
-                    print field_name
-                    print(ruleset, rule, property)
 
-            return HttpResponse("ok")
+                    try:
+                        ruleset_property = scanner_rules[ruleset]['rules'][rule]['properties'][property]
+                        property_type = ruleset_property['type']
+                        default_value = ruleset_property['default']
+
+                        if property_type == 'bool':
+                            default_value = (default_value == "True")
+
+                        if value != default_value:
+                            custom_rules[ruleset][rule][property] = value
+                    except KeyError:
+                        pass
+
+            return HttpResponse(json.dumps(custom_rules))
         else:
             return render(request, 'scanner_settings.html', {
                 "repository": repository,
                 "rules": scanner_rules
-                })
+            })

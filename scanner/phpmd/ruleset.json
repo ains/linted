@@ -2,16 +2,19 @@
     "rules": {
         "StaticAccess": {
             "properties": {},
+            "enabled": true,
             "name": "StaticAccess",
             "description": "\n            \nStatic acccess causes inexchangable dependencies to other classes and leads to hard to test code. Avoid\nusing static access at all costs and instead inject dependencies through the constructor. The only\ncase when static access is acceptable is when used for factory methods.\n            \n        "
         },
         "ElseExpression": {
             "properties": {},
+            "enabled": true,
             "name": "ElseExpression",
             "description": "\n            \nAn if expression with an else branch is never necessary. You can rewrite the\nconditions in a way that the else is not necessary and the code becomes simpler\nto read.  To achieve this use early return statements. To achieve this you may\nneed to split the code it several smaller methods. For very simple assignments\nyou could also use the ternary operations.\n            \n        "
         },
         "BooleanArgumentFlag": {
             "properties": {},
+            "enabled": true,
             "name": "BooleanArgumentFlag",
             "description": "\n            \nA boolean flag argument is a reliable indicator for a violation of\nthe Single Responsibility Principle (SRP). You can fix this problem\nby extracting the logic in the boolean flag into its own class\nor method.\n            \n        "
         }
@@ -27,6 +30,7 @@
                     "description": "The parameter count reporting threshold"
                 }
             },
+            "enabled": true,
             "name": "ExcessiveParameterList",
             "description": "\nLong parameter lists can indicate that a new object should be created to\nwrap the numerous parameters.  Basically, try to group the parameters together.\n        "
         },
@@ -48,6 +52,7 @@
                     "description": "Indicate if class average violation should be added to the report"
                 }
             },
+            "enabled": true,
             "name": "CyclomaticComplexity",
             "description": "\n            \nComplexity is determined by the number of decision points in a method plus one for the\nmethod entry.  The decision points are 'if', 'while', 'for', and 'case labels'.  Generally,\n1-4 is low complexity, 5-7 indicates moderate complexity, 8-10 is high complexity,\n and 11+ is very high complexity.\n            \n        "
         },
@@ -59,6 +64,7 @@
                     "description": "The npath reporting threshold"
                 }
             },
+            "enabled": true,
             "name": "NPathComplexity",
             "description": "\nThe NPath complexity of a method is the number of acyclic execution paths through that method.\nA threshold of 200 is generally considered the point where measures should be taken to reduce complexity.\n        "
         },
@@ -70,6 +76,7 @@
                     "description": "The field count reporting threshold "
                 }
             },
+            "enabled": true,
             "name": "TooManyFields",
             "description": "\nClasses that have too many fields could be redesigned to have fewer fields,\npossibly through some nested object grouping of some of the information. For\nexample, a class with city/state/zip fields could instead have one Address\nfield.\n        "
         },
@@ -86,6 +93,7 @@
                     "description": "The method size reporting threshold"
                 }
             },
+            "enabled": true,
             "name": "ExcessiveMethodLength",
             "description": "\nViolations of this rule usually indicate that the method is doing\ntoo much.  Try to reduce the method size by creating helper methods and removing any copy/pasted code.\n        "
         },
@@ -97,6 +105,7 @@
                     "description": "The method count reporting threshold "
                 }
             },
+            "enabled": true,
             "name": "TooManyMethods",
             "description": "\n            \nA class with too many methods is probably a good suspect for refactoring, in\norder to reduce its complexity and find a way to have more fine grained objects.\n            \n        "
         },
@@ -113,6 +122,7 @@
                     "description": "The class size reporting threshold"
                 }
             },
+            "enabled": true,
             "name": "ExcessiveClassLength",
             "description": "\nLong Class files are indications that the class may be trying to\ndo too much.  Try to break it down, and reduce the size to something\nmanageable.\n        "
         },
@@ -124,6 +134,7 @@
                     "description": "The public item reporting threshold"
                 }
             },
+            "enabled": true,
             "name": "ExcessivePublicCount",
             "description": "\nA large number of public methods and attributes declared in a class can indicate\nthe class may need to be broken up as increased effort will be required to\nthoroughly test it.\n        "
         },
@@ -135,6 +146,7 @@
                     "description": "The maximum WMC tolerable for a class."
                 }
             },
+            "enabled": true,
             "name": "ExcessiveClassComplexity",
             "description": "\n            \nThe WMC of a class is a good indicator of how much time and effort is required\nto modify and maintain this class. A large number of methods also means that\nthis class has a greater potential impact on derived classes.\n            \n        "
         }
@@ -144,6 +156,7 @@
     "rules": {
         "ConstantNamingConventions": {
             "properties": {},
+            "enabled": true,
             "name": "ConstantNamingConventions",
             "description": "\nClass/Interface constant nanmes should always be defined in uppercase.\n        "
         },
@@ -155,6 +168,7 @@
                     "description": "The variable length reporting threshold"
                 }
             },
+            "enabled": true,
             "name": "LongVariable",
             "description": "\nDetects when a field, formal or local variable is declared with a long name.\n        "
         },
@@ -171,6 +185,7 @@
                     "description": "Minimum length for a variable, property or parameter name"
                 }
             },
+            "enabled": true,
             "name": "ShortVariable",
             "description": "\nDetects when a field, local, or parameter has a very short name.\n        "
         },
@@ -182,11 +197,13 @@
                     "description": "Applies only to methods without parameter when set to true"
                 }
             },
+            "enabled": true,
             "name": "BooleanGetMethodName",
             "description": "\nLooks for methods named 'getX()' with 'boolean' as the return type. The convention\nis to name these methods 'isX()' or 'hasX()'.\n        "
         },
         "ConstructorWithNameAsEnclosingClass": {
             "properties": {},
+            "enabled": true,
             "name": "ConstructorWithNameAsEnclosingClass",
             "description": "\nA constructor method should not have the same name as the enclosing class, consider\nto use the PHP 5 __construct method.\n        "
         },
@@ -198,6 +215,7 @@
                     "description": "Minimum length for a method or function name"
                 }
             },
+            "enabled": true,
             "name": "ShortMethodName",
             "description": "\nDetects when very short method names are used.\n        "
         }
@@ -213,11 +231,13 @@
                     "description": "Maximum number of acceptable dependencies."
                 }
             },
+            "enabled": true,
             "name": "CouplingBetweenObjects",
             "description": "\n            \nA class with to many dependencies has negative impacts on several quality\naspects of a class. This includes quality criterias like stability,\nmaintainability and understandability\n            \n        "
         },
         "ExitExpression": {
             "properties": {},
+            "enabled": true,
             "name": "ExitExpression",
             "description": "\n            \nAn exit-expression within regular code is untestable and therefore it should\nbe avoided. Consider to move the exit-expression into some kind of startup\nscript where an error/exception code is returned to the calling environment.\n            \n        "
         },
@@ -229,16 +249,19 @@
                     "description": "Maximum number of acceptable child classes."
                 }
             },
+            "enabled": true,
             "name": "NumberOfChildren",
             "description": "\n            \nA class with an excessive number of children is an indicator for an unbalanced\nclass hierarchy. You should consider to refactor this class hierarchy.\n            \n        "
         },
         "EvalExpression": {
             "properties": {},
+            "enabled": true,
             "name": "EvalExpression",
             "description": "\n            \nAn eval-expression is untestable, a security risk and bad practice. Therefore\nit should be avoided. Consider to replace the eval-expression with regular\ncode.\n            \n        "
         },
         "GotoStatement": {
             "properties": {},
+            "enabled": true,
             "name": "GotoStatement",
             "description": "\n            \nGoto makes code harder to read and it is nearly impossible to understand the\ncontrol flow of an application that uses this language construct. Therefore it\nshould be avoided. Consider to replace Goto with regular control structures and\nseparate methods/function, which are easier to read.\n            \n        "
         },
@@ -250,6 +273,7 @@
                     "description": "Maximum number of acceptable parent classes."
                 }
             },
+            "enabled": true,
             "name": "DepthOfInheritance",
             "description": "\n            \nA class with many parents is an indicator for an unbalanced and wrong class\nhierarchy. You should consider to refactor this class hierarchy.\n            \n        "
         }
@@ -259,21 +283,25 @@
     "rules": {
         "UnusedLocalVariable": {
             "properties": {},
+            "enabled": true,
             "name": "UnusedLocalVariable",
             "description": "\nDetects when a local variable is declared and/or assigned, but not used.\n        "
         },
         "UnusedFormalParameter": {
             "properties": {},
+            "enabled": true,
             "name": "UnusedFormalParameter",
             "description": "\nAvoid passing parameters to methods or constructors and then not using those parameters.\n        "
         },
         "UnusedPrivateField": {
             "properties": {},
+            "enabled": true,
             "name": "UnusedPrivateField",
             "description": "\nDetects when a private field is declared and/or assigned a value, but not used.\n        "
         },
         "UnusedPrivateMethod": {
             "properties": {},
+            "enabled": true,
             "name": "UnusedPrivateMethod",
             "description": "\nUnused Private Method detects when a private method is declared but is unused.\n        "
         }
@@ -283,31 +311,37 @@
     "rules": {
         "CamelCaseClassName": {
             "properties": {},
+            "enabled": true,
             "name": "CamelCaseClassName",
             "description": "\n\t\t\t\nIt is considered best practice to use the CamelCase notation to name classes.\n            \n        "
         },
         "CamelCaseVariableName": {
             "properties": {},
+            "enabled": true,
             "name": "CamelCaseVariableName",
             "description": "\n            \nIt is considered best practice to use the camelCase notation to name variables.\n            \n        "
         },
         "CamelCaseParameterName": {
             "properties": {},
+            "enabled": true,
             "name": "CamelCaseParameterName",
             "description": "\n            \nIt is considered best practice to use the camelCase notation to name parameters.\n            \n        "
         },
         "Superglobals": {
             "properties": {},
+            "enabled": true,
             "name": "Superglobals",
             "description": "\n            \nAccessing a super-global variable directly is considered a bad practice.\nThese variables should be encapsulated in objects that are provided by a framework, for instance.\n            \n        "
         },
         "CamelCasePropertyName": {
             "properties": {},
+            "enabled": true,
             "name": "CamelCasePropertyName",
             "description": "\n            \nIt is considered best practice to use the camelCase notation to name attributes.\n            \n        "
         },
         "CamelCaseMethodName": {
             "properties": {},
+            "enabled": true,
             "name": "CamelCaseMethodName",
             "description": "\n            \nIt is considered best practice to use the CamelCase notation to name methods.\n            \n        "
         }

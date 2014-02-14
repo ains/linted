@@ -7,14 +7,14 @@ import glob
 import xml.etree.ElementTree as et
 import json
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "linted.settings")
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'linted.settings')
 
 namespaces = {'pmd': 'http://pmd.sf.net/ruleset/1.0.0'}
-prefix = "phpmd"
+prefix = 'phpmd'
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print("Please call the script with the directory containing the PHPMD rulesets")
+        print('Please call the script with the directory containing the PHPMD rulesets')
         exit(0)
 
     rules_dict = {}
@@ -37,25 +37,26 @@ if __name__ == '__main__':
                 property_description = property_node.get('description')
 
                 property_default = property_node.get('value')
-                if property_default == "true" or property_default == "false":
-                    property_default_value = (property_default == "true")
-                    property_type = "bool"
+                if property_default == 'true' or property_default == 'false':
+                    property_default_value = (property_default == 'true')
+                    property_type = 'bool'
                 else:
                     property_default_value = property_default
                     try:
                         int(property_default_value)
-                        property_type = "int"
+                        property_type = 'int'
                     except ValueError:
-                        property_type = "string"
+                        property_type = 'string'
 
                 rule_properties[property_name] = {
                     'description': property_description,
                     'default': property_default_value,
                     'type': property_type
                 }
-
+            
             ruleset_rules[rule_name] = {
                 'name': rule_name,
+                'enabled': True,
                 'description': rule_description,
                 'properties': rule_properties
             }

@@ -8,8 +8,10 @@
     {% endif %}
 
     <div class="col-xs-6 col-sm-3 placeholder">
-        <img data-src="holder.js/200x200/vine/text: " alt="...">
-        <h4><a href="{% url 'view_repository' repository.uuid %}">{{ repository.name }}</a></h4>
+        <a href="{% url 'view_repository' repository.uuid %}">
+            <img data-src="holder.js/200x200/{{ repo_colours|random }}:#fff/text: " alt="..."/>
+            <h4>{{ repository.name }}</h4>
+        </a>
         <span class="text-muted">{{ repository.clone_url }}</span>
     </div>
 

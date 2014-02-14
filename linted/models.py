@@ -1,6 +1,8 @@
+import uuid
+import collections
+
 from django.db import models
 from django.contrib.auth import get_user_model
-import uuid
 
 
 class Repository(models.Model):
@@ -49,6 +51,9 @@ class RepositoryScanner(models.Model):
     #Scanner settings are encoded as JSON
     settings = models.TextField()
 
+    class Meta:
+        unique_together = ('repository', 'scanner')
+
 
 class RepositoryScan(models.Model):
     uuid = models.CharField(max_length=40, unique=True, default=lambda: str(uuid.uuid4()))
@@ -79,3 +84,7 @@ class ScanViolation(models.Model):
     start_line = models.IntegerField()
     end_line = models.IntegerField()
     snippet = models.TextField()
+
+
+def Tree():
+    return collections.defaultdict(Tree)

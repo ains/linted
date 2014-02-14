@@ -11,6 +11,10 @@
             <li><a href="{% url 'view_scan' scan.uuid %}">{{scan.uuid}} at {{ scan.created_at }}</a></li>
             {% endfor %}
         </ol>
+
+        <a href="{% url 'add_scanner' repository.uuid %}">
+            <button class="btn btn-large btn-primary">Add Scanner</button>
+        </a>
     </div>
     <div class="col-md-6">
         <h2>Repository Set Up</h2>
