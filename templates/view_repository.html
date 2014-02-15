@@ -1,40 +1,51 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
 {% block content %}
-<div class="row">
-    <div class="col-md-6">
-        <h2>{{ repository.name }}</h2>
-        <h4>{{ repository.clone_url }}</h4>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>{{ repository.name }}</h2>
+            <h4>{{ repository.clone_url }}</h4>
 
-        <ol>
-            {% for scan in repository.repositoryscan_set.all %}
-            <li><a href="{% url 'view_scan' scan.uuid %}">{{scan.uuid}} at {{ scan.created_at }}</a></li>
+            <ol>
+                {% for scan in repository.repositoryscan_set.all %}
+                    <li><a href="{% url 'view_scan' scan.uuid %}">{{ scan.uuid }} at {{ scan.created_at }}</a></li>
+                {% endfor %}
+            </ol>
+
+            <h4>Scanners</h4>
+            <ul>
+                {% for scanner in repository.repositoryscanner_set.all %}
+                    <li>
+                        <a href="{% url 'scanner_settings' repository.uuid scanner.scanner.short_name %}">
+                            {{ scanner.scanner.name }}
+                        </a>
+
+                    </li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'add_scanner' repository.uuid %}">
+                <button class="btn btn-large btn-primary">Add Scanner</button>
+            </a>
+        </div>
+        <div class="col-md-6">
+            <h2>Repository Set Up</h2>
+
+            <p>
+                Add one of the public keys below as a deploy key on your repository.
+            </p>
+            {% for key in repository.repositorykey_set.all %}
+                <div class="well wrap">
+                    {{ key.public_key.strip }}
+                </div>
+                <p>
+                    Add the following url as a deploy hook on your project to trigger a scan.
+                </p>
+
+                <div class="well wrap">
+                    {{ scan_url }}
+                </div>
             {% endfor %}
-        </ol>
-
-        <a href="{% url 'add_scanner' repository.uuid %}">
-            <button class="btn btn-large btn-primary">Add Scanner</button>
-        </a>
-    </div>
-    <div class="col-md-6">
-        <h2>Repository Set Up</h2>
-
-        <p>
-            Add one of the public keys below as a deploy key on your repository.
-        </p>
-        {% for key in repository.repositorykey_set.all %}
-        <div class="well wrap">
-            {{ key.public_key.strip }}
         </div>
-        <p>
-            Add the following url as a deploy hook on your project to trigger a scan.
-        </p>
-
-        <div class="well wrap">
-            {{ scan_url }}
-        </div>
-        {% endfor %}
     </div>
-</div>
 
 {% endblock %}
