@@ -2,7 +2,7 @@ from __future__ import absolute_import
 from cStringIO import StringIO
 from celery import shared_task
 from linted.models import Repository, RepositoryScan
-from scanner.phpmd.phpmd import Phpmd
+from django.conf import settings
 
 import os
 import tempfile
@@ -51,8 +51,11 @@ def scan_repository(self, repository_id):
                 repository_scan.created_at = datetime.datetime.now()
                 repository_scan.save()
 
-                phpmd_scanner = Phpmd(repository_scan, working_dir)
-                phpmd_scanner.run()
+                for repo_scanner in repository.repositoryscanner_set.all():
+                    scanner_class = settings.ENABLED_SCANNERS.get(repo_scanner.scanner.short_name)
+                    if scanner_class is not None:
+                        scanner = scanner_class(repository_scan, working_dir)
+                        scanner.run()
 
                 shutil.rmtree(working_dir)
 

@@ -1,24 +1,26 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
 {% block content %}
-<a href="{% url 'view_repository' scan.repository.uuid %}">Back to repository</a>
-<div class="row">
-    <div class="col-md-12">
-        <h2>{{ scan.uuid }}</h2>
+    <a href="{% url 'view_repository' scan.repository.uuid %}">Back to repository</a>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{ scan.uuid }}</h2>
 
-        <div class="list-group">
+
             {% for violation in scan.scanviolation_set.all %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">{{ violation.file }} {{ violation.start_line }}:{{ violation.end_line }}
+                    </div>
+                    <div class="panel-body">
+                        <pre class="pre-scrollable">{{ violation.snippet }}</pre>
 
-            <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">{{ violation.file }}
-                    {{violation.start_line}}:{{ violation.end_line }}</h4>
+                        <p>{{ violation.error_group.description }}</p>
+                    </div>
+                </div>
 
-                <p>{{ violation.error_group.description}}</p>
-            </a>
             {% endfor %}
-        </div>
 
+        </div>
     </div>
-</div>
 
 {% endblock %}
