@@ -84,6 +84,7 @@ class ScanViolation(models.Model):
     start_line = models.IntegerField()
     end_line = models.IntegerField()
     snippet = models.TextField()
+    message = models.TextField()
 
 
 def Tree():

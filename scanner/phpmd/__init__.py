@@ -1,6 +1,7 @@
 from scanner.abstract_scanner import AbstractScanner
 from linted.models import Scanner, ErrorGroup
 
+import collections
 import subprocess
 import xml.etree.ElementTree as ElementTree
 
@@ -20,6 +21,7 @@ class PHPMDScanner(AbstractScanner):
 
     def process_results(self, scan_result):
         root = ElementTree.fromstring(scan_result)
+        violation_dict = collections.defaultdict(list)
 
         for file_node in root.findall('file'):
             file_path = file_node.get('name')
@@ -31,9 +33,13 @@ class PHPMDScanner(AbstractScanner):
                 rule = violation_node.get('rule')
                 error_group = self.get_error_group(rule)
 
+                message = violation_node.text
+
                 #If we recognise this error group
                 if error_group is not None:
-                    self.save_violation(error_group, file_path, start_line, end_line)
+                    violation_dict[file_path].append((start_line, end_line, error_group, message))
+
+        self.save_all_violations(violation_dict)
 
     def run(self):
         try:
