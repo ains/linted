@@ -33,7 +33,7 @@ class PHPMDScanner(AbstractScanner):
                 rule = violation_node.get('rule')
                 error_group = self.get_error_group(rule)
 
-                message = violation_node.text
+                message = violation_node.text.trim()
 
                 #If we recognise this error group
                 if error_group is not None:
