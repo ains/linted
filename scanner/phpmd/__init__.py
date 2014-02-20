@@ -33,7 +33,7 @@ class PHPMDScanner(AbstractScanner):
                 rule = violation_node.get('rule')
                 error_group = self.get_error_group(rule)
 
-                message = violation_node.text.trim()
+                message = violation_node.text.strip()
 
                 #If we recognise this error group
                 if error_group is not None:
@@ -43,7 +43,9 @@ class PHPMDScanner(AbstractScanner):
 
     def run(self):
         try:
-            subprocess.check_output(['phpmd', self.path, 'xml', 'cleancode'])
+            docker_cmd = ['docker', 'run', '-v', '{}:{}:ro'.format(self.path, self.path), 'linted/phpmd']
+
+            subprocess.check_output(docker_cmd + ['phpmd', self.path, 'xml', 'cleancode'])
         except subprocess.CalledProcessError as e:
             #Exit code 2 means scan completed successfully, but there were rule violations
             if e.returncode == 2:
