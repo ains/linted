@@ -3,17 +3,23 @@ export CODE_DIR=/vagrant
 
 #install dependencies
 apt-get update
+apt-get install -y language-pack-en
 apt-get install -y build-essential git
 apt-get install -y python-software-properties
 apt-get install -y libpq-dev
 apt-get install -y postgresql postgresql-contrib
 
 #Install Docker
-sudo apt-get install -y linux-image-extra-`uname -r`
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
-sudo sh -c "echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
-sudo apt-get update
-sudo apt-get install -y lxc-docker
+apt-get install -y linux-image-extra-`uname -r`
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
+sh -c "echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
+apt-get update
+apt-get install -y lxc-docker
+
+#Add vagrant to docker user group
+groupadd docker
+gpasswd -a vagrant docker
+service docker restart
 
 #Install redis
 add-apt-repository -y ppa:chris-lea/redis-server
@@ -48,3 +54,6 @@ fi
 
 #Perform migrations for application
 (cd $CODE_DIR && $VE_DIR/bin/python manage.py migrate linted)
+
+#Install enabled scanners
+(cd $CODE_DIR && $VE_DIR/bin/python manage.py install_scanners)

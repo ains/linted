@@ -110,6 +110,8 @@ STATIC_URL = '/static/'
 
 #Need to find a better way to handle scanner imports
 from scanner.phpmd import PHPMDScanner
+from scanner.phpcs import PHPCSScanner
 ENABLED_SCANNERS = {
-    'phpmd': PHPMDScanner
+    'phpmd': PHPMDScanner,
+    'phpcs': PHPCSScanner
 }
