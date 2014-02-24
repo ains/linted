@@ -42,8 +42,11 @@ class PHPCSScanner(AbstractScanner):
 
     def run(self):
         try:
-            docker_cmd = ['docker', 'run', '-v', '{}:{}:ro'.format(self.path, self.path), 'linted/phpcs']
-            scan_result = subprocess.check_output(docker_cmd + ['phpcs', '--report=json', '--standard=PSR2', self.path])
+            docker_volume = '{}:{}:ro'.format(self.path, self.path)
+            docker_cmd = ['docker', 'run', '-v', docker_volume, 'linted/phpcs']
+
+            scan_standard = '--standard={}'.format('PSR2')
+            scan_result = subprocess.check_output(docker_cmd + ['phpcs', '--report=json', scan_standard, self.path])
             self.process_results(scan_result)
         except subprocess.CalledProcessError as e:
             pass
