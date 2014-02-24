@@ -14,7 +14,6 @@ from Crypto.PublicKey import RSA
 
 
 def index(request):
-    add.delay(1, 100)
     return HttpResponse('ok')
 
 
