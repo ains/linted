@@ -6,7 +6,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.urlresolvers import reverse
 from django.conf import settings
 
-from linted.tasks import add, scan_repository
+from linted.tasks import scan_repository
 from linted.models import Repository, RepositoryKey, RepositoryScan, Tree, RepositoryScanner, Scanner
 from linted.forms import RepositoryForm, RepositoryScannerForm
 
