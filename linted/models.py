@@ -87,5 +87,5 @@ class ScanViolation(models.Model):
     message = models.TextField()
 
 
-def Tree():
-    return collections.defaultdict(Tree)
+def tree():
+    return collections.defaultdict(tree)

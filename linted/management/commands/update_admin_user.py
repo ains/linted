@@ -1,23 +1,28 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
 from optparse import make_option
 
 
 class Command(BaseCommand):
     help = 'Creates/Updates an Admin user'
-    option_list = BaseCommand.option_list + (
-        make_option('--username',
-                    action='store',
-                    dest='username',
-                    default=None,
-                    help='Admin username'),
-    ) + (
-                      make_option('--password',
-                                  action='store',
-                                  dest='password',
-                                  default=None,
-                                  help='Admin password'),
-                  )
+
+    username_option = make_option(
+        '--username',
+        action='store',
+        dest='username',
+        default=None,
+        help='Admin username'
+    )
+
+    password_option = make_option(
+        '--password',
+        action='store',
+        dest='password',
+        default=None,
+        help='Admin password'
+    )
+
+    option_list = BaseCommand.option_list + (username_option, password_option)
 
     def handle(self, *args, **options):
         username = options.get('username')

@@ -1,14 +1,13 @@
 import json
-import os
 
 from django.http import HttpResponse, HttpResponseServerError
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.urlresolvers import reverse
-from django.conf import settings
 
 from linted.tasks import scan_repository
-from linted.models import Repository, RepositoryKey, RepositoryScan, Tree, RepositoryScanner, Scanner
+from linted.models import Repository, RepositoryKey, RepositoryScan, RepositoryScanner, Scanner
 from linted.forms import RepositoryForm, RepositoryScannerForm
+from scanner.settings import ScannerSettings
 
 from Crypto.PublicKey import RSA
 
@@ -102,38 +101,25 @@ def add_scanner(request, repo_uuid):
 def scanner_settings(request, uuid, scanner_name):
     repository = get_object_or_404(Repository, uuid=uuid)
     scanner = get_object_or_404(Scanner, short_name=scanner_name)
-    repo_scanner = get_object_or_404(RepositoryScanner, repository=repository, scanner=scanner)
-
-    ruleset_file = os.path.join(settings.SCANNER_DIR, scanner.short_name, 'ruleset.json')
+    repository_scanner = get_object_or_404(RepositoryScanner, repository=repository, scanner=scanner)
 
     try:
-        with open(ruleset_file) as f:
-            scanner_rules = json.loads(f.read())
-            if request.method == 'POST':
-                custom_rules = Tree()
-                for field_name, value in request.POST.items():
-                    if '/' in field_name:
-                        ruleset, rule, property = field_name.split('/')
+        settings = ScannerSettings(repository_scanner)
 
-                        try:
-                            ruleset_property = scanner_rules[ruleset]['rules'][rule]['properties'][property]
-                            property_type = ruleset_property['type']
-                            default_value = ruleset_property['default']
+        if request.method == 'POST':
+            settings.clear_settings()
 
-                            if property_type == 'bool':
-                                default_value = (default_value == 'True')
+            for field_name, value in request.POST.items():
+                if '/' in field_name:
+                    ruleset, rule, property = field_name.split('/')
+                    settings.add_custom_rule(ruleset, rule, property, value)
 
-                            if value != default_value:
-                                custom_rules[ruleset][rule][property] = value
-                        except KeyError:
-                            pass
-
-                return HttpResponse(json.dumps(custom_rules))
-            else:
-                return render(request, 'scanner_settings.html', {
-                    'repository': repository,
-                    'scanner': scanner,
-                    'rules': scanner_rules
-                })
+            return HttpResponse(json.dumps(settings.settings))
+        else:
+            return render(request, 'scanner_settings.html', {
+                'repository': repository,
+                'scanner': scanner,
+                'rules': settings.ruleset
+            })
     except IOError:
         return HttpResponseServerError("There was a problem loading your repository settings.")

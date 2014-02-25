@@ -4,7 +4,7 @@
 import sys
 import os
 import glob
-import xml.etree.ElementTree as et
+import xml.etree.ElementTree as ElementTree
 from linted.models import ErrorGroup
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "linted.settings")
@@ -18,7 +18,7 @@ if __name__ == '__main__':
         exit(0)
 
     for ruleset_file in glob.glob(os.path.join(sys.argv[1], '*.xml')):
-        tree = et.parse(ruleset_file)
+        tree = ElementTree.parse(ruleset_file)
         root = tree.getroot()
 
         for rule_node in root.findall('pmd:rule', namespaces=namespaces):

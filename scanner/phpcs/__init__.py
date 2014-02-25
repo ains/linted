@@ -7,7 +7,10 @@ import json
 
 
 class PHPCSScanner(AbstractScanner):
-    def __init__(self, repository_scan, path, excluded_files='', settings={}):
+    def __init__(self, repository_scan, path, excluded_files='', settings=None):
+        if settings is None:
+            settings = {}
+
         scanner = Scanner.objects.get(short_name='phpcs')
         super(PHPCSScanner, self).__init__(repository_scan, scanner, path)
 
@@ -48,5 +51,5 @@ class PHPCSScanner(AbstractScanner):
             scan_standard = '--standard={}'.format('PSR2')
             scan_result = subprocess.check_output(docker_cmd + ['phpcs', '--report=json', scan_standard, self.path])
             self.process_results(scan_result)
-        except subprocess.CalledProcessError as e:
+        except subprocess.CalledProcessError:
             pass

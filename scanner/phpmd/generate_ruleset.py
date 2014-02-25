@@ -4,7 +4,7 @@
 import sys
 import os
 import glob
-import xml.etree.ElementTree as et
+import xml.etree.ElementTree as ElementTree
 import json
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'linted.settings')
@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
     rules_dict = {}
     for ruleset_file in glob.glob(os.path.join(sys.argv[1], '*.xml')):
-        tree = et.parse(ruleset_file)
+        tree = ElementTree.parse(ruleset_file)
         root = tree.getroot()
 
         ruleset_file_name = os.path.basename(ruleset_file)

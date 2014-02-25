@@ -12,6 +12,7 @@ import dulwich.client
 import dulwich.repo
 import datetime
 
+
 def clone_repository(clone_url, path, private_key_file):
     dulwich.client.get_ssh_vendor = dulwich.client.ParamikoSSHVendor
     client, host_path = dulwich.client.get_transport_and_path(clone_url)

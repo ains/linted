@@ -7,7 +7,10 @@ import xml.etree.ElementTree as ElementTree
 
 
 class PHPMDScanner(AbstractScanner):
-    def __init__(self, repository_scan, path, excluded_files='', settings={}):
+    def __init__(self, repository_scan, path, excluded_files='', settings=None):
+        if settings is None:
+            settings = {}
+
         scanner = Scanner.objects.get(short_name='phpmd')
         super(PHPMDScanner, self).__init__(repository_scan, scanner, path)
 
