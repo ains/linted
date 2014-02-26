@@ -39,7 +39,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'linted',
     'south',
-    'guardian',
     'bootstrap3',
     'django.contrib.admin',
     'django.contrib.auth',

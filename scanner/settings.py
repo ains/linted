@@ -21,6 +21,16 @@ class ScannerSettings():
     def clear_settings(self):
         self.settings = tree()
 
+    def get_property_value(self, ruleset, rule, property):
+        custom_property_value = self.get_custom_property_value(ruleset, rule, property)
+
+        if custom_property_value is not None:
+            return custom_property_value
+        else:
+            (default_type, default_value) = self.get_default_rule(ruleset, rule, property)
+            return default_value
+
+
     def get_default_rule(self, ruleset, rule, property):
         try:
             ruleset_property = self.ruleset[ruleset]['rules'][rule]['properties'][property]
@@ -30,6 +40,11 @@ class ScannerSettings():
             return property_type, default_value
         except KeyError:
             return None
+
+    def get_custom_property_value(self, ruleset, rule, property):
+        custom_rule_property = self.settings[ruleset][rule].get(property)
+        return custom_rule_property
+
 
     def add_custom_rule(self, ruleset, rule, property, value):
         default_rule = self.get_default_rule(ruleset, rule, property)
