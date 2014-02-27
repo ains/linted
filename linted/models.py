@@ -9,16 +9,12 @@ class Repository(models.Model):
     name = models.CharField(max_length=64)
     uuid = models.CharField(max_length=40, unique=True, default=lambda: str(uuid.uuid4()))
     owner = models.ForeignKey(get_user_model())
+    users = models.ManyToManyField(get_user_model())
     clone_url = models.CharField(max_length=256, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name_plural = "Repositories"
-
-
-class RepositoryUser(models.Model):
-    repository = models.ForeignKey(Repository)
-    user = models.ForeignKey(get_user_model())
 
 
 class RepositoryKey(models.Model):

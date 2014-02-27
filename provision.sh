@@ -1,14 +1,6 @@
 export VE_DIR=/home/vagrant/.envs/linted
 export CODE_DIR=/vagrant
 
-#install dependencies
-apt-get update
-apt-get install -y language-pack-en
-apt-get install -y build-essential git
-apt-get install -y python-software-properties
-apt-get install -y libpq-dev
-apt-get install -y postgresql postgresql-contrib
-
 #Install Docker
 apt-get install -y linux-image-extra-`uname -r`
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
@@ -21,9 +13,15 @@ groupadd docker
 gpasswd -a vagrant docker
 service docker restart
 
-#Install redis
-add-apt-repository -y ppa:chris-lea/redis-server
+#install dependencies
 apt-get update
+apt-get install -y language-pack-en
+apt-get install -y build-essential git
+apt-get install -y python-software-properties
+apt-get install -y libpq-dev
+apt-get install -y postgresql postgresql-contrib
+
+#Install redis
 apt-get install -y redis-server
 
 #Install python packages
@@ -57,3 +55,6 @@ fi
 
 #Install enabled scanners
 (cd $CODE_DIR && $VE_DIR/bin/python manage.py install_scanners)
+
+#Cleanup
+apt-get autoremove -y
