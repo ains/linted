@@ -8,7 +8,7 @@ from django.contrib.auth import get_user_model
 class Repository(models.Model):
     name = models.CharField(max_length=64)
     uuid = models.CharField(max_length=40, unique=True, default=lambda: str(uuid.uuid4()))
-    owner = models.ForeignKey(get_user_model())
+    owner = models.ForeignKey(get_user_model(), related_name='owned_repository')
     users = models.ManyToManyField(get_user_model())
     clone_url = models.CharField(max_length=256, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -83,5 +83,5 @@ class ScanViolation(models.Model):
     message = models.TextField()
 
 
-def tree():
-    return collections.defaultdict(tree)
+def tree(mapping=[]):
+    return collections.defaultdict(tree, mapping)

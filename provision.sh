@@ -2,7 +2,6 @@ export VE_DIR=/home/vagrant/.envs/linted
 export CODE_DIR=/vagrant
 
 #Install Docker
-apt-get install -y linux-image-extra-`uname -r`
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
 sh -c "echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
 apt-get update

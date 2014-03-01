@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
+{% load scanner_settings %}
 {% block content %}
 <h1>Linter setup</h1>
 <form action="{% url 'scanner_settings' repository.uuid scanner.short_name %}" id="scanner-settings" method="post" class="form-horizontal">
     {% csrf_token %}
     <!-- Nav tabs -->
     <ul class="nav nav-tabs">
-        {% for ruleset_name, ruleset_data in rules.items %}
+        {% for ruleset_name, ruleset_data in settings.ruleset.items %}
         {% if forloop.first %}
         <li class="active">
             {% else %}
@@ -20,7 +21,7 @@
 
     <!-- Tab panes -->
     <div class="tab-content">
-        {% for ruleset_name, ruleset_data in rules.items %}
+        {% for ruleset_name, ruleset_data in settings.ruleset.items %}
         {% if forloop.first %}
         <div class="tab-pane active" id="{{ ruleset_name|slugify }}">
             {% else %}
@@ -50,12 +51,12 @@
                                 <input name="{{ruleset_name}}/{{rule_name}}/{{property_name}}" type="checkbox"
                                        class="form-control"
                                        id="rule-{{rule_name}}-{{property_name}}"
-                                       value="{{ property_data.default}}"/>
+                                       value="{% get_property_value settings ruleset_name rule_name property_name %}"/>
                                 {% else %}
                                 <input name="{{ruleset_name}}/{{rule_name}}/{{property_name}}" type="text"
                                        class="form-control"
                                        id="rule-{{rule_name}}-{{property_name}}"
-                                       value="{{ property_data.default}}"/>
+                                       value="{% get_property_value settings ruleset_name rule_name property_name %}"/>
                                 {% endif %}
 
 

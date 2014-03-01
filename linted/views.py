@@ -114,12 +114,14 @@ def scanner_settings(request, uuid, scanner_name):
                     ruleset, rule, property = field_name.split('/')
                     settings.add_custom_rule(ruleset, rule, property, value)
 
+            settings.save()
+
             return HttpResponse(json.dumps(settings.settings))
         else:
             return render(request, 'scanner_settings.html', {
                 'repository': repository,
                 'scanner': scanner,
-                'rules': settings.ruleset
+                'settings': settings
             })
     except IOError:
         return HttpResponseServerError("There was a problem loading your repository settings.")

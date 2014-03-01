@@ -16,14 +16,15 @@ class ScannerSettings():
         if repository_scanner.settings == '':
             self.settings = tree()
         else:
-            self.settings = json.loads(repository_scanner.settings)
+            self.settings = json.loads(repository_scanner.settings, object_pairs_hook=tree)
+
+        self.repository_scanner = repository_scanner
 
     def clear_settings(self):
         self.settings = tree()
 
     def get_property_value(self, ruleset, rule, property):
         custom_property_value = self.get_custom_property_value(ruleset, rule, property)
-
         if custom_property_value is not None:
             return custom_property_value
         else:
@@ -57,3 +58,6 @@ class ScannerSettings():
             if value != default_value:
                 self.settings[ruleset][rule][property] = value
 
+    def save(self):
+        self.repository_scanner.settings = json.dumps(self.settings)
+        self.repository_scanner.save()
