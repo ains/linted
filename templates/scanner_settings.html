@@ -42,16 +42,15 @@
 
                         {% for property_name, property_data in rule_data.properties.items %}
                         <div class="form-group">
-                            <label for="rule-{{rule_name}}-{{property_name}}" class="col-sm-2 control-label">
+                            <label for="rule-{{rule_name}}-{{property_name}}" class="col-sm-3 control-label">
                                 {{ property_name }}
                             </label>
 
-                            <div class="col-sm-10">
+                            <div class="col-sm-9">
                                 {% if property_data.type == "bool" %}
                                 <input name="{{ruleset_name}}/{{rule_name}}/{{property_name}}" type="checkbox"
-                                       class="form-control"
                                        id="rule-{{rule_name}}-{{property_name}}"
-                                       value="{% get_property_value settings ruleset_name rule_name property_name %}"/>
+                                       value="true" {% get_checkbox_checked settings ruleset_name rule_name property_name %}/>
                                 {% else %}
                                 <input name="{{ruleset_name}}/{{rule_name}}/{{property_name}}" type="text"
                                        class="form-control"

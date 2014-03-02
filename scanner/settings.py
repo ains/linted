@@ -31,7 +31,6 @@ class ScannerSettings():
             (default_type, default_value) = self.get_default_rule(ruleset, rule, property)
             return default_value
 
-
     def get_default_rule(self, ruleset, rule, property):
         try:
             ruleset_property = self.ruleset[ruleset]['rules'][rule]['properties'][property]
@@ -46,14 +45,14 @@ class ScannerSettings():
         custom_rule_property = self.settings[ruleset][rule].get(property)
         return custom_rule_property
 
-
     def add_custom_rule(self, ruleset, rule, property, value):
         default_rule = self.get_default_rule(ruleset, rule, property)
         if default_rule is not None:
             property_type, default_value = default_rule
 
+            #Convert to boolean
             if property_type == 'bool':
-                default_value = (default_value == 'True')
+                value = (value == 'true')
 
             if value != default_value:
                 self.settings[ruleset][rule][property] = value
