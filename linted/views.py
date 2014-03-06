@@ -121,6 +121,7 @@ def scanner_settings(request, uuid, scanner_name):
             return render(request, 'scanner_settings.html', {
                 'repository': repository,
                 'scanner': scanner,
+                'settings_form': scanner.scanner_class.settings_form,
                 'settings': settings
             })
     except IOError:

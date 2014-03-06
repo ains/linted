@@ -3,7 +3,7 @@ import collections
 
 from django.db import models
 from django.contrib.auth import get_user_model
-
+from django.conf import settings
 
 class Repository(models.Model):
     name = models.CharField(max_length=64)
@@ -38,6 +38,10 @@ class Scanner(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    @property
+    def scanner_class(self):
+        return settings.ENABLED_SCANNERS.get(self.short_name)
 
 
 class RepositoryScanner(models.Model):

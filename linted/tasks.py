@@ -47,7 +47,7 @@ def scan_repository(self, repository_id):
                 repository_scan.save()
 
                 for repo_scanner in repository.repositoryscanner_set.all():
-                    scanner_class = settings.ENABLED_SCANNERS.get(repo_scanner.scanner.short_name)
+                    scanner_class = repo_scanner.scanner.scanner_class
                     if scanner_class is not None:
                         scanner = scanner_class(repository_scan, working_dir)
                         scanner.run()

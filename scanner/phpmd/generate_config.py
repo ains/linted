@@ -1,4 +1,4 @@
-#Generates crispyforms template from PHPMD rulesets
+#Generates json config from PHPMD rulesets
 #Files to import located at https://github.com/phpmd/phpmd/tree/master/src/main/resources/rulesets
 
 import sys
@@ -17,7 +17,11 @@ if __name__ == '__main__':
         print('Please call the script with the directory containing the PHPMD rulesets')
         exit(0)
 
-    rules_dict = {}
+    config = {
+        'name': 'PHPMD',
+
+        'ruleset': {}
+    }
     for ruleset_file in glob.glob(os.path.join(sys.argv[1], '*.xml')):
         tree = ElementTree.parse(ruleset_file)
         root = tree.getroot()
@@ -60,9 +64,10 @@ if __name__ == '__main__':
                 'description': rule_description,
                 'properties': rule_properties
             }
-        rules_dict[ruleset_file_name] = {
+
+        config['ruleset'][ruleset_file_name] = {
             'name': ruleset_name,
             'rules': ruleset_rules
         }
 
-    print(json.dumps(rules_dict))
+    print(json.dumps(config))

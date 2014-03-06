@@ -2,80 +2,85 @@
 {% load bootstrap3 %}
 {% load scanner_settings %}
 {% block content %}
-<h1>Linter setup</h1>
-<form action="{% url 'scanner_settings' repository.uuid scanner.short_name %}" id="scanner-settings" method="post" class="form-horizontal">
-    {% csrf_token %}
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs">
-        {% for ruleset_name, ruleset_data in settings.ruleset.items %}
-        {% if forloop.first %}
-        <li class="active">
-            {% else %}
-        <li>
-            {% endif %}
+    <h1>Linter setup</h1>
+    <form action="{% url 'scanner_settings' repository.uuid scanner.short_name %}" id="scanner-settings" method="post"
+          class="form-horizontal">
+        {% csrf_token %}
 
-            <a href="#{{ ruleset_name|slugify }}" data-toggle="tab">{{ ruleset_data.name }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-
-    <!-- Tab panes -->
-    <div class="tab-content">
-        {% for ruleset_name, ruleset_data in settings.ruleset.items %}
-        {% if forloop.first %}
-        <div class="tab-pane active" id="{{ ruleset_name|slugify }}">
-            {% else %}
-            <div class="tab-pane" id="{{ ruleset_name|slugify }}">
+        {% bootstrap_form settings_form %}
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+            {% for ruleset_name, ruleset_data in settings.ruleset.items %}
+                {% if forloop.first %}
+                    <li class="active">
+                        {% else %}
+                    <li>
                 {% endif %}
 
-                {% for rule_name, rule_data in ruleset_data.rules.items %}
+            <a href="#{{ ruleset_name|slugify }}" data-toggle="tab">{{ ruleset_data.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            {% for ruleset_name, ruleset_data in settings.ruleset.items %}
+                {% if forloop.first %}
+                    <div class="tab-pane active" id="{{ ruleset_name|slugify }}">
+                {% else %}
+                    <div class="tab-pane" id="{{ ruleset_name|slugify }}">
+                {% endif %}
+
+            {% for rule_name, rule_data in ruleset_data.rules.items %}
                 <div>
                     <fieldset>
                         <div class="checkbox">
                             <label>
-                                <input name="{{ruleset_name}}/{{rule_name}}/enabled" type="checkbox" value="on" checked>
-                                <strong>{{rule_name}}</strong>
+                                <input name="{{ ruleset_name }}/{{ rule_name }}/enabled" type="checkbox" value="on"
+                                       checked>
+                                <strong>{{ rule_name }}</strong>
                             </label>
                         </div>
 
                         <span class="help-block">{{ rule_data.description }}</span>
 
                         {% for property_name, property_data in rule_data.properties.items %}
-                        <div class="form-group">
-                            <label for="rule-{{rule_name}}-{{property_name}}" class="col-sm-3 control-label">
-                                {{ property_name }}
-                            </label>
+                            <div class="form-group">
+                                <label for="rule-{{ rule_name }}-{{ property_name }}" class="col-sm-3 control-label">
+                                    {{ property_name }}
+                                </label>
 
-                            <div class="col-sm-9">
-                                {% if property_data.type == "bool" %}
-                                <input name="{{ruleset_name}}/{{rule_name}}/{{property_name}}" type="checkbox"
-                                       id="rule-{{rule_name}}-{{property_name}}"
-                                       value="true" {% get_checkbox_checked settings ruleset_name rule_name property_name %}/>
-                                {% else %}
-                                <input name="{{ruleset_name}}/{{rule_name}}/{{property_name}}" type="text"
-                                       class="form-control"
-                                       id="rule-{{rule_name}}-{{property_name}}"
-                                       value="{% get_property_value settings ruleset_name rule_name property_name %}"/>
-                                {% endif %}
+                                <div class="col-sm-9">
+                                    {% if property_data.type == "bool" %}
+                                        <input name="{{ ruleset_name }}/{{ rule_name }}/{{ property_name }}"
+                                               type="checkbox"
+                                               id="rule-{{ rule_name }}-{{ property_name }}"
+                                               value="true" {% get_checkbox_checked settings ruleset_name rule_name property_name %}/>
+                                    {% else %}
+                                        <input name="{{ ruleset_name }}/{{ rule_name }}/{{ property_name }}" type="text"
+                                               class="form-control"
+                                               id="rule-{{ rule_name }}-{{ property_name }}"
+                                               value="{% get_property_value settings ruleset_name rule_name property_name %}"/>
+                                    {% endif %}
 
 
-                                <p class="help-block">{{ property_data.description}}</p>
+                                    <p class="help-block">{{ property_data.description }}</p>
+                                </div>
                             </div>
-                        </div>
                         {% endfor %}
 
                     </fieldset>
                 </div>
-                {% endfor %}
+            {% endfor %}
             </div>
             {% endfor %}
-        </div>
-        {% buttons %}
-        <button type="submit" class="btn btn-primary">
-            Update Settings
-        </button>
-        {% endbuttons %}
-</form>
+            </div>
+            {% buttons %}
+                <button type="submit" class="btn btn-primary">
+                    Update Settings
+                </button>
+            {% endbuttons %}
+    </form>
 
 
 {% endblock %}

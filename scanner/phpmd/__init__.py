@@ -1,9 +1,22 @@
 from scanner.abstract_scanner import AbstractScanner
 from linted.models import Scanner, ErrorGroup
+from django import forms
 
 import collections
 import subprocess
 import xml.etree.ElementTree as ElementTree
+
+
+class PHPMDForm(forms.Form):
+    RULE_SETS = (
+        ('codesize', 'Code Size'),
+        ('naming', 'Naming'),
+        ('design', 'Design'),
+        ('naming', 'Naming'),
+        ('unusedcode', 'Unused Code')
+    )
+    selected_rule_sets = forms.MultipleChoiceField(
+        choices=RULE_SETS)
 
 
 class PHPMDScanner(AbstractScanner):
@@ -16,6 +29,8 @@ class PHPMDScanner(AbstractScanner):
 
         self.excluded_files = excluded_files
         self.settings = settings
+
+    settings_form = PHPMDForm
 
     @staticmethod
     def get_error_group(error_name):
