@@ -108,21 +108,24 @@ def scanner_settings(request, uuid, scanner_name):
 
         if request.method == 'POST':
             settings.clear_settings()
+            scanner_settings_form = scanner.scanner_class.settings_form(request.POST)
 
-            for field_name, value in request.POST.items():
-                if '/' in field_name:
-                    ruleset, rule, property = field_name.split('/')
-                    settings.add_custom_rule(ruleset, rule, property, value)
+            if scanner_settings_form.is_valid():
+                for field_name, value in request.POST.items():
+                    if '/' in field_name:
+                        ruleset, rule, property = field_name.split('/')
+                        settings.add_custom_rule(ruleset, rule, property, value)
 
-            settings.save()
-
-            return HttpResponse(json.dumps(settings.settings))
+                settings.set_scanner_config(scanner_settings_form.cleaned_data)
+                settings.save()
         else:
-            return render(request, 'scanner_settings.html', {
-                'repository': repository,
-                'scanner': scanner,
-                'settings_form': scanner.scanner_class.settings_form,
-                'settings': settings
-            })
+            scanner_settings_form = scanner.scanner_class.settings_form()
+
+        return render(request, 'scanner_settings.html', {
+            'repository': repository,
+            'scanner': scanner,
+            'settings_form': scanner_settings_form,
+            'settings': settings
+        })
     except IOError:
         return HttpResponseServerError("There was a problem loading your repository settings.")

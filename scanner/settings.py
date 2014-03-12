@@ -23,6 +23,9 @@ class ScannerSettings():
     def clear_settings(self):
         self.settings = tree()
 
+    def set_scanner_config(self, config):
+        self.settings['config'] = config
+
     def get_property_value(self, ruleset, rule, property):
         custom_property_value = self.get_custom_property_value(ruleset, rule, property)
         if custom_property_value is not None:
@@ -42,7 +45,7 @@ class ScannerSettings():
             return None
 
     def get_custom_property_value(self, ruleset, rule, property):
-        custom_rule_property = self.settings[ruleset][rule].get(property)
+        custom_rule_property = self.settings['rules'][ruleset][rule].get(property)
         return custom_rule_property
 
     def add_custom_rule(self, ruleset, rule, property, value):
@@ -55,7 +58,7 @@ class ScannerSettings():
                 value = (value == 'true')
 
             if value != default_value:
-                self.settings[ruleset][rule][property] = value
+                self.settings['rules'][ruleset][rule][property] = value
 
     def save(self):
         self.repository_scanner.settings = json.dumps(self.settings)
