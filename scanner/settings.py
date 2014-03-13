@@ -26,6 +26,9 @@ class ScannerSettings():
     def set_scanner_config(self, config):
         self.settings['config'] = config
 
+    def get_scanner_config(self):
+        return self.settings['config']
+
     def get_property_value(self, ruleset, rule, property):
         custom_property_value = self.get_custom_property_value(ruleset, rule, property)
         if custom_property_value is not None:

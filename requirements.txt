@@ -6,3 +6,4 @@ django-bootstrap3
 pycrypto
 paramiko==1.12.1
 dulwich==0.9.4
+lxml

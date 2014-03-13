@@ -5,6 +5,8 @@ from django import forms
 import collections
 import subprocess
 import xml.etree.ElementTree as ElementTree
+import lxml.etree as ET
+import lxml.builder as builder
 
 
 class PHPMDForm(forms.Form):
@@ -36,6 +38,23 @@ class PHPMDScanner(AbstractScanner):
     def get_error_group(error_name):
         error_group_name = 'phpmd.{}'.format(error_name)
         return ErrorGroup.objects.get(name=error_group_name)
+
+    def configure(self):
+        config = self.settings.get_scanner_config()
+
+        root = builder.ElementMaker(namespace='http://pmd.sf.net/ruleset/1.0.0',
+                                    nsmap={
+                                        None: 'http://pmd.sf.net/ruleset/1.0.0',
+                                        'xsi': 'http://www.w3.org/2001/XMLSchema-instance',
+                                        'schemaLocation': 'http://pmd.sf.net/ruleset_xml_schema.xsd',
+                                        'noNamespaceSchemaLocation': 'http://pmd.sf.net/ruleset_xml_schema.xsd'
+                                    })
+        E = builder.ElementMaker()
+        ruleset_xml = root.ruleset(name="Generated Ruleset")
+
+        for rule_set in config['selected_rule_sets']:
+            rule_location = "rulesets/{}.xml".format(rule_set)
+            ruleset_xml.append(E.rule(ref=rule_location))
 
     def process_results(self, scan_result):
         root = ElementTree.fromstring(scan_result)
