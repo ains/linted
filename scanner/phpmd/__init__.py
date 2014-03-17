@@ -5,7 +5,6 @@ from django import forms
 import collections
 import subprocess
 import xml.etree.ElementTree as ElementTree
-import lxml.etree as ET
 import lxml.builder as builder
 
 

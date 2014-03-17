@@ -19,6 +19,7 @@ apt-get install -y build-essential git
 apt-get install -y python-software-properties
 apt-get install -y libpq-dev
 apt-get install -y postgresql postgresql-contrib
+apt-get install -y libxml2-dev libxslt-dev
 
 #Install redis
 apt-get install -y redis-server
