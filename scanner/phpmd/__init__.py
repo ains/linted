@@ -6,6 +6,7 @@ import collections
 import subprocess
 import xml.etree.ElementTree as ElementTree
 import lxml.builder as builder
+import lxml.etree
 
 
 class PHPMDForm(forms.Form):
@@ -22,14 +23,14 @@ class PHPMDForm(forms.Form):
 
 class PHPMDScanner(AbstractScanner):
     def __init__(self, repository_scan, path, excluded_files='', settings=None):
-        if settings is None:
-            settings = {}
-
         scanner = Scanner.objects.get(short_name='phpmd')
         super(PHPMDScanner, self).__init__(repository_scan, scanner, path)
 
         self.excluded_files = excluded_files
-        self.settings = settings
+
+        if settings is not None:
+            self.settings = settings
+            self.configure()
 
     settings_form = PHPMDForm
 
@@ -40,6 +41,7 @@ class PHPMDScanner(AbstractScanner):
 
     def configure(self):
         config = self.settings.get_scanner_config()
+        rule_settings = self.settings.get_scanner_rules()
 
         root = builder.ElementMaker(namespace='http://pmd.sf.net/ruleset/1.0.0',
                                     nsmap={
@@ -54,6 +56,20 @@ class PHPMDScanner(AbstractScanner):
         for rule_set in config['selected_rule_sets']:
             rule_location = "rulesets/{}.xml".format(rule_set)
             ruleset_xml.append(E.rule(ref=rule_location))
+
+        for rule_file, custom_rules in rule_settings.items():
+            for rule, properties in custom_rules.items():
+                ref = "rulesets/{}/{}".format(rule_file, rule)
+
+                custom_rule = E.rule(ref=ref)
+                custom_properties = E.properties(E.priority("1"))
+                for property_name, value in properties.items():
+                    custom_properties.append(E.property(name=property_name, value=value))
+
+                custom_rule.append(custom_properties)
+                ruleset_xml.append(custom_rule)
+
+        print(lxml.etree.tostring(ruleset_xml, pretty_print=True))
 
     def process_results(self, scan_result):
         root = ElementTree.fromstring(scan_result)

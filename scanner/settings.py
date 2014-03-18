@@ -1,8 +1,12 @@
 import os
 import json
+import collections
 
 from django.conf import settings
-from linted.models import tree
+
+
+def tree(mapping=[]):
+    return collections.defaultdict(tree, mapping)
 
 
 class ScannerSettings():
@@ -28,6 +32,9 @@ class ScannerSettings():
 
     def get_scanner_config(self):
         return self.settings['config']
+
+    def get_scanner_rules(self):
+        return self.settings['rules']
 
     def get_property_value(self, ruleset, rule, property):
         custom_property_value = self.get_custom_property_value(ruleset, rule, property)

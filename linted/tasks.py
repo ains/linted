@@ -49,7 +49,7 @@ def scan_repository(self, repository_id):
                 for repo_scanner in repository.repositoryscanner_set.all():
                     scanner_class = repo_scanner.scanner.scanner_class
                     if scanner_class is not None:
-                        scanner = scanner_class(repository_scan, working_dir)
+                        scanner = scanner_class(repository_scan, working_dir, '', repo_scanner.get_settings())
                         scanner.run()
 
                 shutil.rmtree(working_dir)
