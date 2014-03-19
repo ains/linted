@@ -18,7 +18,7 @@ class PHPMDForm(forms.Form):
         ('unusedcode', 'Unused Code')
     )
     selected_rule_sets = forms.MultipleChoiceField(
-        choices=RULE_SETS)
+        choices=RULE_SETS, widget=forms.CheckboxSelectMultiple)
 
 
 class PHPMDScanner(AbstractScanner):

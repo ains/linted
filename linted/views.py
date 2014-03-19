@@ -119,7 +119,7 @@ def scanner_settings(request, uuid, scanner_name):
                 settings.set_scanner_config(scanner_settings_form.cleaned_data)
                 settings.save()
         else:
-            scanner_settings_form = scanner.scanner_class.settings_form(settings.get_scanner_config())
+            scanner_settings_form = scanner.scanner_class.settings_form(initial=settings.get_scanner_config())
 
         return render(request, 'scanner_settings.html', {
             'repository': repository,
