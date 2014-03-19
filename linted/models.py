@@ -15,6 +15,9 @@ class Repository(models.Model):
     clone_url = models.CharField(max_length=256, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __unicode__(self):
+        return self.name
+
     class Meta:
         verbose_name_plural = "Repositories"
 
@@ -55,6 +58,9 @@ class RepositoryScanner(models.Model):
 
     def get_settings(self):
         return ScannerSettings(self)
+
+    def __unicode__(self):
+        return "{}/{}".format(self.repository, self.scanner)
 
     class Meta:
         unique_together = ('repository', 'scanner')
