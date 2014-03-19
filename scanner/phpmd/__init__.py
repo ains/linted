@@ -15,7 +15,6 @@ class PHPMDForm(forms.Form):
         ('codesize', 'Code Size'),
         ('naming', 'Naming'),
         ('design', 'Design'),
-        ('naming', 'Naming'),
         ('unusedcode', 'Unused Code')
     )
     selected_rule_sets = forms.MultipleChoiceField(
