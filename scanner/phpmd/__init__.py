@@ -7,6 +7,7 @@ import subprocess
 import xml.etree.ElementTree as ElementTree
 import lxml.builder as builder
 import lxml.etree
+import os
 
 
 class PHPMDForm(forms.Form):
@@ -27,10 +28,7 @@ class PHPMDScanner(AbstractScanner):
         super(PHPMDScanner, self).__init__(repository_scan, scanner, path)
 
         self.excluded_files = excluded_files
-
-        if settings is not None:
-            self.settings = settings
-            self.configure()
+        self.settings = settings
 
     settings_form = PHPMDForm
 
@@ -69,7 +67,11 @@ class PHPMDScanner(AbstractScanner):
                 custom_rule.append(custom_properties)
                 ruleset_xml.append(custom_rule)
 
-        print(lxml.etree.tostring(ruleset_xml, pretty_print=True))
+        settings_file = os.path.join(self.path, 'phpmd_ruleset.xml')
+        with open(settings_file, 'w+') as f:
+            f.write(lxml.etree.tostring(ruleset_xml, pretty_print=True))
+
+        return settings_file
 
     def process_results(self, scan_result):
         root = ElementTree.fromstring(scan_result)
@@ -96,8 +98,15 @@ class PHPMDScanner(AbstractScanner):
     def run(self):
         try:
             docker_cmd = ['docker', 'run', '-v', '{}:{}:ro'.format(self.path, self.path), 'linted/phpmd']
+            phpmd_command = ['phpmd', self.path, 'xml']
 
-            subprocess.check_output(docker_cmd + ['phpmd', self.path, 'xml', 'cleancode'])
+            if self.settings is not None:
+                settings_file = self.configure()
+                phpmd_command += [settings_file]
+            else:
+                phpmd_command += ['codesize,unusedcode,naming']
+
+            subprocess.check_output(docker_cmd + phpmd_command)
         except subprocess.CalledProcessError as e:
             #Exit code 2 means scan completed successfully, but there were rule violations
             if e.returncode == 2:
