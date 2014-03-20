@@ -1,9 +1,14 @@
-from scanner.abstract_scanner import AbstractScanner
+from scanners.abstract_scanner import AbstractScanner
 from linted.models import Scanner, ErrorGroup
+from django import forms
 
 import collections
 import subprocess
 import json
+
+
+class PHPCSForm(forms.Form):
+    pass
 
 
 class PHPCSScanner(AbstractScanner):
@@ -16,6 +21,8 @@ class PHPCSScanner(AbstractScanner):
 
         self.excluded_files = excluded_files
         self.settings = settings
+
+    settings_form = PHPCSForm
 
     @staticmethod
     def get_error_group(error_name):
@@ -52,4 +59,4 @@ class PHPCSScanner(AbstractScanner):
             scan_result = subprocess.check_output(docker_cmd + ['phpcs', '--report=json', scan_standard, self.path])
             self.process_results(scan_result)
         except subprocess.CalledProcessError:
-            pass
+            pass__author__ = 'ains'

@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 from linted.tasks import scan_repository
 from linted.models import Repository, RepositoryKey, RepositoryScan, RepositoryScanner, Scanner
 from linted.forms import RepositoryForm, RepositoryScannerForm
-from scanner.settings import ScannerSettings
+from scanners.settings import ScannerSettings
 
 from Crypto.PublicKey import RSA
 

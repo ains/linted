@@ -1,4 +1,4 @@
-from scanner.abstract_scanner import AbstractScanner
+from scanners.abstract_scanner import AbstractScanner
 from linted.models import Scanner, ErrorGroup
 from django import forms
 

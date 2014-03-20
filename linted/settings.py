@@ -71,8 +71,6 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'templates'),
 )
 
-SCANNER_DIR = os.path.join(PROJECT_ROOT, 'scanner')
-
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
@@ -106,9 +104,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+SCANNER_DIR = os.path.join(PROJECT_ROOT, 'scanners')
+
 #Need to find a better way to handle scanner imports
-from scanner.phpmd import PHPMDScanner
-from scanner.phpcs import PHPCSScanner
+from scanners.phpmd.scanner import PHPMDScanner
+from scanners.phpcs.scanner import PHPCSScanner
 ENABLED_SCANNERS = {
     'phpmd': PHPMDScanner,
     'phpcs': PHPCSScanner

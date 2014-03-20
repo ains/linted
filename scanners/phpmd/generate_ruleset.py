@@ -17,11 +17,8 @@ if __name__ == '__main__':
         print('Please call the script with the directory containing the PHPMD rulesets')
         exit(0)
 
-    config = {
-        'name': 'PHPMD',
+    ruleset = {}
 
-        'ruleset': {}
-    }
     for ruleset_file in glob.glob(os.path.join(sys.argv[1], '*.xml')):
         tree = ElementTree.parse(ruleset_file)
         root = tree.getroot()
@@ -65,9 +62,9 @@ if __name__ == '__main__':
                 'properties': rule_properties
             }
 
-        config['ruleset'][ruleset_file_name] = {
+        ruleset[ruleset_file_name] = {
             'name': ruleset_name,
             'rules': ruleset_rules
         }
 
-    print(json.dumps(config))
+    print(json.dumps(ruleset))
