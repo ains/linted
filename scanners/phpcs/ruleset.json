@@ -24,133 +24,33 @@
             "name": "Byte Order Marks",
             "description": "Byte Order Marks that may corrupt your application should not be used.  These include 0xefbbbf (UTF-8), 0xfeff (UTF-16 BE) and 0xfffe (UTF-16 LE)."
         },
-        "Generic.NamingConventions.UpperCaseConstantName": {
-            "properties": {},
-            "enabled": true,
-            "name": "Constant Names",
-            "description": "Constants should always be all-uppercase, with underscores to separate words."
-        },
         "PSR1.Classes.ClassDeclaration": {
             "properties": {},
             "enabled": true,
             "name": "Class Declaration",
             "description": "Each class must be in a file by itself and must be under a namespace (a top-level vendor name)."
+        },
+        "Generic.NamingConventions.UpperCaseConstantName": {
+            "properties": {},
+            "enabled": true,
+            "name": "Constant Names",
+            "description": "Constants should always be all-uppercase, with underscores to separate words."
         }
     },
     "name": "PSR1"
-}, "MySource": {
+}, "Squiz": {
     "rules": {
-        "MySource.Strings.JoinStrings": {
+        "Squiz.NamingConventions.ConstantCase": {
             "properties": {},
             "enabled": true,
             "name": "",
             "description": ""
         },
-        "MySource.Channels.IncludeSystem": {
+        "Squiz.ControlStructures.InlineIfDeclaration": {
             "properties": {},
             "enabled": true,
             "name": "",
             "description": ""
-        },
-        "MySource.Channels.DisallowSelfActions": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "MySource.Debug.DebugCode": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "MySource.Channels.ChannelException": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "MySource.PHP.GetRequestData": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "MySource.PHP.AjaxNullComparison": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "MySource.Commenting.FunctionComment": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "MySource.PHP.ReturnFunctionValue": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "MySource.PHP.EvalObjectFactory": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "MySource.Channels.UnusedSystem": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "MySource.Objects.AssignThis": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "MySource.Objects.DisallowNewWidget": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "MySource.Channels.IncludeOwnSystem": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "MySource.Debug.FirebugConsole": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "MySource.Objects.CreateWidgetTypeCallback": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "MySource.CSS.BrowserSpecificStyles": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        }
-    },
-    "name": "MySource"
-}, "PSR2": {
-    "rules": {
-        "Generic.Files.LineLength": {
-            "properties": {},
-            "enabled": true,
-            "name": "Line Length",
-            "description": "It is recommended to keep lines at approximately 80 characters long for better code readability."
         },
         "Squiz.Functions.FunctionDeclarationArgumentSpacing": {
             "properties": {},
@@ -164,11 +64,35 @@
             "name": "Function Argument Spacing",
             "description": "Function arguments should have one space after a comma, and single spaces surrounding the equals sign for default values."
         },
-        "Generic.WhiteSpace.DisallowTabIndent": {
+        "Zend.Debug.CodeAnalyzer": {
             "properties": {},
             "enabled": true,
-            "name": "No Tab Indentation",
-            "description": "Spaces should be used for indentation instead of tabs."
+            "name": "Zend Code Analyzer",
+            "description": "PHP Code should pass the zend code analyzer."
+        },
+        "Squiz.Classes.ClassFileName": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.CSS.ColonSpacing": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.CodeAnalysis.EmptyStatement": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.Objects.ObjectMemberComma": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
         },
         "Squiz.ControlStructures.ForEachLoopDeclaration": {
             "properties": {},
@@ -176,17 +100,11 @@
             "name": "Foreach Loop Declarations",
             "description": "There should be a space between each element of a foreach loop and the as keyword should be lowercase."
         },
-        "Squiz.Scope.MethodScope": {
+        "Squiz.Commenting.VariableComment": {
             "properties": {},
             "enabled": true,
             "name": "",
             "description": ""
-        },
-        "PSR2.ControlStructures.ControlStructureSpacing": {
-            "properties": {},
-            "enabled": true,
-            "name": "Control Structure Spacing",
-            "description": "Control Structures should have 0 spaces after opening parentheses and 0 spaces before closing parentheses."
         },
         "Squiz.WhiteSpace.ScopeClosingBrace": {
             "properties": {},
@@ -194,11 +112,47 @@
             "name": "",
             "description": ""
         },
-        "PEAR.Functions.ValidDefaultValue": {
+        "Squiz.Commenting.LongConditionClosingComment": {
             "properties": {},
             "enabled": true,
-            "name": "Default Values in Function Declarations",
-            "description": "Arguments with default values go at the end of the argument list."
+            "name": "",
+            "description": ""
+        },
+        "Squiz.WhiteSpace.ControlStructureSpacing": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.Strings.EchoedStrings": {
+            "properties": {},
+            "enabled": true,
+            "name": "Echoed Strings",
+            "description": "Simple strings should not be enclosed in parentheses when being echoed."
+        },
+        "Squiz.Formatting.OperatorBracket": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.PHP.DisallowMultipleAssignments": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Generic.PHP.DeprecatedFunctions": {
+            "properties": {},
+            "enabled": true,
+            "name": "Deprecated Functions",
+            "description": "Deprecated functions should not be used."
+        },
+        "Squiz.CSS.NamedColours": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
         },
         "Squiz.ControlStructures.ControlSignature": {
             "properties": {},
@@ -206,23 +160,23 @@
             "name": "",
             "description": ""
         },
-        "PSR2.ControlStructures.SwitchDeclaration": {
+        "Squiz.WhiteSpace.SemicolonSpacing": {
             "properties": {},
             "enabled": true,
-            "name": "Switch Declarations",
-            "description": "Case statments should be indented 4 spaces from the switch keyword.  It should also be followed by a space.  Colons in switch declarations should not be preceded by whitespace.  Break statements should be indented 4 more spaces from the case statement.  There must be a comment when falling through from one case into the next."
+            "name": "Semicolon Spacing",
+            "description": "Semicolons should not have spaces before them."
         },
-        "PSR2.Namespaces.UseDeclaration": {
+        "Squiz.CSS.EmptyStyleDefinition": {
             "properties": {},
             "enabled": true,
-            "name": "Namespace Declarations",
-            "description": "Each use declaration must contain only one namespace and must come after the first namespace declaration.  There should be one blank line after the final use statement."
+            "name": "",
+            "description": ""
         },
-        "Squiz.ControlStructures.ForLoopDeclaration": {
+        "Squiz.PHP.DisallowObEndFlush": {
             "properties": {},
             "enabled": true,
-            "name": "For Loop Declarations",
-            "description": "In a for loop declaration, there should be no space inside the brackets and there should be 0 spaces before and 1 space after semicolons."
+            "name": "",
+            "description": ""
         },
         "Generic.PHP.LowerCaseKeyword": {
             "properties": {},
@@ -230,11 +184,29 @@
             "name": "Lowercase Keywords",
             "description": "All PHP keywords should be lowercase."
         },
-        "Generic.PHP.LowerCaseConstant": {
+        "Squiz.PHP.DisallowBooleanStatement": {
             "properties": {},
             "enabled": true,
-            "name": "PHP Constants",
-            "description": "The <em>true</em>, <em>false</em> and <em>null</em> constants must always be lowercase."
+            "name": "",
+            "description": ""
+        },
+        "Generic.PHP.DisallowShortOpenTag": {
+            "properties": {},
+            "enabled": true,
+            "name": "PHP Code Tags",
+            "description": "Always use <?php ?> to delimit PHP code, not the <? ?> shorthand. This is the most portable way to include PHP code on differing operating systems and setups."
+        },
+        "Squiz.ControlStructures.ForLoopDeclaration": {
+            "properties": {},
+            "enabled": true,
+            "name": "For Loop Declarations",
+            "description": "In a for loop declaration, there should be no space inside the brackets and there should be 0 spaces before and 1 space after semicolons."
+        },
+        "Squiz.CSS.ColourDefinition": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
         },
         "Squiz.WhiteSpace.ScopeKeywordSpacing": {
             "properties": {},
@@ -242,25 +214,19 @@
             "name": "Scope Keyword Spacing",
             "description": "The php keywords static, public, private, and protected should have one space after them."
         },
-        "Squiz.Functions.LowercaseFunctionKeywords": {
+        "Generic.Debug.ClosureLinter": {
             "properties": {},
             "enabled": true,
-            "name": "Lowercase Function Keywords",
-            "description": "The php keywords function, public, private, protected, and static should be lowercase."
+            "name": "Closure Linter",
+            "description": "All javascript files should pass basic Closure Linter tests."
         },
-        "PSR2.Methods.FunctionCallSignature": {
+        "Squiz.ControlStructures.SwitchDeclaration": {
             "properties": {},
             "enabled": true,
             "name": "",
             "description": ""
         },
-        "Generic.ControlStructures.InlineControlStructure": {
-            "properties": {},
-            "enabled": true,
-            "name": "Inline Control Structures",
-            "description": "Control Structures should use braces."
-        },
-        "Squiz.Functions.MultiLineFunctionDeclaration": {
+        "Squiz.Scope.MethodScope": {
             "properties": {},
             "enabled": true,
             "name": "",
@@ -272,273 +238,35 @@
             "name": "Lowercase Control Structure Keywords",
             "description": "The php keywords if, else, elseif, foreach, for, do, switch, while, try, and catch should be lowercase."
         },
-        "Generic.Files.LineEndings": {
-            "properties": {},
-            "enabled": true,
-            "name": "Line Endings",
-            "description": "Unix-style endlines are preferred (\"\\n\" instead of \"\\r\\n\")."
-        },
-        "PSR2.Classes.ClassDeclaration": {
-            "properties": {},
-            "enabled": true,
-            "name": "Class Declarations",
-            "description": "There should be exactly 1 space between the abstract or final keyword and the class keyword and between the class keyword and the class name.  The extends and implements keywords, if present, must be on the same line as the class name.  When interfaces implemented are spread over multiple lines, there should be exactly 1 interface metioned per line indented by 1 level.  The closing brace of the class must go on the first line after the body of the class and must be on a line by itself."
-        },
-        "Generic.Formatting.DisallowMultipleStatements": {
-            "properties": {},
-            "enabled": true,
-            "name": "Multiple Statements On a Single Line",
-            "description": "Multiple statements are not allowed on a single line."
-        },
-        "Squiz.Functions.FunctionDeclaration": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.WhiteSpace.SuperfluousWhitespace": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "PSR2.Classes.PropertyDeclaration": {
-            "properties": {},
-            "enabled": true,
-            "name": "Property Declarations",
-            "description": "Property names should not be prefixed with an underscore to indicate visibility.  Visibility should be used to declare properties rather than the var keyword.  Only one property should be declared within a statement."
-        },
-        "PSR2.Namespaces.NamespaceDeclaration": {
-            "properties": {},
-            "enabled": true,
-            "name": "Namespace Declarations",
-            "description": "There must be one blank line after the namespace declaration."
-        },
-        "Zend.Files.ClosingTag": {
-            "properties": {},
-            "enabled": true,
-            "name": "Closing PHP Tags",
-            "description": "Files should not have closing php tags."
-        },
-        "Generic.WhiteSpace.ScopeIndent": {
-            "properties": {},
-            "enabled": true,
-            "name": "Scope Indentation",
-            "description": "Indentation for control structures, classes, and functions should be 4 spaces per level."
-        },
-        "PSR2.Methods.MethodDeclaration": {
-            "properties": {},
-            "enabled": true,
-            "name": "Method Declarations",
-            "description": "Method names should not be prefixed with an underscore to indicate visibility.  The static keyword, when present, should come after the visibility declaration, and the final and abstract keywords should come before."
-        },
-        "PSR2.Files.EndFileNewline": {
-            "properties": {},
-            "enabled": true,
-            "name": "End File Newline",
-            "description": "PHP Files should end with exactly one newline."
-        },
-        "PSR2.ControlStructures.ElseIfDeclaration": {
-            "properties": {},
-            "enabled": true,
-            "name": "Elseif Declarations",
-            "description": "PHP's elseif keyword should be used instead of else if."
-        }
-    },
-    "name": "PSR2"
-}, "Generic": {
-    "rules": {
-        "Generic.Files.LineLength": {
-            "properties": {},
-            "enabled": true,
-            "name": "Line Length",
-            "description": "It is recommended to keep lines at approximately 80 characters long for better code readability."
-        },
-        "Generic.CodeAnalysis.ForLoopShouldBeWhileLoop": {
-            "properties": {},
-            "enabled": true,
-            "name": "Condition-Only For Loops",
-            "description": "For loops that have only a second expression (the condition) should be converted to while loops."
-        },
-        "Generic.Functions.FunctionCallArgumentSpacing": {
-            "properties": {},
-            "enabled": true,
-            "name": "Function Argument Spacing",
-            "description": "Function arguments should have one space after a comma, and single spaces surrounding the equals sign for default values."
-        },
-        "Generic.CodeAnalysis.JumbledIncrementer": {
-            "properties": {},
-            "enabled": true,
-            "name": "Jumbled Incrementers",
-            "description": "Incrementers in nested loops should use different variable names."
-        },
-        "Generic.WhiteSpace.DisallowTabIndent": {
-            "properties": {},
-            "enabled": true,
-            "name": "No Tab Indentation",
-            "description": "Spaces should be used for indentation instead of tabs."
-        },
-        "Generic.VersionControl.SubversionProperties": {
-            "properties": {},
-            "enabled": true,
-            "name": "Subversion Properties",
-            "description": "All php files in a subversion repository should have the svn:keywords property set to 'Author Id Revision' and the svn:eol-style property set to 'native'."
-        },
-        "Generic.PHP.NoSilencedErrors": {
-            "properties": {},
-            "enabled": true,
-            "name": "Silenced Errors",
-            "description": "Suppressing Errors is not allowed."
-        },
-        "Generic.NamingConventions.ConstructorName": {
-            "properties": {},
-            "enabled": true,
-            "name": "Constructor name",
-            "description": "Constructors should be named __construct, not after the class."
-        },
-        "Generic.PHP.DisallowShortOpenTag": {
-            "properties": {},
-            "enabled": true,
-            "name": "PHP Code Tags",
-            "description": "Always use <?php ?> to delimit PHP code, not the <? ?> shorthand. This is the most portable way to include PHP code on differing operating systems and setups."
-        },
-        "Generic.Formatting.NoSpaceAfterCast": {
-            "properties": {},
-            "enabled": true,
-            "name": "Space After Casts",
-            "description": "Spaces are not allowed after casting operators."
-        },
-        "Generic.Functions.CallTimePassByReference": {
-            "properties": {},
-            "enabled": true,
-            "name": "Call-Time Pass-By-Reference",
-            "description": "Call-time pass-by-reference is not allowed. It should be declared in the function definition."
-        },
-        "Generic.PHP.ForbiddenFunctions": {
-            "properties": {},
-            "enabled": true,
-            "name": "Forbidden Functions",
-            "description": "The forbidden functions sizeof and delete should not be used."
-        },
-        "Generic.PHP.DeprecatedFunctions": {
-            "properties": {},
-            "enabled": true,
-            "name": "Deprecated Functions",
-            "description": "Deprecated functions should not be used."
-        },
-        "Generic.CodeAnalysis.UnnecessaryFinalModifier": {
-            "properties": {},
-            "enabled": true,
-            "name": "Unnecessary Final Modifiers",
-            "description": "Methods should not be declared final inside of classes that are declared final."
-        },
-        "Generic.Formatting.SpaceAfterCast": {
-            "properties": {},
-            "enabled": true,
-            "name": "Space After Casts",
-            "description": "Exactly one space is allowed after a cast."
-        },
-        "Generic.Metrics.NestingLevel": {
-            "properties": {},
-            "enabled": true,
-            "name": "Nesting Level",
-            "description": "Functions should not have a nesting level greater than 10, and should try to stay below 5."
-        },
-        "Generic.Files.OneInterfacePerFile": {
-            "properties": {},
-            "enabled": true,
-            "name": "One Interface Per File",
-            "description": "There should only be one interface defined in a file."
-        },
-        "Generic.Files.EndFileNewline": {
-            "properties": {},
-            "enabled": true,
-            "name": "End of File Newline",
-            "description": "Files should end with a newline character."
-        },
-        "Generic.PHP.ClosingPHPTag": {
-            "properties": {},
-            "enabled": true,
-            "name": "Closing PHP Tags",
-            "description": "All opening php tags should have a corresponding closing tag."
-        },
-        "Generic.NamingConventions.CamelCapsFunctionName": {
-            "properties": {},
-            "enabled": true,
-            "name": "camelCaps Function Names",
-            "description": "Functions should use camelCaps format for their names. Only PHP's magic methods should use a double underscore prefix."
-        },
-        "Generic.PHP.LowerCaseConstant": {
-            "properties": {},
-            "enabled": true,
-            "name": "PHP Constants",
-            "description": "The <em>true</em>, <em>false</em> and <em>null</em> constants must always be lowercase."
-        },
-        "Generic.Files.OneClassPerFile": {
-            "properties": {},
-            "enabled": true,
-            "name": "One Class Per File",
-            "description": "There should only be one class defined in a file."
-        },
-        "Generic.PHP.LowerCaseKeyword": {
-            "properties": {},
-            "enabled": true,
-            "name": "Lowercase Keywords",
-            "description": "All PHP keywords should be lowercase."
-        },
-        "Generic.CodeAnalysis.UnconditionalIfStatement": {
-            "properties": {},
-            "enabled": true,
-            "name": "Unconditional If Statements",
-            "description": "If statements that are always evaluated should not be used."
-        },
-        "Generic.ControlStructures.InlineControlStructure": {
-            "properties": {},
-            "enabled": true,
-            "name": "Inline Control Structures",
-            "description": "Control Structures should use braces."
-        },
-        "Generic.CodeAnalysis.ForLoopWithTestFunctionCall": {
-            "properties": {},
-            "enabled": true,
-            "name": "For Loops With Function Calls in the Test",
-            "description": "For loops should not call functions inside the test for the loop when they can be computed beforehand."
-        },
-        "Generic.Files.ByteOrderMark": {
-            "properties": {},
-            "enabled": true,
-            "name": "Byte Order Marks",
-            "description": "Byte Order Marks that may corrupt your application should not be used.  These include 0xefbbbf (UTF-8), 0xfeff (UTF-16 BE) and 0xfffe (UTF-16 LE)."
-        },
-        "Generic.Files.LineEndings": {
-            "properties": {},
-            "enabled": true,
-            "name": "Line Endings",
-            "description": "Unix-style endlines are preferred (\"\\n\" instead of \"\\r\\n\")."
-        },
         "Generic.Formatting.MultipleStatementAlignment": {
             "properties": {},
             "enabled": true,
             "name": "Aligning Blocks of Assignments",
             "description": "There should be one space on either side of an equals sign used to assign a value to a variable. In the case of a block of related assignments, more space may be inserted to promote readability."
         },
-        "Generic.CodeAnalysis.EmptyStatement": {
+        "PEAR.Files.IncludingFile": {
             "properties": {},
             "enabled": true,
-            "name": "Empty Statements",
-            "description": "Control Structures must have at least one statment inside of the body."
+            "name": "Including Code",
+            "description": "Anywhere you are unconditionally including a class file, use <em>require_once</em>. Anywhere you are conditionally including a class file (for example, factory methods), use <em>include_once</em>. Either of these will ensure that class files are included only once. They share the same file list, so you don't need to worry about mixing them - a file included with <em>require_once</em> will not be included again by <em>include_once</em>."
         },
-        "Generic.PHP.UpperCaseConstant": {
+        "Squiz.CSS.DuplicateClassDefinition": {
             "properties": {},
             "enabled": true,
-            "name": "PHP Constants",
-            "description": "The <em>true</em>, <em>false</em> and <em>null</em> constants must always be uppercase."
+            "name": "",
+            "description": ""
         },
-        "Generic.CodeAnalysis.UselessOverridingMethod": {
+        "Squiz.CSS.MissingColon": {
             "properties": {},
             "enabled": true,
-            "name": "Useless Overriding Methods",
-            "description": "Methods should not be defined that only call the parent method."
+            "name": "",
+            "description": ""
+        },
+        "Generic.Formatting.SpaceAfterCast": {
+            "properties": {},
+            "enabled": true,
+            "name": "Space After Casts",
+            "description": "Exactly one space is allowed after a cast."
         },
         "Generic.Commenting.Todo": {
             "properties": {},
@@ -552,77 +280,191 @@
             "name": "Multiple Statements On a Single Line",
             "description": "Multiple statements are not allowed on a single line."
         },
-        "Generic.Functions.OpeningFunctionBraceKernighanRitchie": {
+        "Squiz.CSS.EmptyClassDefinition": {
             "properties": {},
             "enabled": true,
-            "name": "Opening Brace in Function Declarations",
-            "description": "Function declarations follow the \"Kernighan/Ritchie style\". The function brace is on the same line as the function declaration. One space is required between the closing parenthesis and the brace."
+            "name": "",
+            "description": ""
         },
-        "Generic.Files.InlineHTML": {
+        "Squiz.PHP.NonExecutableCode": {
             "properties": {},
             "enabled": true,
-            "name": "Inline HTML",
-            "description": "Files that contain php code should only have php code and should not have any \"inline html\"."
+            "name": "",
+            "description": ""
         },
-        "Generic.Files.EndFileNoNewline": {
+        "Squiz.CSS.ForbiddenStyles": {
             "properties": {},
             "enabled": true,
-            "name": "No End of File Newline",
-            "description": "Files should not end with a newline character."
+            "name": "",
+            "description": ""
         },
-        "Generic.Strings.UnnecessaryStringConcat": {
+        "Squiz.WhiteSpace.MemberVarSpacing": {
             "properties": {},
             "enabled": true,
-            "name": "Unnecessary String Concatenation",
-            "description": "Strings should not be concatenated together."
+            "name": "",
+            "description": ""
         },
-        "Generic.Debug.CSSLint": {
+        "Squiz.WhiteSpace.PropertyLabelSpacing": {
             "properties": {},
             "enabled": true,
-            "name": "CSSLint",
-            "description": "All css files should pass the basic csslint tests."
+            "name": "",
+            "description": ""
         },
-        "Generic.PHP.CharacterBeforePHPOpeningTag": {
+        "Squiz.PHP.DisallowInlineIf": {
             "properties": {},
             "enabled": true,
-            "name": "Opening Tag at Start of File",
-            "description": "The opening php tag should be the first item in the file."
+            "name": "",
+            "description": ""
         },
-        "Generic.PHP.SAPIUsage": {
+        "Squiz.Operators.ValidLogicalOperators": {
             "properties": {},
             "enabled": true,
-            "name": "SAPI Usage",
-            "description": "The PHP_SAPI constant should be used instead of php_sapi_name()."
+            "name": "",
+            "description": ""
         },
-        "Generic.WhiteSpace.DisallowSpaceIndent": {
+        "Squiz.Scope.MemberVarScope": {
             "properties": {},
             "enabled": true,
-            "name": "No Space Indentation",
-            "description": "Tabs should be used for indentation instead of spaces."
+            "name": "",
+            "description": ""
         },
-        "Generic.Debug.ClosureLinter": {
+        "Squiz.Commenting.FunctionComment": {
             "properties": {},
             "enabled": true,
-            "name": "Closure Linter",
-            "description": "All javascript files should pass basic Closure Linter tests."
+            "name": "",
+            "description": ""
         },
-        "Generic.Metrics.CyclomaticComplexity": {
+        "Squiz.CSS.ClassDefinitionOpeningBraceSpace": {
             "properties": {},
             "enabled": true,
-            "name": "Cyclomatic Complexity",
-            "description": "Functions should not have a cyclomatic complexity greater than 20, and should try to stay below a complexity of 10."
+            "name": "",
+            "description": ""
         },
-        "Generic.CodeAnalysis.UnusedFunctionParameter": {
+        "Squiz.PHP.DisallowSizeFunctionsInLoops": {
             "properties": {},
             "enabled": true,
-            "name": "Unused function parameters",
-            "description": "All parameters in a functions signature should be used within the function."
+            "name": "",
+            "description": ""
         },
-        "Generic.Files.LowercasedFilename": {
+        "Squiz.Arrays.ArrayDeclaration": {
             "properties": {},
             "enabled": true,
-            "name": "Lowercased Filenames",
-            "description": "Lowercase filenames are required."
+            "name": "Array Declarations",
+            "description": "This standard covers all array declarations, regardless of the number and type of values contained within the array."
+        },
+        "Squiz.CSS.DisallowMultipleStyleDefinitions": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.Classes.LowercaseClassKeywords": {
+            "properties": {},
+            "enabled": true,
+            "name": "Lowercase Class Keywords",
+            "description": "The php keywords class, interface, trait, extends, implements, abstract, final, var, and const should be lowercase."
+        },
+        "Squiz.CSS.SemicolonSpacing": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.CSS.ClassDefinitionClosingBraceSpace": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.PHP.CommentedOutCode": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.CSS.LowercaseStyleDefinition": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.WhiteSpace.FunctionClosingBraceSpace": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Generic.NamingConventions.UpperCaseConstantName": {
+            "properties": {},
+            "enabled": true,
+            "name": "Constant Names",
+            "description": "Constants should always be all-uppercase, with underscores to separate words."
+        },
+        "Squiz.Classes.DuplicateProperty": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.Functions.FunctionDuplicateArgument": {
+            "properties": {},
+            "enabled": true,
+            "name": "Lowercase Built-In functions",
+            "description": "All PHP built-in functions should be lowercased when called."
+        },
+        "PEAR.ControlStructures.MultiLineCondition": {
+            "properties": {},
+            "enabled": true,
+            "name": "Multi-line If Conditions",
+            "description": "Multi-line if conditions should be indented one level and each line should begin with a boolean operator.  The end parenthesis should be on a new line."
+        },
+        "Squiz.Commenting.InlineComment": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Generic.WhiteSpace.DisallowTabIndent": {
+            "properties": {},
+            "enabled": true,
+            "name": "No Tab Indentation",
+            "description": "Spaces should be used for indentation instead of tabs."
+        },
+        "PEAR.Functions.FunctionCallSignature": {
+            "properties": {},
+            "enabled": true,
+            "name": "Function Calls",
+            "description": "Functions should be called with no spaces between the function name, the opening parenthesis, and the first parameter; and no space between the last parameter, the closing parenthesis, and the semicolon."
+        },
+        "Squiz.WhiteSpace.FunctionSpacing": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.Arrays.ArrayBracketSpacing": {
+            "properties": {},
+            "enabled": true,
+            "name": "Array Bracket Spacing",
+            "description": "When referencing arrays you should not put whitespace around the opening bracket or before the closing bracket."
+        },
+        "Squiz.Functions.MultiLineFunctionDeclaration": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.Strings.DoubleQuoteUsage": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Generic.NamingConventions.ConstructorName": {
+            "properties": {},
+            "enabled": true,
+            "name": "Constructor name",
+            "description": "Constructors should be named __construct, not after the class."
         },
         "Generic.WhiteSpace.ScopeIndent": {
             "properties": {},
@@ -630,38 +472,320 @@
             "name": "Scope Indentation",
             "description": "Indentation for control structures, classes, and functions should be 4 spaces per level."
         },
-        "Generic.Functions.OpeningFunctionBraceBsdAllman": {
+        "Squiz.Commenting.FunctionCommentThrowTag": {
             "properties": {},
             "enabled": true,
-            "name": "Opening Brace in Function Declarations",
-            "description": "Function declarations follow the \"BSD/Allman style\". The function brace is on the line following the function declaration and is indented to the same column as the start of the function declaration."
+            "name": "Doc Comment Throws Tag",
+            "description": "If a function throws any exceptions, they should be documented in a @throws tag."
         },
-        "Generic.Classes.DuplicateClassName": {
+        "Squiz.Strings.ConcatenationSpacing": {
             "properties": {},
             "enabled": true,
-            "name": "Duplicate Class Names",
-            "description": "Class and Interface names should be unique in a project.  They should never be duplicated."
+            "name": "",
+            "description": ""
         },
-        "Generic.Commenting.Fixme": {
+        "Squiz.Scope.StaticThisUsage": {
             "properties": {},
             "enabled": true,
-            "name": "Todo Comments",
-            "description": "FIXME Statements should be taken care of."
+            "name": "Static This Usage",
+            "description": "Static methods should not use $this."
         },
-        "Generic.Debug.JSHint": {
+        "Squiz.Commenting.EmptyCatchComment": {
             "properties": {},
             "enabled": true,
-            "name": "JSHint",
-            "description": "All javascript files should pass basic JSHint tests."
+            "name": "",
+            "description": ""
         },
-        "Generic.NamingConventions.UpperCaseConstantName": {
+        "Squiz.Commenting.PostStatementComment": {
             "properties": {},
             "enabled": true,
-            "name": "Constant Names",
-            "description": "Constants should always be all-uppercase, with underscores to separate words."
+            "name": "",
+            "description": ""
+        },
+        "PEAR.Formatting.MultiLineAssignment": {
+            "properties": {},
+            "enabled": true,
+            "name": "Multi-Line Assignment",
+            "description": "Multi-line assignment should have the equals sign be the first item on the second line indented correctly."
+        },
+        "Squiz.PHP.EmbeddedPhp": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.Files.FileExtension": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.NamingConventions.ValidFunctionName": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.PHP.LowercasePHPFunctions": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.WhiteSpace.FunctionOpeningBraceSpace": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.WhiteSpace.OperatorSpacing": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Generic.ControlStructures.InlineControlStructure": {
+            "properties": {},
+            "enabled": true,
+            "name": "Inline Control Structures",
+            "description": "Control Structures should use braces."
+        },
+        "Squiz.Commenting.ClassComment": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.PHP.GlobalKeyword": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.CSS.ShorthandSize": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.Classes.SelfMemberReference": {
+            "properties": {},
+            "enabled": true,
+            "name": "Self Member Reference",
+            "description": "The self keyword should be used instead of the current class name, should be lowercase, and should not have spaces before or after it."
+        },
+        "Squiz.Debug.JavaScriptLint": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.PHP.Eval": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.NamingConventions.ValidVariableName": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.Functions.LowercaseFunctionKeywords": {
+            "properties": {},
+            "enabled": true,
+            "name": "Lowercase Function Keywords",
+            "description": "The php keywords function, public, private, protected, and static should be lowercase."
+        },
+        "Squiz.WhiteSpace.LanguageConstructSpacing": {
+            "properties": {},
+            "enabled": true,
+            "name": "Language Construct Whitespace",
+            "description": "The php constructs echo, print, return, include, include_once, require, require_once, and new should have one space after them."
+        },
+        "Squiz.CSS.ClassDefinitionNameSpacing": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.Classes.ValidClassName": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Generic.Files.LineLength": {
+            "properties": {},
+            "enabled": true,
+            "name": "Line Length",
+            "description": "It is recommended to keep lines at approximately 80 characters long for better code readability."
+        },
+        "Squiz.WhiteSpace.SuperfluousWhitespace": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.CSS.DuplicateStyleDefinition": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.PHP.ForbiddenFunctions": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.CSS.Opacity": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Generic.Files.LineEndings": {
+            "properties": {},
+            "enabled": true,
+            "name": "Line Endings",
+            "description": "Unix-style endlines are preferred (\"\\n\" instead of \"\\r\\n\")."
+        },
+        "Squiz.Objects.ObjectInstantiation": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.PHP.Heredoc": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.Commenting.FileComment": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.WhiteSpace.ObjectOperatorSpacing": {
+            "properties": {},
+            "enabled": true,
+            "name": "Object Operator Spacing",
+            "description": "The object operator (->) should not have any space around it."
+        },
+        "Squiz.PHP.InnerFunctions": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.Functions.FunctionDeclaration": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.WhiteSpace.LogicalOperatorSpacing": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Generic.Strings.UnnecessaryStringConcat": {
+            "properties": {},
+            "enabled": true,
+            "name": "Unnecessary String Concatenation",
+            "description": "Strings should not be concatenated together."
+        },
+        "Squiz.Operators.IncrementDecrementUsage": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.Classes.ClassDeclaration": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.CSS.Indentation": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.Commenting.BlockComment": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.PHP.DisallowComparisonAssignment": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.Operators.ComparisonOperatorUsage": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.Functions.GlobalFunction": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.PHP.DiscouragedFunctions": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.Commenting.ClosingDeclarationComment": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.Debug.JSLint": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.Objects.DisallowObjectStringIndex": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.Commenting.DocCommentAlignment": {
+            "properties": {},
+            "enabled": true,
+            "name": "Doc Comment Alignment",
+            "description": "The asterisks in a doc comment should align, and there should be one space between the asterisk and tags."
+        },
+        "Squiz.ControlStructures.ElseIfDeclaration": {
+            "properties": {},
+            "enabled": true,
+            "name": "",
+            "description": ""
+        },
+        "Squiz.WhiteSpace.CastSpacing": {
+            "properties": {},
+            "enabled": true,
+            "name": "Cast Whitespace",
+            "description": "Casts should not have whitespace inside the parentheses."
         }
     },
-    "name": "Generic"
+    "name": "Squiz"
 }, "PEAR": {
     "rules": {
         "Generic.Files.LineLength": {
@@ -682,6 +806,12 @@
             "name": "Function Argument Spacing",
             "description": "Function arguments should have one space after a comma, and single spaces surrounding the equals sign for default values."
         },
+        "Generic.ControlStructures.InlineControlStructure": {
+            "properties": {},
+            "enabled": true,
+            "name": "Inline Control Structures",
+            "description": "Control Structures should use braces."
+        },
         "Generic.WhiteSpace.DisallowTabIndent": {
             "properties": {},
             "enabled": true,
@@ -694,65 +824,17 @@
             "name": "Function Calls",
             "description": "Functions should be called with no spaces between the function name, the opening parenthesis, and the first parameter; and no space between the last parameter, the closing parenthesis, and the semicolon."
         },
-        "PEAR.WhiteSpace.ScopeClosingBrace": {
-            "properties": {},
-            "enabled": true,
-            "name": "Closing Brace Indentation",
-            "description": "Closing braces should be indented at the same level as the beginning of the scope."
-        },
-        "PEAR.ControlStructures.ControlSignature": {
-            "properties": {},
-            "enabled": true,
-            "name": "Control Structure Signatures",
-            "description": "Control structures should use one space around the parentheses in conditions.  The opening brace should be preceded by one space and should be at the end of the line."
-        },
-        "PEAR.WhiteSpace.ScopeIndent": {
-            "properties": {},
-            "enabled": true,
-            "name": "Scope Indentation",
-            "description": "Any scope openers except for switch statements should be indented 1 level.  This includes classes, functions, and control structures."
-        },
-        "PEAR.Functions.ValidDefaultValue": {
-            "properties": {},
-            "enabled": true,
-            "name": "Default Values in Function Declarations",
-            "description": "Arguments with default values go at the end of the argument list."
-        },
-        "PEAR.Commenting.ClassComment": {
-            "properties": {},
-            "enabled": true,
-            "name": "Class Comments",
-            "description": "Classes and interfaces must have a non-empty doc comment.  The short description must be on the second line of the comment.  Each description must have one blank comment line before and after.  There must be one blank line before the tags in the comments.  A @version tag must be in Release: package_version format."
-        },
-        "PEAR.NamingConventions.ValidFunctionName": {
-            "properties": {},
-            "enabled": true,
-            "name": "Function and Method Names",
-            "description": "Functions and methods should be named using the \"studly caps\" style (also referred to as \"bumpy case\" or \"camel caps\"). Functions should in addition have the package name as a prefix, to avoid name collisions between packages. The initial letter of the name (after the prefix) is lowercase, and each letter that starts a new \"word\" is capitalized."
-        },
-        "Generic.PHP.DisallowShortOpenTag": {
-            "properties": {},
-            "enabled": true,
-            "name": "PHP Code Tags",
-            "description": "Always use <?php ?> to delimit PHP code, not the <? ?> shorthand. This is the most portable way to include PHP code on differing operating systems and setups."
-        },
-        "Generic.PHP.LowerCaseConstant": {
-            "properties": {},
-            "enabled": true,
-            "name": "PHP Constants",
-            "description": "The <em>true</em>, <em>false</em> and <em>null</em> constants must always be lowercase."
-        },
-        "Generic.ControlStructures.InlineControlStructure": {
-            "properties": {},
-            "enabled": true,
-            "name": "Inline Control Structures",
-            "description": "Control Structures should use braces."
-        },
         "PEAR.WhiteSpace.ObjectOperatorIndent": {
             "properties": {},
             "enabled": true,
             "name": "Object Operator Indentation",
             "description": "Chained object operators when spread out over multiple lines should be the first thing on the line and be indented by 1 level."
+        },
+        "PEAR.WhiteSpace.ScopeClosingBrace": {
+            "properties": {},
+            "enabled": true,
+            "name": "Closing Brace Indentation",
+            "description": "Closing braces should be indented at the same level as the beginning of the scope."
         },
         "Generic.Files.LineEndings": {
             "properties": {},
@@ -766,17 +848,35 @@
             "name": "Including Code",
             "description": "Anywhere you are unconditionally including a class file, use <em>require_once</em>. Anywhere you are conditionally including a class file (for example, factory methods), use <em>include_once</em>. Either of these will ensure that class files are included only once. They share the same file list, so you don't need to worry about mixing them - a file included with <em>require_once</em> will not be included again by <em>include_once</em>."
         },
+        "PEAR.ControlStructures.ControlSignature": {
+            "properties": {},
+            "enabled": true,
+            "name": "Control Structure Signatures",
+            "description": "Control structures should use one space around the parentheses in conditions.  The opening brace should be preceded by one space and should be at the end of the line."
+        },
         "PEAR.Commenting.FunctionComment": {
             "properties": {},
             "enabled": true,
             "name": "Class Comments",
             "description": "Functions must have a non-empty doc comment.  The short description must be on the second line of the comment.  Each description must have one blank comment line before and after.  There must be one blank line before the tags in the comments.  There must be a tag for each of the parameters in the right order with the right variable names with a comment.  There must be a return tag.  Any throw tag must have an exception class."
         },
+        "PEAR.Functions.ValidDefaultValue": {
+            "properties": {},
+            "enabled": true,
+            "name": "Default Values in Function Declarations",
+            "description": "Arguments with default values go at the end of the argument list."
+        },
         "PEAR.Functions.FunctionDeclaration": {
             "properties": {},
             "enabled": true,
             "name": "Function Declarations",
             "description": "There should be exactly 1 space after the function keyword and 1 space on each side of the use keyword.  Closures should use the Kernighan/Ritchie Brace style and other single-line functions should use the BSD/Allman style.  Multi-line function declarations should have the parameter lists indented one level with the closing parenthesis on a newline followed by a single space and the opening brace of the function."
+        },
+        "PEAR.WhiteSpace.ScopeIndent": {
+            "properties": {},
+            "enabled": true,
+            "name": "Scope Indentation",
+            "description": "Any scope openers except for switch statements should be indented 1 level.  This includes classes, functions, and control structures."
         },
         "PEAR.Formatting.MultiLineAssignment": {
             "properties": {},
@@ -789,6 +889,12 @@
             "enabled": true,
             "name": "Variable Names",
             "description": "Private member variable names should be prefixed with an underscore and public/protected variable names should not."
+        },
+        "PEAR.Commenting.ClassComment": {
+            "properties": {},
+            "enabled": true,
+            "name": "Class Comments",
+            "description": "Classes and interfaces must have a non-empty doc comment.  The short description must be on the second line of the comment.  Each description must have one blank comment line before and after.  There must be one blank line before the tags in the comments.  A @version tag must be in Release: package_version format."
         },
         "PEAR.Classes.ClassDeclaration": {
             "properties": {},
@@ -808,11 +914,29 @@
             "name": "Class Names",
             "description": "Classes should be given descriptive names. Avoid using abbreviations where possible. Class names should always begin with an uppercase letter. The PEAR class hierarchy is also reflected in the class name, each level of the hierarchy separated with a single underscore."
         },
+        "PEAR.NamingConventions.ValidFunctionName": {
+            "properties": {},
+            "enabled": true,
+            "name": "Function and Method Names",
+            "description": "Functions and methods should be named using the \"studly caps\" style (also referred to as \"bumpy case\" or \"camel caps\"). Functions should in addition have the package name as a prefix, to avoid name collisions between packages. The initial letter of the name (after the prefix) is lowercase, and each letter that starts a new \"word\" is capitalized."
+        },
         "PEAR.Commenting.FileComment": {
             "properties": {},
             "enabled": true,
             "name": "Class Comments",
             "description": "Files must have a non-empty doc comment.  The short description must be on the second line of the comment.  Each description must have one blank comment line before and after.  There must be one blank line before the tags in the comments.  There must be a category, package, author, license, and link tag.  There may only be one category, package, subpackage, license, version, since and deprecated tag.  The tags must be in the order category, package, subpackage, author, copyright, license, version, link, see, since, and deprecated.  The php version must be specified."
+        },
+        "Generic.PHP.DisallowShortOpenTag": {
+            "properties": {},
+            "enabled": true,
+            "name": "PHP Code Tags",
+            "description": "Always use <?php ?> to delimit PHP code, not the <? ?> shorthand. This is the most portable way to include PHP code on differing operating systems and setups."
+        },
+        "Generic.PHP.LowerCaseConstant": {
+            "properties": {},
+            "enabled": true,
+            "name": "PHP Constants",
+            "description": "The <em>true</em>, <em>false</em> and <em>null</em> constants must always be lowercase."
         },
         "Generic.NamingConventions.UpperCaseConstantName": {
             "properties": {},
@@ -916,19 +1040,13 @@
         }
     },
     "name": "Zend"
-}, "Squiz": {
+}, "PSR2": {
     "rules": {
-        "Squiz.NamingConventions.ConstantCase": {
+        "Generic.Files.LineLength": {
             "properties": {},
             "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.ControlStructures.InlineIfDeclaration": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
+            "name": "Line Length",
+            "description": "It is recommended to keep lines at approximately 80 characters long for better code readability."
         },
         "Squiz.Functions.FunctionDeclarationArgumentSpacing": {
             "properties": {},
@@ -936,545 +1054,11 @@
             "name": "",
             "description": ""
         },
-        "Zend.Debug.CodeAnalyzer": {
-            "properties": {},
-            "enabled": true,
-            "name": "Zend Code Analyzer",
-            "description": "PHP Code should pass the zend code analyzer."
-        },
-        "Squiz.CSS.ColonSpacing": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Objects.ObjectMemberComma": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.ControlStructures.ForEachLoopDeclaration": {
-            "properties": {},
-            "enabled": true,
-            "name": "Foreach Loop Declarations",
-            "description": "There should be a space between each element of a foreach loop and the as keyword should be lowercase."
-        },
-        "Squiz.WhiteSpace.ControlStructureSpacing": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Strings.EchoedStrings": {
-            "properties": {},
-            "enabled": true,
-            "name": "Echoed Strings",
-            "description": "Simple strings should not be enclosed in parentheses when being echoed."
-        },
-        "Generic.PHP.DeprecatedFunctions": {
-            "properties": {},
-            "enabled": true,
-            "name": "Deprecated Functions",
-            "description": "Deprecated functions should not be used."
-        },
-        "Squiz.WhiteSpace.SemicolonSpacing": {
-            "properties": {},
-            "enabled": true,
-            "name": "Semicolon Spacing",
-            "description": "Semicolons should not have spaces before them."
-        },
-        "Squiz.CSS.EmptyStyleDefinition": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.PHP.DisallowObEndFlush": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Generic.PHP.DisallowShortOpenTag": {
-            "properties": {},
-            "enabled": true,
-            "name": "PHP Code Tags",
-            "description": "Always use <?php ?> to delimit PHP code, not the <? ?> shorthand. This is the most portable way to include PHP code on differing operating systems and setups."
-        },
-        "Squiz.CSS.ColourDefinition": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "PEAR.Formatting.MultiLineAssignment": {
-            "properties": {},
-            "enabled": true,
-            "name": "Multi-Line Assignment",
-            "description": "Multi-line assignment should have the equals sign be the first item on the second line indented correctly."
-        },
-        "Squiz.CSS.DuplicateClassDefinition": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.PHP.NonExecutableCode": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Scope.MemberVarScope": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.WhiteSpace.MemberVarSpacing": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.WhiteSpace.PropertyLabelSpacing": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.CSS.ForbiddenStyles": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Commenting.FunctionComment": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.CSS.ClassDefinitionOpeningBraceSpace": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.PHP.DisallowSizeFunctionsInLoops": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.CSS.DisallowMultipleStyleDefinitions": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Functions.LowercaseFunctionKeywords": {
-            "properties": {},
-            "enabled": true,
-            "name": "Lowercase Function Keywords",
-            "description": "The php keywords function, public, private, protected, and static should be lowercase."
-        },
-        "Squiz.PHP.CommentedOutCode": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.WhiteSpace.FunctionClosingBraceSpace": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Classes.DuplicateProperty": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "PEAR.ControlStructures.MultiLineCondition": {
-            "properties": {},
-            "enabled": true,
-            "name": "Multi-line If Conditions",
-            "description": "Multi-line if conditions should be indented one level and each line should begin with a boolean operator.  The end parenthesis should be on a new line."
-        },
-        "PEAR.Functions.FunctionCallSignature": {
-            "properties": {},
-            "enabled": true,
-            "name": "Function Calls",
-            "description": "Functions should be called with no spaces between the function name, the opening parenthesis, and the first parameter; and no space between the last parameter, the closing parenthesis, and the semicolon."
-        },
-        "Squiz.WhiteSpace.FunctionSpacing": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Strings.DoubleQuoteUsage": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Commenting.FunctionCommentThrowTag": {
-            "properties": {},
-            "enabled": true,
-            "name": "Doc Comment Throws Tag",
-            "description": "If a function throws any exceptions, they should be documented in a @throws tag."
-        },
-        "Squiz.Strings.ConcatenationSpacing": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Commenting.PostStatementComment": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.PHP.LowercasePHPFunctions": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.CSS.ShorthandSize": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Debug.JavaScriptLint": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Classes.LowercaseClassKeywords": {
-            "properties": {},
-            "enabled": true,
-            "name": "Lowercase Class Keywords",
-            "description": "The php keywords class, interface, trait, extends, implements, abstract, final, var, and const should be lowercase."
-        },
-        "Squiz.WhiteSpace.LanguageConstructSpacing": {
-            "properties": {},
-            "enabled": true,
-            "name": "Language Construct Whitespace",
-            "description": "The php constructs echo, print, return, include, include_once, require, require_once, and new should have one space after them."
-        },
-        "Squiz.CSS.ClassDefinitionNameSpacing": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.PHP.ForbiddenFunctions": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.CSS.Opacity": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Objects.ObjectInstantiation": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.PHP.Heredoc": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.PHP.InnerFunctions": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.WhiteSpace.LogicalOperatorSpacing": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Classes.ClassDeclaration": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.PHP.DisallowComparisonAssignment": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Operators.ComparisonOperatorUsage": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Functions.GlobalFunction": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Debug.JSLint": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Objects.DisallowObjectStringIndex": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.ControlStructures.ElseIfDeclaration": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.WhiteSpace.CastSpacing": {
-            "properties": {},
-            "enabled": true,
-            "name": "Cast Whitespace",
-            "description": "Casts should not have whitespace inside the parentheses."
-        },
-        "Generic.Files.LineLength": {
-            "properties": {},
-            "enabled": true,
-            "name": "Line Length",
-            "description": "It is recommended to keep lines at approximately 80 characters long for better code readability."
-        },
         "Generic.Functions.FunctionCallArgumentSpacing": {
             "properties": {},
             "enabled": true,
             "name": "Function Argument Spacing",
             "description": "Function arguments should have one space after a comma, and single spaces surrounding the equals sign for default values."
-        },
-        "Squiz.CodeAnalysis.EmptyStatement": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Commenting.VariableComment": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.WhiteSpace.ScopeClosingBrace": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Commenting.LongConditionClosingComment": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Generic.Formatting.SpaceAfterCast": {
-            "properties": {},
-            "enabled": true,
-            "name": "Space After Casts",
-            "description": "Exactly one space is allowed after a cast."
-        },
-        "Squiz.Formatting.OperatorBracket": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.PHP.DisallowMultipleAssignments": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.CSS.NamedColours": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.ControlStructures.ControlSignature": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Classes.ClassFileName": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Generic.PHP.LowerCaseKeyword": {
-            "properties": {},
-            "enabled": true,
-            "name": "Lowercase Keywords",
-            "description": "All PHP keywords should be lowercase."
-        },
-        "Squiz.PHP.DisallowBooleanStatement": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.WhiteSpace.ScopeKeywordSpacing": {
-            "properties": {},
-            "enabled": true,
-            "name": "Scope Keyword Spacing",
-            "description": "The php keywords static, public, private, and protected should have one space after them."
-        },
-        "Generic.Debug.ClosureLinter": {
-            "properties": {},
-            "enabled": true,
-            "name": "Closure Linter",
-            "description": "All javascript files should pass basic Closure Linter tests."
-        },
-        "Squiz.ControlStructures.LowercaseDeclaration": {
-            "properties": {},
-            "enabled": true,
-            "name": "Lowercase Control Structure Keywords",
-            "description": "The php keywords if, else, elseif, foreach, for, do, switch, while, try, and catch should be lowercase."
-        },
-        "PEAR.Files.IncludingFile": {
-            "properties": {},
-            "enabled": true,
-            "name": "Including Code",
-            "description": "Anywhere you are unconditionally including a class file, use <em>require_once</em>. Anywhere you are conditionally including a class file (for example, factory methods), use <em>include_once</em>. Either of these will ensure that class files are included only once. They share the same file list, so you don't need to worry about mixing them - a file included with <em>require_once</em> will not be included again by <em>include_once</em>."
-        },
-        "Generic.Formatting.MultipleStatementAlignment": {
-            "properties": {},
-            "enabled": true,
-            "name": "Aligning Blocks of Assignments",
-            "description": "There should be one space on either side of an equals sign used to assign a value to a variable. In the case of a block of related assignments, more space may be inserted to promote readability."
-        },
-        "Squiz.CSS.MissingColon": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Generic.Commenting.Todo": {
-            "properties": {},
-            "enabled": true,
-            "name": "Todo Comments",
-            "description": "TODO Statements should be taken care of."
-        },
-        "Generic.Formatting.DisallowMultipleStatements": {
-            "properties": {},
-            "enabled": true,
-            "name": "Multiple Statements On a Single Line",
-            "description": "Multiple statements are not allowed on a single line."
-        },
-        "Squiz.CSS.EmptyClassDefinition": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Commenting.InlineComment": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.ControlStructures.SwitchDeclaration": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.PHP.DisallowInlineIf": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Operators.ValidLogicalOperators": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.WhiteSpace.SuperfluousWhitespace": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Arrays.ArrayDeclaration": {
-            "properties": {},
-            "enabled": true,
-            "name": "Array Declarations",
-            "description": "This standard covers all array declarations, regardless of the number and type of values contained within the array."
-        },
-        "Squiz.Scope.MethodScope": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.CSS.SemicolonSpacing": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.CSS.ClassDefinitionClosingBraceSpace": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.CSS.LowercaseStyleDefinition": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Generic.NamingConventions.UpperCaseConstantName": {
-            "properties": {},
-            "enabled": true,
-            "name": "Constant Names",
-            "description": "Constants should always be all-uppercase, with underscores to separate words."
-        },
-        "Squiz.PHP.EmbeddedPhp": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Functions.FunctionDuplicateArgument": {
-            "properties": {},
-            "enabled": true,
-            "name": "Lowercase Built-In functions",
-            "description": "All PHP built-in functions should be lowercased when called."
         },
         "Generic.WhiteSpace.DisallowTabIndent": {
             "properties": {},
@@ -1482,71 +1066,53 @@
             "name": "No Tab Indentation",
             "description": "Spaces should be used for indentation instead of tabs."
         },
-        "Squiz.Arrays.ArrayBracketSpacing": {
+        "Squiz.ControlStructures.ForEachLoopDeclaration": {
             "properties": {},
             "enabled": true,
-            "name": "Array Bracket Spacing",
-            "description": "When referencing arrays you should not put whitespace around the opening bracket or before the closing bracket."
+            "name": "Foreach Loop Declarations",
+            "description": "There should be a space between each element of a foreach loop and the as keyword should be lowercase."
         },
-        "Generic.NamingConventions.ConstructorName": {
-            "properties": {},
-            "enabled": true,
-            "name": "Constructor name",
-            "description": "Constructors should be named __construct, not after the class."
-        },
-        "Squiz.Scope.StaticThisUsage": {
-            "properties": {},
-            "enabled": true,
-            "name": "Static This Usage",
-            "description": "Static methods should not use $this."
-        },
-        "Squiz.Commenting.EmptyCatchComment": {
+        "Squiz.Scope.MethodScope": {
             "properties": {},
             "enabled": true,
             "name": "",
             "description": ""
         },
-        "Squiz.Files.FileExtension": {
+        "PSR2.ControlStructures.ControlStructureSpacing": {
+            "properties": {},
+            "enabled": true,
+            "name": "Control Structure Spacing",
+            "description": "Control Structures should have 0 spaces after opening parentheses and 0 spaces before closing parentheses."
+        },
+        "Squiz.WhiteSpace.ScopeClosingBrace": {
             "properties": {},
             "enabled": true,
             "name": "",
             "description": ""
         },
-        "Squiz.NamingConventions.ValidFunctionName": {
+        "PEAR.Functions.ValidDefaultValue": {
+            "properties": {},
+            "enabled": true,
+            "name": "Default Values in Function Declarations",
+            "description": "Arguments with default values go at the end of the argument list."
+        },
+        "Squiz.ControlStructures.ControlSignature": {
             "properties": {},
             "enabled": true,
             "name": "",
             "description": ""
         },
-        "Squiz.Operators.IncrementDecrementUsage": {
+        "PSR2.ControlStructures.SwitchDeclaration": {
             "properties": {},
             "enabled": true,
-            "name": "",
-            "description": ""
+            "name": "Switch Declarations",
+            "description": "Case statments should be indented 4 spaces from the switch keyword.  It should also be followed by a space.  Colons in switch declarations should not be preceded by whitespace.  Break statements should be indented 4 more spaces from the case statement.  There must be a comment when falling through from one case into the next."
         },
-        "Squiz.WhiteSpace.FunctionOpeningBraceSpace": {
+        "PSR2.Namespaces.UseDeclaration": {
             "properties": {},
             "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.WhiteSpace.OperatorSpacing": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Commenting.ClassComment": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.PHP.GlobalKeyword": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
+            "name": "Namespace Declarations",
+            "description": "Each use declaration must contain only one namespace and must come after the first namespace declaration.  There should be one blank line after the final use statement."
         },
         "Squiz.ControlStructures.ForLoopDeclaration": {
             "properties": {},
@@ -1554,19 +1120,31 @@
             "name": "For Loop Declarations",
             "description": "In a for loop declaration, there should be no space inside the brackets and there should be 0 spaces before and 1 space after semicolons."
         },
-        "Squiz.Classes.SelfMemberReference": {
+        "Generic.PHP.LowerCaseKeyword": {
             "properties": {},
             "enabled": true,
-            "name": "Self Member Reference",
-            "description": "The self keyword should be used instead of the current class name, should be lowercase, and should not have spaces before or after it."
+            "name": "Lowercase Keywords",
+            "description": "All PHP keywords should be lowercase."
         },
-        "Squiz.NamingConventions.ValidVariableName": {
+        "Generic.PHP.LowerCaseConstant": {
+            "properties": {},
+            "enabled": true,
+            "name": "PHP Constants",
+            "description": "The <em>true</em>, <em>false</em> and <em>null</em> constants must always be lowercase."
+        },
+        "Squiz.WhiteSpace.ScopeKeywordSpacing": {
+            "properties": {},
+            "enabled": true,
+            "name": "Scope Keyword Spacing",
+            "description": "The php keywords static, public, private, and protected should have one space after them."
+        },
+        "Squiz.Functions.MultiLineFunctionDeclaration": {
             "properties": {},
             "enabled": true,
             "name": "",
             "description": ""
         },
-        "Squiz.Classes.ValidClassName": {
+        "PSR2.Methods.FunctionCallSignature": {
             "properties": {},
             "enabled": true,
             "name": "",
@@ -1578,17 +1156,11 @@
             "name": "Inline Control Structures",
             "description": "Control Structures should use braces."
         },
-        "Squiz.CSS.DuplicateStyleDefinition": {
+        "Squiz.ControlStructures.LowercaseDeclaration": {
             "properties": {},
             "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.Functions.MultiLineFunctionDeclaration": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
+            "name": "Lowercase Control Structure Keywords",
+            "description": "The php keywords if, else, elseif, foreach, for, do, switch, while, try, and catch should be lowercase."
         },
         "Generic.Files.LineEndings": {
             "properties": {},
@@ -1596,23 +1168,17 @@
             "name": "Line Endings",
             "description": "Unix-style endlines are preferred (\"\\n\" instead of \"\\r\\n\")."
         },
-        "Squiz.Commenting.ClosingDeclarationComment": {
+        "PSR2.Classes.ClassDeclaration": {
             "properties": {},
             "enabled": true,
-            "name": "",
-            "description": ""
+            "name": "Class Declarations",
+            "description": "There should be exactly 1 space between the abstract or final keyword and the class keyword and between the class keyword and the class name.  The extends and implements keywords, if present, must be on the same line as the class name.  When interfaces implemented are spread over multiple lines, there should be exactly 1 interface metioned per line indented by 1 level.  The closing brace of the class must go on the first line after the body of the class and must be on a line by itself."
         },
-        "Squiz.Commenting.FileComment": {
+        "Generic.Formatting.DisallowMultipleStatements": {
             "properties": {},
             "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.WhiteSpace.ObjectOperatorSpacing": {
-            "properties": {},
-            "enabled": true,
-            "name": "Object Operator Spacing",
-            "description": "The object operator (->) should not have any space around it."
+            "name": "Multiple Statements On a Single Line",
+            "description": "Multiple statements are not allowed on a single line."
         },
         "Squiz.Functions.FunctionDeclaration": {
             "properties": {},
@@ -1620,11 +1186,29 @@
             "name": "",
             "description": ""
         },
-        "Generic.Strings.UnnecessaryStringConcat": {
+        "Squiz.WhiteSpace.SuperfluousWhitespace": {
             "properties": {},
             "enabled": true,
-            "name": "Unnecessary String Concatenation",
-            "description": "Strings should not be concatenated together."
+            "name": "",
+            "description": ""
+        },
+        "PSR2.Classes.PropertyDeclaration": {
+            "properties": {},
+            "enabled": true,
+            "name": "Property Declarations",
+            "description": "Property names should not be prefixed with an underscore to indicate visibility.  Visibility should be used to declare properties rather than the var keyword.  Only one property should be declared within a statement."
+        },
+        "PSR2.Namespaces.NamespaceDeclaration": {
+            "properties": {},
+            "enabled": true,
+            "name": "Namespace Declarations",
+            "description": "There must be one blank line after the namespace declaration."
+        },
+        "Zend.Files.ClosingTag": {
+            "properties": {},
+            "enabled": true,
+            "name": "Closing PHP Tags",
+            "description": "Files should not have closing php tags."
         },
         "Generic.WhiteSpace.ScopeIndent": {
             "properties": {},
@@ -1632,38 +1216,30 @@
             "name": "Scope Indentation",
             "description": "Indentation for control structures, classes, and functions should be 4 spaces per level."
         },
-        "Squiz.Commenting.DocCommentAlignment": {
+        "Squiz.Functions.LowercaseFunctionKeywords": {
             "properties": {},
             "enabled": true,
-            "name": "Doc Comment Alignment",
-            "description": "The asterisks in a doc comment should align, and there should be one space between the asterisk and tags."
+            "name": "Lowercase Function Keywords",
+            "description": "The php keywords function, public, private, protected, and static should be lowercase."
         },
-        "Squiz.Commenting.BlockComment": {
+        "PSR2.Methods.MethodDeclaration": {
             "properties": {},
             "enabled": true,
-            "name": "",
-            "description": ""
+            "name": "Method Declarations",
+            "description": "Method names should not be prefixed with an underscore to indicate visibility.  The static keyword, when present, should come after the visibility declaration, and the final and abstract keywords should come before."
         },
-        "Squiz.PHP.Eval": {
+        "PSR2.Files.EndFileNewline": {
             "properties": {},
             "enabled": true,
-            "name": "",
-            "description": ""
+            "name": "End File Newline",
+            "description": "PHP Files should end with exactly one newline."
         },
-        "Squiz.PHP.DiscouragedFunctions": {
+        "PSR2.ControlStructures.ElseIfDeclaration": {
             "properties": {},
             "enabled": true,
-            "name": "",
-            "description": ""
-        },
-        "Squiz.CSS.Indentation": {
-            "properties": {},
-            "enabled": true,
-            "name": "",
-            "description": ""
+            "name": "Elseif Declarations",
+            "description": "PHP's elseif keyword should be used instead of else if."
         }
     },
-    "name": "Squiz"
-}, "PHP_CodeSniffer": {
-    "name": "PHP_CodeSniffer"
+    "name": "PSR2"
 }}

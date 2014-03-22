@@ -42,7 +42,7 @@
                             </label>
                         </div>
 
-                        <span class="help-block">{{ rule_data.description }}</span>
+                        <span class="help-block">{{ rule_data.description | safe }}</span>
 
                         {% for property_name, property_data in rule_data.properties.items %}
                             <div class="form-group">
