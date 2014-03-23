@@ -8,7 +8,15 @@ import json
 
 
 class PHPCSForm(forms.Form):
-    pass
+    AVAILABLE_STANDARDS = (
+        ('Zend', 'Zend'),
+        ('PEAR', 'Pear'),
+        ('PHPCS', 'PHPCS'),
+        ('Squiz', 'Squiz')
+    )
+
+    standard = forms.ChoiceField(widget=forms.RadioSelect, choices=AVAILABLE_STANDARDS)
+    minimum_severity = forms.IntegerField()
 
 
 class PHPCSScanner(AbstractScanner):
