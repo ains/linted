@@ -26,7 +26,7 @@ class PHPCSScanner(AbstractScanner):
 
     @staticmethod
     def get_error_group(error_name):
-        error_group_name = 'phpmd.{}'.format(error_name)
+        error_group_name = 'phpcs.{}'.format(error_name)
         return ErrorGroup.objects.get(name=error_group_name)
 
     def process_results(self, scan_result):
@@ -59,4 +59,4 @@ class PHPCSScanner(AbstractScanner):
             scan_result = subprocess.check_output(docker_cmd + ['phpcs', '--report=json', scan_standard, self.path])
             self.process_results(scan_result)
         except subprocess.CalledProcessError:
-            pass__author__ = 'ains'
+            pass
