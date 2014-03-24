@@ -54,7 +54,7 @@ if __name__ == '__main__':
                     'default': property_default_value,
                     'type': property_type
                 }
-            
+
             ruleset_rules[rule_name] = {
                 'name': rule_name,
                 'enabled': True,

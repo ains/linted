@@ -36,15 +36,26 @@ class ScannerSettings():
     def get_scanner_rules(self):
         return self.settings['rules']
 
+    def get_custom_rule_properties(self, ruleset, rule):
+        return self.settings['rules'][ruleset][rule]['properties']
+
     def get_property_value(self, ruleset, rule, property):
         custom_property_value = self.get_custom_property_value(ruleset, rule, property)
         if custom_property_value is not None:
             return custom_property_value
         else:
-            (default_type, default_value) = self.get_default_rule(ruleset, rule, property)
+            (default_type, default_value) = self.get_default_property(ruleset, rule, property)
             return default_value
 
-    def get_default_rule(self, ruleset, rule, property):
+    def get_custom_rule_enabled(self, ruleset, rule):
+        return self.ruleset[ruleset][rule].get('enabled')
+
+    def set_custom_rule_enabled(self, ruleset, rule, enabled):
+        default_enabled_value = self.ruleset[ruleset]['rules'][rule]['enabled']
+        if default_enabled_value != enabled:
+            self.settings[ruleset][rule]['enabled'] = enabled
+
+    def get_default_property(self, ruleset, rule, property):
         try:
             ruleset_property = self.ruleset[ruleset]['rules'][rule]['properties'][property]
             property_type = ruleset_property['type']
@@ -55,20 +66,21 @@ class ScannerSettings():
             return None
 
     def get_custom_property_value(self, ruleset, rule, property):
-        custom_rule_property = self.settings['rules'][ruleset][rule].get(property)
-        return custom_rule_property
+        custom_rule_properties = self.get_custom_rule_properties(ruleset, rule)
+        return custom_rule_properties.get(property)
 
     def add_custom_rule(self, ruleset, rule, property, value):
-        default_rule = self.get_default_rule(ruleset, rule, property)
+        default_rule = self.get_default_property(ruleset, rule, property)
         if default_rule is not None:
             property_type, default_value = default_rule
 
-            #Convert to boolean
+            #Change type if property is a boolean
             if property_type == 'bool':
                 value = (value == 'true')
 
             if value != default_value:
-                self.settings['rules'][ruleset][rule][property] = value
+                properties = self.get_custom_rule_properties(ruleset, rule)
+                properties[property] = value
 
     def save(self):
         self.repository_scanner.settings = json.dumps(self.settings)
