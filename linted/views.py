@@ -112,14 +112,15 @@ def scanner_settings(request, uuid, scanner_name):
 
             if scanner_settings_form.is_valid():
                 for field_name, value in request.POST.items():
-                    if '/' in field_name:
+                    if '/property/' in field_name:
+                        ruleset, rule, _ , property = field_name.split('/')
+                        settings.add_custom_rule(ruleset, rule, property, value)
+                    elif '/' in field_name:
                         ruleset, rule, property = field_name.split('/')
-                        #TODO: Fully separate enabled and properties
                         if property == 'enabled':
                             enabled_value = (value == 'true')
-                            settings.set_custom_rule_enabled(ruleset, rule, enabled_value)
-                        else:
-                            settings.add_custom_rule(ruleset, rule, property, value)
+                            settings.set_rule_enabled(ruleset, rule, enabled_value)
+
 
                 settings.set_scanner_config(scanner_settings_form.cleaned_data)
                 settings.save()

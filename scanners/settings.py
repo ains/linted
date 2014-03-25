@@ -47,13 +47,18 @@ class ScannerSettings():
             (default_type, default_value) = self.get_default_property(ruleset, rule, property)
             return default_value
 
-    def get_custom_rule_enabled(self, ruleset, rule):
-        return self.ruleset[ruleset][rule].get('enabled')
+    def get_rule_enabled(self, ruleset, rule):
+        custom_enabled_value = self.settings['rules'][ruleset][rule].get('enabled')
+        if custom_enabled_value is not None:
+            return custom_enabled_value
+        else:
+            default_enabled_value = self.ruleset[ruleset]['rules'][rule]['enabled']
+            return default_enabled_value
 
-    def set_custom_rule_enabled(self, ruleset, rule, enabled):
+    def set_rule_enabled(self, ruleset, rule, enabled):
         default_enabled_value = self.ruleset[ruleset]['rules'][rule]['enabled']
         if default_enabled_value != enabled:
-            self.settings[ruleset][rule]['enabled'] = enabled
+            self.settings['rules'][ruleset][rule]['enabled'] = enabled
 
     def get_default_property(self, ruleset, rule, property):
         try:
