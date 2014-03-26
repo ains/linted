@@ -15,5 +15,4 @@ def get_checkbox_checked(settings, ruleset, rule, property):
 
 @register.simple_tag
 def get_enabled_checked(settings, ruleset, rule):
-    print settings.get_rule_enabled(ruleset, rule)
     return 'checked' if settings.get_rule_enabled(ruleset, rule) else ''
