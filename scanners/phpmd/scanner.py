@@ -12,10 +12,12 @@ import os
 
 class PHPMDForm(forms.Form):
     RULE_SETS = (
-        ('codesize', 'Code Size'),
-        ('naming', 'Naming'),
-        ('design', 'Design'),
-        ('unusedcode', 'Unused Code')
+        ('cleancode.xml', 'Clean Code'),
+        ('codesize.xml', 'Code Size'),
+        ('naming.xml', 'Naming'),
+        ('design.xml', 'Design'),
+        ('unusedcode.xml', 'Unused Code'),
+        ('controversial.xlm', 'Controversial')
     )
     selected_rule_sets = forms.MultipleChoiceField(
         choices=RULE_SETS, widget=forms.CheckboxSelectMultiple)
@@ -48,23 +50,29 @@ class PHPMDScanner(AbstractScanner):
                                         'noNamespaceSchemaLocation': 'http://pmd.sf.net/ruleset_xml_schema.xsd'
                                     })
         E = builder.ElementMaker()
-        ruleset_xml = root.ruleset(name="Generated Ruleset")
+        ruleset_xml = root.ruleset(name='Generated Ruleset')
 
         for rule_set in config['selected_rule_sets']:
-            rule_location = "rulesets/{}.xml".format(rule_set)
-            ruleset_xml.append(E.rule(ref=rule_location))
+            rule_location = "rulesets/{}".format(rule_set)
+            rule_node = E.rule(ref=rule_location)
 
-        for rule_file, custom_rules in rule_settings.items():
-            for rule, properties in custom_rules.items():
-                ref = "rulesets/{}/{}".format(rule_file, rule)
+            custom_rules = []
 
-                custom_rule = E.rule(ref=ref)
-                custom_properties = E.properties(E.priority("1"))
-                for property_name, value in properties.items():
-                    custom_properties.append(E.property(name=property_name, value=value))
+            for (rule_name, rule_configuration) in rule_settings[rule_set].items():
+                if not self.settings.get_rule_enabled(rule_set, rule_name):
+                    rule_node.append(E.exclude(name=rule_name))
+                else:
+                    ref = "{}/{}".format(rule_location, rule_name)
+                    custom_rule = E.rule(ref=ref)
+                    custom_properties = E.properties(E.priority('1'))
 
-                custom_rule.append(custom_properties)
-                ruleset_xml.append(custom_rule)
+                    for property_name, value in rule_configuration['properties'].items():
+                        custom_properties.append(E.property(name=property_name, value=value))
+                        custom_rule.append(custom_properties)
+                        custom_rules.append(custom_rule)
+
+            ruleset_xml.append(rule_node)
+            ruleset_xml.extend(custom_rules)
 
         settings_file = os.path.join(self.path, 'phpmd_ruleset.xml')
         with open(settings_file, 'w+') as f:
