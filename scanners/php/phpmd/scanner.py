@@ -1,13 +1,14 @@
-from scanners.abstract_scanner import AbstractScanner
-from linted.models import Scanner, ErrorGroup
-from django import forms
-
 import collections
 import subprocess
+import os
 import xml.etree.ElementTree as ElementTree
 import lxml.builder as builder
 import lxml.etree
-import os
+
+from django import forms
+from scanners.base_scanner import BaseScanner
+from linted.models import Scanner, ErrorGroup
+from scanners.php.mixin import XmlConfigureMixin
 
 
 class PHPMDForm(forms.Form):
@@ -23,13 +24,12 @@ class PHPMDForm(forms.Form):
         choices=RULE_SETS, widget=forms.CheckboxSelectMultiple)
 
 
-class PHPMDScanner(AbstractScanner):
+class PHPMDScanner(BaseScanner, XmlConfigureMixin):
     def __init__(self, repository_scan, path, excluded_files='', settings=None):
         scanner = Scanner.objects.get(short_name='phpmd')
-        super(PHPMDScanner, self).__init__(repository_scan, scanner, path)
-
         self.excluded_files = excluded_files
-        self.settings = settings
+
+        super(PHPMDScanner, self).__init__(repository_scan, scanner, path, settings)
 
     settings_form = PHPMDForm
 
@@ -38,47 +38,23 @@ class PHPMDScanner(AbstractScanner):
         error_group_name = 'phpmd.{}'.format(error_name)
         return ErrorGroup.objects.get(name=error_group_name)
 
+    @property
+    def ruleset_path(self):
+        return os.path.join(self.path, 'phpmd_ruleset.xml')
+
     def configure(self):
-        config = self.settings.get_scanner_config()
-        rule_settings = self.settings.get_scanner_rules()
+        E = builder.ElementMaker(namespace='http://pmd.sf.net/ruleset/1.0.0',
+                                 nsmap={
+                                     None: 'http://pmd.sf.net/ruleset/1.0.0',
+                                     'xsi': 'http://www.w3.org/2001/XMLSchema-instance',
+                                     'schemaLocation': 'http://pmd.sf.net/ruleset_xml_schema.xsd',
+                                     'noNamespaceSchemaLocation': 'http://pmd.sf.net/ruleset_xml_schema.xsd'
+                                 })
+        root = E.ruleset(name='Generated Ruleset')
+        ruleset_xml = self.build_xml_config(root)
 
-        root = builder.ElementMaker(namespace='http://pmd.sf.net/ruleset/1.0.0',
-                                    nsmap={
-                                        None: 'http://pmd.sf.net/ruleset/1.0.0',
-                                        'xsi': 'http://www.w3.org/2001/XMLSchema-instance',
-                                        'schemaLocation': 'http://pmd.sf.net/ruleset_xml_schema.xsd',
-                                        'noNamespaceSchemaLocation': 'http://pmd.sf.net/ruleset_xml_schema.xsd'
-                                    })
-        E = builder.ElementMaker()
-        ruleset_xml = root.ruleset(name='Generated Ruleset')
-
-        for rule_set in config['selected_rule_sets']:
-            rule_location = "rulesets/{}".format(rule_set)
-            rule_node = E.rule(ref=rule_location)
-
-            custom_rules = []
-
-            for (rule_name, rule_configuration) in rule_settings[rule_set].items():
-                if not self.settings.get_rule_enabled(rule_set, rule_name):
-                    rule_node.append(E.exclude(name=rule_name))
-                else:
-                    ref = "{}/{}".format(rule_location, rule_name)
-                    custom_rule = E.rule(ref=ref)
-                    custom_properties = E.properties(E.priority('1'))
-
-                    for property_name, value in rule_configuration['properties'].items():
-                        custom_properties.append(E.property(name=property_name, value=value))
-                        custom_rule.append(custom_properties)
-                        custom_rules.append(custom_rule)
-
-            ruleset_xml.append(rule_node)
-            ruleset_xml.extend(custom_rules)
-
-        settings_file = os.path.join(self.path, 'phpmd_ruleset.xml')
-        with open(settings_file, 'w+') as f:
+        with open(self.ruleset_path, 'w+') as f:
             f.write(lxml.etree.tostring(ruleset_xml, pretty_print=True))
-
-        return settings_file
 
     def process_results(self, scan_result):
         root = ElementTree.fromstring(scan_result)
@@ -108,8 +84,7 @@ class PHPMDScanner(AbstractScanner):
             phpmd_command = ['phpmd', self.path, 'xml']
 
             if self.settings is not None:
-                settings_file = self.configure()
-                phpmd_command += [settings_file]
+                phpmd_command += [self.ruleset_path]
             else:
                 phpmd_command += ['codesize,unusedcode,naming']
 

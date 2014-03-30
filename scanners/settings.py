@@ -12,8 +12,9 @@ def tree(mapping=[]):
 class ScannerSettings():
     def __init__(self, repository_scanner):
         scanner_name = repository_scanner.scanner.short_name
+        scanner_language = repository_scanner.scanner.language.short_name
 
-        ruleset_file = os.path.join(settings.SCANNER_DIR, scanner_name, 'ruleset.json')
+        ruleset_file = os.path.join(settings.SCANNER_DIR, scanner_language, scanner_name, 'ruleset.json')
         with open(ruleset_file) as f:
             self.ruleset = json.loads(f.read())
 

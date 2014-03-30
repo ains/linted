@@ -1,10 +1,15 @@
-from scanners.abstract_scanner import AbstractScanner
+from scanners.base_scanner import BaseScanner
 from linted.models import Scanner, ErrorGroup
+from scanners.php.mixin import XmlConfigureMixin
+
 from django import forms
 
+import os
 import collections
 import subprocess
 import json
+import lxml.builder as builder
+import lxml.etree
 
 
 class PHPCSForm(forms.Form):
@@ -19,7 +24,7 @@ class PHPCSForm(forms.Form):
     minimum_severity = forms.IntegerField()
 
 
-class PHPCSScanner(AbstractScanner):
+class PHPCSScanner(BaseScanner, XmlConfigureMixin):
     def __init__(self, repository_scan, path, excluded_files='', settings=None):
         if settings is None:
             settings = {}
@@ -31,6 +36,19 @@ class PHPCSScanner(AbstractScanner):
         self.settings = settings
 
     settings_form = PHPCSForm
+
+    @property
+    def ruleset_path(self):
+        return os.path.join(self.path, 'phpcs_ruleset.xml')
+
+    def configure(self):
+        E = builder.ElementMaker()
+
+        root = E.ruleset(name='Generated Ruleset')
+        ruleset_xml = self.build_xml_config(root)
+
+        with open(self.ruleset_path, 'w+') as f:
+            f.write(lxml.etree.tostring(ruleset_xml, pretty_print=True))
 
     @staticmethod
     def get_error_group(error_name):

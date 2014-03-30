@@ -4,14 +4,21 @@ import os
 import textwrap
 
 
-class AbstractScanner(object):
-    def __init__(self, repository_scan, scanner, path):
+class BaseScanner(object):
+    def __init__(self, repository_scan, scanner, path, settings):
         self.repository_scan = repository_scan
         self.scanner = scanner
         self.path = path
+        self.settings = settings
+
+        if self.settings is not None:
+            self.configure()
 
     def get_relative_path(self, abs_path):
         return os.path.relpath(abs_path, self.path)
+
+    def configure(self):
+        pass
 
     @staticmethod
     def get_snippet(file_lines, start_line, end_line):

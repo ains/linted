@@ -107,8 +107,8 @@ STATIC_URL = '/static/'
 SCANNER_DIR = os.path.join(PROJECT_ROOT, 'scanners')
 
 #Need to find a better way to handle scanner imports
-from scanners.phpmd.scanner import PHPMDScanner
-from scanners.phpcs.scanner import PHPCSScanner
+from scanners.php.phpmd.scanner import PHPMDScanner
+from scanners.php.phpcs.scanner import PHPCSScanner
 ENABLED_SCANNERS = {
     'phpmd': PHPMDScanner,
     'phpcs': PHPCSScanner
