@@ -1,4 +1,4 @@
-from scanners.base_scanner import BaseScanner
+from scanners.abstract_scanner import AbstractScanner
 from linted.models import Scanner, ErrorGroup
 from scanners.php.mixin import XmlConfigureMixin
 
@@ -16,6 +16,8 @@ class PHPCSForm(forms.Form):
     AVAILABLE_STANDARDS = (
         ('Zend', 'Zend'),
         ('PEAR', 'Pear'),
+        ('PSR2', 'PSR2'),
+        ('PSR1', 'PSR1'),
         ('PHPCS', 'PHPCS'),
         ('Squiz', 'Squiz')
     )
@@ -24,30 +26,30 @@ class PHPCSForm(forms.Form):
     minimum_severity = forms.IntegerField()
 
 
-class PHPCSScanner(BaseScanner, XmlConfigureMixin):
+class PHPCSScanner(AbstractScanner, XmlConfigureMixin):
     def __init__(self, repository_scan, path, excluded_files='', settings=None):
-        if settings is None:
-            settings = {}
-
         scanner = Scanner.objects.get(short_name='phpcs')
-        super(PHPCSScanner, self).__init__(repository_scan, scanner, path)
-
         self.excluded_files = excluded_files
-        self.settings = settings
+
+        super(PHPCSScanner, self).__init__(repository_scan, scanner, path, settings)
+
 
     settings_form = PHPCSForm
 
     @property
-    def ruleset_path(self):
+    def ruleset_file(self):
         return os.path.join(self.path, 'phpcs_ruleset.xml')
 
     def configure(self):
         E = builder.ElementMaker()
 
         root = E.ruleset(name='Generated Ruleset')
-        ruleset_xml = self.build_xml_config(root)
 
-        with open(self.ruleset_path, 'w+') as f:
+        config = self.settings.get_scanner_config()
+        ruleset_xml = self.build_xml_config(root, [config['standard']])
+
+        print(lxml.etree.tostring(ruleset_xml, pretty_print=True))
+        with open(self.ruleset_file, 'w+') as f:
             f.write(lxml.etree.tostring(ruleset_xml, pretty_print=True))
 
     @staticmethod
@@ -81,7 +83,9 @@ class PHPCSScanner(BaseScanner, XmlConfigureMixin):
             docker_volume = '{}:{}:ro'.format(self.path, self.path)
             docker_cmd = ['docker', 'run', '-v', docker_volume, 'linted/phpcs']
 
-            scan_standard = '--standard={}'.format('PSR2')
+            standard = self.ruleset_file if self.settings is not None else 'PSR2'
+            scan_standard = '--standard={}'.format(standard)
+
             scan_result = subprocess.check_output(docker_cmd + ['phpcs', '--report=json', scan_standard, self.path])
             self.process_results(scan_result)
         except subprocess.CalledProcessError:

@@ -2,14 +2,13 @@ import lxml.builder as builder
 
 
 class XmlConfigureMixin(object):
-    def build_xml_config(self, root):
-        config = self.settings.get_scanner_config()
+    def build_xml_config(self, root, chosen_rule_sets, rule_prefix=''):
         rule_settings = self.settings.get_scanner_rules()
 
         E = builder.ElementMaker()
 
-        for rule_set in config['selected_rule_sets']:
-            rule_location = "rulesets/{}".format(rule_set)
+        for rule_set in chosen_rule_sets:
+            rule_location = "{}{}".format(rule_prefix, rule_set)
             rule_node = E.rule(ref=rule_location)
 
             custom_rules = []

@@ -4,7 +4,7 @@ import os
 import textwrap
 
 
-class BaseScanner(object):
+class AbstractScanner(object):
     def __init__(self, repository_scan, scanner, path, settings):
         self.repository_scan = repository_scan
         self.scanner = scanner

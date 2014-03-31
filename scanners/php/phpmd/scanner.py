@@ -6,7 +6,7 @@ import lxml.builder as builder
 import lxml.etree
 
 from django import forms
-from scanners.base_scanner import BaseScanner
+from scanners.abstract_scanner import AbstractScanner
 from linted.models import Scanner, ErrorGroup
 from scanners.php.mixin import XmlConfigureMixin
 
@@ -24,7 +24,7 @@ class PHPMDForm(forms.Form):
         choices=RULE_SETS, widget=forms.CheckboxSelectMultiple)
 
 
-class PHPMDScanner(BaseScanner, XmlConfigureMixin):
+class PHPMDScanner(AbstractScanner, XmlConfigureMixin):
     def __init__(self, repository_scan, path, excluded_files='', settings=None):
         scanner = Scanner.objects.get(short_name='phpmd')
         self.excluded_files = excluded_files
@@ -39,7 +39,7 @@ class PHPMDScanner(BaseScanner, XmlConfigureMixin):
         return ErrorGroup.objects.get(name=error_group_name)
 
     @property
-    def ruleset_path(self):
+    def ruleset_file(self):
         return os.path.join(self.path, 'phpmd_ruleset.xml')
 
     def configure(self):
@@ -51,9 +51,11 @@ class PHPMDScanner(BaseScanner, XmlConfigureMixin):
                                      'noNamespaceSchemaLocation': 'http://pmd.sf.net/ruleset_xml_schema.xsd'
                                  })
         root = E.ruleset(name='Generated Ruleset')
-        ruleset_xml = self.build_xml_config(root)
 
-        with open(self.ruleset_path, 'w+') as f:
+        config = self.settings.get_scanner_config()
+        ruleset_xml = self.build_xml_config(root, config['selected_rule_sets'], 'rulesets/')
+
+        with open(self.ruleset_file, 'w+') as f:
             f.write(lxml.etree.tostring(ruleset_xml, pretty_print=True))
 
     def process_results(self, scan_result):
@@ -84,7 +86,7 @@ class PHPMDScanner(BaseScanner, XmlConfigureMixin):
             phpmd_command = ['phpmd', self.path, 'xml']
 
             if self.settings is not None:
-                phpmd_command += [self.ruleset_path]
+                phpmd_command += [self.ruleset_file]
             else:
                 phpmd_command += ['codesize,unusedcode,naming']
 

@@ -38,7 +38,7 @@ def scan_repository(self, repository_id):
                 working_dir = os.path.join(tempfile.gettempdir(), self.request.id)
 
                 private_key_file = StringIO(key_pair.private_key)
-                # clone_repository(repository.clone_url, working_dir, private_key_file)
+                clone_repository(repository.clone_url, working_dir, private_key_file)
                 auth_success = True
 
                 #Start repository scan
