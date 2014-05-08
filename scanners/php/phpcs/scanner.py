@@ -48,7 +48,6 @@ class PHPCSScanner(AbstractScanner, XmlConfigureMixin):
         config = self.settings.get_scanner_config()
         ruleset_xml = self.build_xml_config(root, [config['standard']])
 
-        print(lxml.etree.tostring(ruleset_xml, pretty_print=True))
         with open(self.ruleset_file, 'w+') as f:
             f.write(lxml.etree.tostring(ruleset_xml, pretty_print=True))
 
@@ -86,7 +85,12 @@ class PHPCSScanner(AbstractScanner, XmlConfigureMixin):
             standard = self.ruleset_file if self.settings is not None else 'PSR2'
             scan_standard = '--standard={}'.format(standard)
 
-            scan_result = subprocess.check_output(docker_cmd + ['phpcs', '--report=json', scan_standard, self.path])
-            self.process_results(scan_result)
-        except subprocess.CalledProcessError:
+            scan_cmd = docker_cmd + ['phpcs', '--report=json', scan_standard, self.path]
+            subprocess.check_output(scan_cmd)
+
+        except subprocess.CalledProcessError as e:
+            #PHPCS returns error code 1 when violations are found
+            if e.returncode == 1:
+                self.process_results(e.output)
+
             pass
