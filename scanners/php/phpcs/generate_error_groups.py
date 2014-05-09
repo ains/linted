@@ -4,7 +4,7 @@
 import sys
 import os
 import fnmatch
-from linted.models import ErrorGroup
+import json
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "linted.settings")
 
@@ -15,6 +15,10 @@ if __name__ == '__main__':
         print("Please call the script with the directory containing the PHPCS rulesets")
         exit(0)
 
+    output_data = {
+        "error_groups": []
+    }
+
     ruleset_path = sys.argv[1]
     for root, _, files in os.walk(ruleset_path):
         for file in files:
@@ -24,7 +28,11 @@ if __name__ == '__main__':
                 cleaned_rule_path = rule_path.replace("Sniffs/", "").replace(".php", "")
                 rule_name = cleaned_rule_path.replace("/", ".")
 
-                error_group = ErrorGroup()
-                error_group.name = '{}.{}'.format(prefix, rule_name)
-                error_group.description = ""
-                error_group.save()
+                error_group = {
+                    "name": rule_name,
+                    "description": ""
+                }
+
+                output_data["error_groups"].append(error_group)
+
+    print(json.dumps(output_data))

@@ -4,8 +4,9 @@
 import sys
 import os
 import glob
+import json
 import xml.etree.ElementTree as ElementTree
-from linted.models import ErrorGroup
+
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "linted.settings")
 
@@ -17,6 +18,10 @@ if __name__ == '__main__':
         print("Please call the script with the directory containing the PHPMD rulesets")
         exit(0)
 
+    output_data = {
+        'error_groups': []
+    }
+
     for ruleset_file in glob.glob(os.path.join(sys.argv[1], '*.xml')):
         tree = ElementTree.parse(ruleset_file)
         root = tree.getroot()
@@ -25,8 +30,10 @@ if __name__ == '__main__':
             rule_name = rule_node.get('name')
             rule_description = rule_node.find('pmd:description', namespaces=namespaces).text
 
-            error_group = ErrorGroup()
-            error_group.name = '{}.{}'.format(prefix, rule_name)
-            error_group.description = rule_description.strip()
-            error_group.save()
+            error_group = {
+                'name': rule_name,
+                'description': rule_description.strip()
+            }
+            output_data['error_groups'].append(error_group)
 
+    print (json.dumps(output_data))

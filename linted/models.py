@@ -77,7 +77,7 @@ class RepositoryScan(models.Model):
 class ErrorGroup(models.Model):
     parent = models.ForeignKey("ErrorGroup", null=True)
 
-    name = models.TextField(max_length=512)
+    name = models.TextField(max_length=512, unique=True)
     #Formatted as Markdown documents
     description = models.TextField()
 

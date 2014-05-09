@@ -110,6 +110,6 @@ SCANNER_DIR = os.path.join(PROJECT_ROOT, 'scanners')
 from scanners.php.phpmd.scanner import PHPMDScanner
 from scanners.php.phpcs.scanner import PHPCSScanner
 ENABLED_SCANNERS = {
-    'phpmd': PHPMDScanner,
-    'phpcs': PHPCSScanner
+    'php/phpmd': PHPMDScanner,
+    'php/phpcs': PHPCSScanner
 }

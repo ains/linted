@@ -1,0 +1,822 @@
+{"error_groups": [
+    {
+        "name": "PEAR.Files.IncludingFileSniff",
+        "description": ""
+    },
+    {
+        "name": "PEAR.Commenting.FunctionCommentSniff",
+        "description": ""
+    },
+    {
+        "name": "PEAR.Commenting.ClassCommentSniff",
+        "description": ""
+    },
+    {
+        "name": "PEAR.Commenting.InlineCommentSniff",
+        "description": ""
+    },
+    {
+        "name": "PEAR.Commenting.FileCommentSniff",
+        "description": ""
+    },
+    {
+        "name": "PEAR.NamingConventions.ValidFunctionNameSniff",
+        "description": ""
+    },
+    {
+        "name": "PEAR.NamingConventions.ValidClassNameSniff",
+        "description": ""
+    },
+    {
+        "name": "PEAR.NamingConventions.ValidVariableNameSniff",
+        "description": ""
+    },
+    {
+        "name": "PEAR.WhiteSpace.ScopeClosingBraceSniff",
+        "description": ""
+    },
+    {
+        "name": "PEAR.WhiteSpace.ObjectOperatorIndentSniff",
+        "description": ""
+    },
+    {
+        "name": "PEAR.WhiteSpace.ScopeIndentSniff",
+        "description": ""
+    },
+    {
+        "name": "PEAR.Classes.ClassDeclarationSniff",
+        "description": ""
+    },
+    {
+        "name": "PEAR.Formatting.MultiLineAssignmentSniff",
+        "description": ""
+    },
+    {
+        "name": "PEAR.ControlStructures.MultiLineConditionSniff",
+        "description": ""
+    },
+    {
+        "name": "PEAR.ControlStructures.ControlSignatureSniff",
+        "description": ""
+    },
+    {
+        "name": "PEAR.Functions.FunctionDeclarationSniff",
+        "description": ""
+    },
+    {
+        "name": "PEAR.Functions.ValidDefaultValueSniff",
+        "description": ""
+    },
+    {
+        "name": "PEAR.Functions.FunctionCallSignatureSniff",
+        "description": ""
+    },
+    {
+        "name": "MySource.Objects.DisallowNewWidgetSniff",
+        "description": ""
+    },
+    {
+        "name": "MySource.Objects.AssignThisSniff",
+        "description": ""
+    },
+    {
+        "name": "MySource.Objects.CreateWidgetTypeCallbackSniff",
+        "description": ""
+    },
+    {
+        "name": "MySource.Channels.DisallowSelfActionsSniff",
+        "description": ""
+    },
+    {
+        "name": "MySource.Channels.IncludeOwnSystemSniff",
+        "description": ""
+    },
+    {
+        "name": "MySource.Channels.UnusedSystemSniff",
+        "description": ""
+    },
+    {
+        "name": "MySource.Channels.IncludeSystemSniff",
+        "description": ""
+    },
+    {
+        "name": "MySource.Channels.ChannelExceptionSniff",
+        "description": ""
+    },
+    {
+        "name": "MySource.Commenting.FunctionCommentSniff",
+        "description": ""
+    },
+    {
+        "name": "MySource.CSS.BrowserSpecificStylesSniff",
+        "description": ""
+    },
+    {
+        "name": "MySource.Debug.DebugCodeSniff",
+        "description": ""
+    },
+    {
+        "name": "MySource.Debug.FirebugConsoleSniff",
+        "description": ""
+    },
+    {
+        "name": "MySource.Strings.JoinStringsSniff",
+        "description": ""
+    },
+    {
+        "name": "MySource.PHP.GetRequestDataSniff",
+        "description": ""
+    },
+    {
+        "name": "MySource.PHP.EvalObjectFactorySniff",
+        "description": ""
+    },
+    {
+        "name": "MySource.PHP.ReturnFunctionValueSniff",
+        "description": ""
+    },
+    {
+        "name": "MySource.PHP.AjaxNullComparisonSniff",
+        "description": ""
+    },
+    {
+        "name": "PSR2.Files.EndFileNewlineSniff",
+        "description": ""
+    },
+    {
+        "name": "PSR2.Namespaces.NamespaceDeclarationSniff",
+        "description": ""
+    },
+    {
+        "name": "PSR2.Namespaces.UseDeclarationSniff",
+        "description": ""
+    },
+    {
+        "name": "PSR2.Classes.ClassDeclarationSniff",
+        "description": ""
+    },
+    {
+        "name": "PSR2.Classes.PropertyDeclarationSniff",
+        "description": ""
+    },
+    {
+        "name": "PSR2.Methods.MethodDeclarationSniff",
+        "description": ""
+    },
+    {
+        "name": "PSR2.Methods.FunctionCallSignatureSniff",
+        "description": ""
+    },
+    {
+        "name": "PSR2.ControlStructures.ControlStructureSpacingSniff",
+        "description": ""
+    },
+    {
+        "name": "PSR2.ControlStructures.ElseIfDeclarationSniff",
+        "description": ""
+    },
+    {
+        "name": "PSR2.ControlStructures.SwitchDeclarationSniff",
+        "description": ""
+    },
+    {
+        "name": "Zend.Files.ClosingTagSniff",
+        "description": ""
+    },
+    {
+        "name": "Zend.NamingConventions.ValidVariableNameSniff",
+        "description": ""
+    },
+    {
+        "name": "Zend.Debug.CodeAnalyzerSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Files.EndFileNewlineSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Files.LowercasedFilenameSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Files.EndFileNoNewlineSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Files.OneClassPerFileSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Files.InlineHTMLSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Files.OneInterfacePerFileSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Files.LineLengthSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Files.LineEndingsSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Files.ByteOrderMarkSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Metrics.CyclomaticComplexitySniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Metrics.NestingLevelSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.CodeAnalysis.UnconditionalIfStatementSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.CodeAnalysis.ForLoopWithTestFunctionCallSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.CodeAnalysis.EmptyStatementSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.CodeAnalysis.JumbledIncrementerSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.CodeAnalysis.UnusedFunctionParameterSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.CodeAnalysis.UnnecessaryFinalModifierSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.CodeAnalysis.UselessOverridingMethodSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.CodeAnalysis.ForLoopShouldBeWhileLoopSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Commenting.FixmeSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Commenting.TodoSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.NamingConventions.CamelCapsFunctionNameSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.NamingConventions.UpperCaseConstantNameSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.NamingConventions.ConstructorNameSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.WhiteSpace.ScopeIndentSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.WhiteSpace.DisallowTabIndentSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.WhiteSpace.DisallowSpaceIndentSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Debug.ClosureLinterSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Debug.JSHintSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Debug.CSSLintSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.VersionControl.SubversionPropertiesSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Classes.DuplicateClassNameSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Strings.UnnecessaryStringConcatSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Formatting.NoSpaceAfterCastSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Formatting.SpaceAfterCastSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Formatting.MultipleStatementAlignmentSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Formatting.DisallowMultipleStatementsSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.ControlStructures.InlineControlStructureSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.PHP.ClosingPHPTagSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.PHP.CharacterBeforePHPOpeningTagSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.PHP.SAPIUsageSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.PHP.UpperCaseConstantSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.PHP.DeprecatedFunctionsSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.PHP.LowerCaseConstantSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.PHP.LowerCaseKeywordSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.PHP.DisallowShortOpenTagSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.PHP.ForbiddenFunctionsSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.PHP.NoSilencedErrorsSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Functions.OpeningFunctionBraceBsdAllmanSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Functions.FunctionCallArgumentSpacingSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Functions.OpeningFunctionBraceKernighanRitchieSniff",
+        "description": ""
+    },
+    {
+        "name": "Generic.Functions.CallTimePassByReferenceSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Scope.MethodScopeSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Scope.StaticThisUsageSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Scope.MemberVarScopeSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Objects.ObjectInstantiationSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Objects.DisallowObjectStringIndexSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Objects.ObjectMemberCommaSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Files.FileExtensionSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.CodeAnalysis.EmptyStatementSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Commenting.FunctionCommentSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Commenting.BlockCommentSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Commenting.ClassCommentSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Commenting.InlineCommentSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Commenting.DocCommentAlignmentSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Commenting.FileCommentSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Commenting.ClosingDeclarationCommentSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Commenting.VariableCommentSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Commenting.FunctionCommentThrowTagSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Commenting.PostStatementCommentSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Commenting.EmptyCatchCommentSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Commenting.LongConditionClosingCommentSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.NamingConventions.ConstantCaseSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.NamingConventions.ValidFunctionNameSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.NamingConventions.ValidVariableNameSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.WhiteSpace.ControlStructureSpacingSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.WhiteSpace.CastSpacingSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.WhiteSpace.ScopeClosingBraceSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.WhiteSpace.ScopeKeywordSpacingSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.WhiteSpace.FunctionOpeningBraceSpaceSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.WhiteSpace.LanguageConstructSpacingSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.WhiteSpace.OperatorSpacingSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.WhiteSpace.PropertyLabelSpacingSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.WhiteSpace.ObjectOperatorSpacingSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.WhiteSpace.SemicolonSpacingSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.WhiteSpace.FunctionSpacingSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.WhiteSpace.LogicalOperatorSpacingSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.WhiteSpace.SuperfluousWhitespaceSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.WhiteSpace.FunctionClosingBraceSpaceSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.WhiteSpace.MemberVarSpacingSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.CSS.DuplicateStyleDefinitionSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.CSS.DisallowMultipleStyleDefinitionsSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.CSS.EmptyClassDefinitionSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.CSS.ShorthandSizeSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.CSS.IndentationSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.CSS.ColonSpacingSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.CSS.MissingColonSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.CSS.ClassDefinitionOpeningBraceSpaceSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.CSS.LowercaseStyleDefinitionSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.CSS.OpacitySniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.CSS.SemicolonSpacingSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.CSS.ClassDefinitionNameSpacingSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.CSS.ClassDefinitionClosingBraceSpaceSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.CSS.EmptyStyleDefinitionSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.CSS.ForbiddenStylesSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.CSS.NamedColoursSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.CSS.DuplicateClassDefinitionSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.CSS.ColourDefinitionSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Operators.IncrementDecrementUsageSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Operators.ValidLogicalOperatorsSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Operators.ComparisonOperatorUsageSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Debug.JavaScriptLintSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Debug.JSLintSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Arrays.ArrayDeclarationSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Arrays.ArrayBracketSpacingSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Classes.ClassDeclarationSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Classes.SelfMemberReferenceSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Classes.ClassFileNameSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Classes.LowercaseClassKeywordsSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Classes.DuplicatePropertySniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Classes.ValidClassNameSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Strings.EchoedStringsSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Strings.DoubleQuoteUsageSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Strings.ConcatenationSpacingSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Formatting.OperatorBracketSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.ControlStructures.InlineIfDeclarationSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.ControlStructures.ControlSignatureSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.ControlStructures.LowercaseDeclarationSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.ControlStructures.ForLoopDeclarationSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.ControlStructures.ElseIfDeclarationSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.ControlStructures.ForEachLoopDeclarationSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.ControlStructures.SwitchDeclarationSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.PHP.DiscouragedFunctionsSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.PHP.DisallowComparisonAssignmentSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.PHP.DisallowBooleanStatementSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.PHP.NonExecutableCodeSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.PHP.GlobalKeywordSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.PHP.DisallowMultipleAssignmentsSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.PHP.DisallowObEndFlushSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.PHP.LowercasePHPFunctionsSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.PHP.DisallowInlineIfSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.PHP.EmbeddedPhpSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.PHP.EvalSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.PHP.DisallowSizeFunctionsInLoopsSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.PHP.HeredocSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.PHP.ForbiddenFunctionsSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.PHP.CommentedOutCodeSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.PHP.InnerFunctionsSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Functions.LowercaseFunctionKeywordsSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Functions.FunctionDuplicateArgumentSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Functions.FunctionDeclarationSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Functions.GlobalFunctionSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Functions.FunctionDeclarationArgumentSpacingSniff",
+        "description": ""
+    },
+    {
+        "name": "Squiz.Functions.MultiLineFunctionDeclarationSniff",
+        "description": ""
+    },
+    {
+        "name": "PSR1.Files.SideEffectsSniff",
+        "description": ""
+    },
+    {
+        "name": "PSR1.Classes.ClassDeclarationSniff",
+        "description": ""
+    },
+    {
+        "name": "PSR1.Methods.CamelCapsMethodNameSniff",
+        "description": ""
+    }
+]}
