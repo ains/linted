@@ -35,7 +35,7 @@ class PHPMDScanner(AbstractScanner, XmlConfigureMixin):
 
     @staticmethod
     def get_error_group(error_name):
-        error_group_name = 'phpmd.{}'.format(error_name)
+        error_group_name = 'php/phpmd/{}'.format(error_name)
         return ErrorGroup.objects.get(name=error_group_name)
 
     @property
