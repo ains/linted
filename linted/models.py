@@ -45,8 +45,12 @@ class Scanner(models.Model):
         return self.name
 
     @property
+    def namespaced_name(self):
+        return "{}/{}".format(self.language.short_name, self.short_name)
+
+    @property
     def scanner_class(self):
-        return settings.ENABLED_SCANNERS.get(self.short_name)
+        return settings.ENABLED_SCANNERS.get(self.namespaced_name)
 
 
 class RepositoryScanner(models.Model):

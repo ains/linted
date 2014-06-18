@@ -7,11 +7,11 @@ from linted.models import ErrorGroup
 
 
 def install_scanner(scanner_name):
-    scanner_path = os.path.join(settings.PROJECT_ROOT, 'scanners', scanner_name)
+    scanner_path = os.path.join(settings.PROJECT_ROOT, 'scanners', scanner_name.replace(".", "/"))
 
     #Install scanner docker image
     docker_command = ['docker', 'build']
-    docker_image_name = 'linted/{}'.format(scanner_name)
+    docker_image_name = 'linted.{}'.format(scanner_name)
     try:
         subprocess.check_output(docker_command + ['-t', docker_image_name, scanner_path])
     except subprocess.CalledProcessError as e:
